@@ -59,9 +59,9 @@ export default function ContactForm() {
     <div className="bg-zinc-100 w-full max-w-xl sm:max-w-2xl rounded-xl px-6 sm:px-8 py-8 sm:py-10">
       {/* Success Message */}
       {submitStatus === 'success' && (
-        <div className="mb-6 p-4 bg-teal-400 text-black rounded-lg">
+        <div className="mb-6 p-4 bg-green-400 text-black rounded-lg">
           <p className="font-semibold">Message sent successfully!</p>
-          <p className="text-sm">Thank you for contacting us. We'll get back to you soon.</p>
+          <p className="text-sm">Thank you for contacting us. We&apos;ll get back to you soon.</p>
         </div>
       )}
 
@@ -78,48 +78,48 @@ export default function ContactForm() {
           {/* First row - First name and Last name */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
             <div className="flex-1 flex flex-col gap-1.5">
-              <label className="text-zinc-600 text-sm font-normal">
-                First name <span className="text-red-400">*</span>
+              <label className="text-[#71717b] text-sm font-normal">
+                First name <span className="text-[#ff6467]">*</span>
               </label>
               <input
                 type="text"
                 name="firstName"
                 required
-                className="bg-zinc-100 border border-zinc-400 rounded-lg px-3.5 py-2.5 text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent"
+                className="bg-zinc-100 border border-[#9f9fa9] rounded-lg px-3.5 py-2.5 text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
               />
             </div>
             <div className="flex-1 flex flex-col gap-1.5">
-              <label className="text-zinc-600 text-sm font-normal">
-                Last name <span className="text-red-400">*</span>
+              <label className="text-[#71717b] text-sm font-normal">
+                Last name <span className="text-[#ff6467]">*</span>
               </label>
               <input
                 type="text"
                 name="lastName"
                 required
-                className="bg-zinc-100 border border-zinc-400 rounded-lg px-3.5 py-2.5 text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent"
+                className="bg-zinc-100 border border-[#9f9fa9] rounded-lg px-3.5 py-2.5 text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
               />
             </div>
           </div>
 
           {/* Email */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-zinc-600 text-sm font-normal">
-              Email <span className="text-red-400">*</span>
+            <label className="text-[#71717b] text-sm font-normal">
+              Email <span className="text-[#ff6467]">*</span>
             </label>
             <input
               type="email"
               name="email"
               required
-              className="bg-zinc-100 border border-zinc-400 rounded-lg px-3.5 py-2.5 text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent"
+              className="bg-zinc-100 border border-[#9f9fa9] rounded-lg px-3.5 py-2.5 text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
             />
           </div>
 
           {/* Phone number */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-zinc-600 text-sm font-normal">
+            <label className="text-[#71717b] text-sm font-normal">
               Phone number
             </label>
-            <div className="flex bg-zinc-100 border border-zinc-400 rounded-lg overflow-hidden">
+            <div className="flex bg-zinc-100 border border-[#9f9fa9] rounded-lg overflow-hidden">
               <div className="flex items-center justify-center px-3.5 py-2.5 border-r border-zinc-400">
                 <span className="text-zinc-700 text-base font-normal">AU</span>
                 <svg className="w-5 h-5 ml-2 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,14 +136,14 @@ export default function ContactForm() {
 
           {/* Message */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-zinc-600 text-sm font-normal">
-              Message <span className="text-red-400">*</span>
+            <label className="text-[#71717b] text-sm font-normal">
+              Message <span className="text-[#ff6467]">*</span>
             </label>
             <textarea
               name="message"
               required
               rows={6}
-              className="bg-zinc-100 border border-zinc-400 rounded-lg px-3.5 py-3 text-gray-900 text-base resize-none focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent"
+              className="bg-zinc-100 border border-[#9f9fa9] rounded-lg px-3.5 py-3 text-gray-900 text-base resize-none focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
             />
           </div>
         </div>
@@ -155,7 +155,7 @@ export default function ContactForm() {
           className={`font-semibold text-sm leading-5 py-3 rounded-lg w-full h-12 transition-colors ${
             isSubmitting 
               ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
-              : 'bg-teal-400 text-black hover:bg-teal-500'
+              : 'bg-green-400 text-black hover:bg-green-500'
           }`}
         >
           {isSubmitting ? 'Sending...' : 'Send message'}

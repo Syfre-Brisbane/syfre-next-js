@@ -30,10 +30,22 @@ export async function POST(request: NextRequest) {
     const result = await response.json();
 
     if (response.ok && result.data && result.data[0].status === 'success') {
+      const leadId = result.data[0].details.id;
+      
+      // If this is a workshop application, add the tag
+      if (leadData.Workshop_Application === true) {
+        try {
+          await addTagToLead(oauthService, leadId, 'Workshop Application');
+        } catch (tagError) {
+          console.error('Failed to add tag to lead:', tagError);
+          // Don't fail the entire request if tagging fails
+        }
+      }
+
       return NextResponse.json({
         success: true,
         message: 'Lead created successfully',
-        leadId: result.data[0].details.id,
+        leadId: leadId,
       });
     } else {
       console.error('Zoho CRM error:', result);
@@ -79,4 +91,32 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+// Helper function to add tags to a lead
+async function addTagToLead(oauthService: ZohoOAuthService, leadId: string, tagName: string) {
+  const tagData = {
+    data: [
+      {
+        id: leadId,
+      }
+    ],
+    tags: [
+      {
+        name: tagName
+      }
+    ]
+  };
+
+  const response = await oauthService.makeAuthenticatedRequest('/crm/v2/Leads/actions/add_tags', {
+    method: 'POST',
+    body: JSON.stringify(tagData),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(`Failed to add tag: ${error.message || 'Unknown error'}`);
+  }
+
+  return response.json();
 }

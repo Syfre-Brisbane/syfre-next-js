@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Logo from './Header/Logo';
-import Menu from './Header/Menu';
+
 import Button from './Button';
 
 export default function Header() {

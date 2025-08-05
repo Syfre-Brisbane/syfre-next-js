@@ -30,9 +30,9 @@ export interface WordPressPage {
   comment_status: string;
   ping_status: string;
   template: string;
-  meta: any[];
-  acf: Record<string, any>; // ACF fields will be here
-  _links: any;
+  meta: unknown[];
+  acf: Record<string, unknown>; // ACF fields will be here
+  _links: unknown;
 }
 
 export interface WordPressPost {
@@ -63,8 +63,8 @@ export interface WordPressPost {
   featured_media: number;
   categories: number[];
   tags: number[];
-  acf: Record<string, any>; // ACF fields will be here
-  _links: any;
+  acf: Record<string, unknown>; // ACF fields will be here
+  _links: unknown;
 }
 
 export interface WordPressMedia {
@@ -99,7 +99,7 @@ export interface WordPressMedia {
     }>;
   };
   source_url: string;
-  _links: any;
+  _links: unknown;
 }
 
 // Hero title structure
@@ -185,7 +185,7 @@ export interface WhatWeDoItem {
 }
 
 // Example ACF field types - customize based on your fields
-export interface HomepageACF {
+export interface HomepageACF extends Record<string, unknown> {
   hero_title?: HeroTitle;
   hero_image?: number | string | ACFImage; // Can be ID, URL, or full array depending on ACF return format
   positioning?: Positioning;

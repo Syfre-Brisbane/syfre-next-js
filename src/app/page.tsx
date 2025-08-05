@@ -12,7 +12,7 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white">
       <Header />
       <Hero />
       <Positioning />
@@ -20,7 +20,7 @@ export default function Home() {
       <LogoGrid />
       <WhatWeDo />
       <CTA />
-      {/* <Insights /> */}
+      <Insights />
       <Humans />
       <SecondCTA />
       <Footer />

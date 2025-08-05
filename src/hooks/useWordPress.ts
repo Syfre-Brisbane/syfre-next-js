@@ -77,20 +77,22 @@ export function usePage(pageId: number) {
 
   // Helper function to get hero title with fallbacks
   const getHeroTitle = (): HeroTitle => {
+    const heroTitle = (data?.acf as Record<string, unknown>)?.hero_title as HeroTitle || {};
     return {
-      part_1: data?.acf?.hero_title?.part_1 || "We're an AI company,",
-      part_2: data?.acf?.hero_title?.part_2 || "with ",
-      highlight: data?.acf?.hero_title?.highlight || "human",
-      part_3: data?.acf?.hero_title?.part_3 || " values."
+      part_1: heroTitle.part_1 || "We're an AI company,",
+      part_2: heroTitle.part_2 || "with ",
+      highlight: heroTitle.highlight || "human",
+      part_3: heroTitle.part_3 || " values."
     };
   };
 
   // Helper function to get positioning text
   const getPositioningText = (): PositioningText => {
+    const positioning = (data?.acf as Record<string, unknown>)?.positioning as Record<string, unknown> || {};
     return {
-      part1: data?.acf?.positioning?.text_part_1,
-      highlight: data?.acf?.positioning?.text_highlight,
-      part2: data?.acf?.positioning?.text_part_2
+      part1: positioning.text_part_1 as string | undefined,
+      highlight: positioning.text_highlight as string | undefined,
+      part2: positioning.text_part_2 as string | undefined
     };
   };
 

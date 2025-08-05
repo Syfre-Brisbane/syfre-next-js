@@ -5,7 +5,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Positioning() {
-  const { data: homepage, loading, error, getPositioningText } = useHomepage();
+  const { loading, error, getPositioningText } = useHomepage();
 
   if (loading) {
     return (

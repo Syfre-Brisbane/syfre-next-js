@@ -21,15 +21,20 @@ export default function ContactPage() {
                 <p className="text-lg sm:text-2xl font-light leading-7 sm:leading-8 tracking-tight text-white">
                   Leave a message or simply book a video call.
                 </p>
-                <button className="bg-teal-400 text-black font-semibold text-lg leading-7 px-8 py-2 rounded-full h-12 w-fit">
+                <a 
+                  href="https://calendly.com/steve-macfarlane-syfre"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-green-400 text-black font-semibold text-lg leading-7 px-8 py-2 rounded-full h-12 w-fit inline-flex items-center justify-center"
+                >
                   Book a call
-                </button>
+                </a>
               </div>
               
               {/* Contact information */}
               <div className="flex flex-col gap-2">
                 <div className="flex gap-4">
-                  <a href="mailto:hello@syfre.com.au" className="text-teal-400 text-base font-normal">
+                  <a href="mailto:hello@syfre.com.au" className="text-green-400 text-base font-normal">
                     hello@syfre.com.au
                   </a>
                 </div>
@@ -60,15 +65,20 @@ export default function ContactPage() {
                 <p className="text-2xl font-light leading-8 tracking-tight text-white">
                   Leave a message or simply book a video call.
                 </p>
-                <button className="bg-teal-400 text-black font-semibold text-lg leading-7 px-8 py-2 rounded-full h-12 w-fit">
+                <a 
+                  href="https://calendly.com/steve-macfarlane-syfre"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-green-400 text-black font-semibold text-lg leading-7 px-8 py-2 rounded-full h-12 w-fit inline-flex items-center justify-center"
+                >
                   Book a call
-                </button>
+                </a>
               </div>
               
               {/* Contact information */}
               <div className="flex flex-col gap-2">
                 <div className="flex gap-4">
-                  <a href="mailto:hello@syfre.com.au" className="text-teal-400 text-base font-normal">
+                  <a href="mailto:hello@syfre.com.au" className="text-green-400 text-base font-normal">
                     hello@syfre.com.au
                   </a>
                 </div>

@@ -109,9 +109,9 @@ export default function WhatWeDo() {
         </div>
 
         {/* Desktop: Left and Right sections */}
-        <div className="hidden sm:flex gap-16 lg:gap-24 xl:gap-32 items-start">
+        <div className="hidden sm:flex gap-8 lg:gap-12 xl:gap-16 items-start">
           {/* Left side content - sticky within section */}
-          <div className="flex flex-col gap-10 max-w-xl shrink-0 sticky top-20 self-start">
+          <div className="flex flex-col gap-10 w-1/2 max-w-lg shrink-0 sticky top-20 self-start">
             <p className="text-2xl font-light leading-8 text-zinc-100 tracking-tight">
               We partner with CEOs, product teams and technical leaders who need clarity, capability and a high standard of delivery. Working within complex sectors, moving fast, and solving real problems.
             </p>
@@ -150,22 +150,22 @@ export default function WhatWeDo() {
           </div>
 
           {/* Right side - Cards section */}
-          <div className="flex flex-col gap-16 items-start shrink-0">
+          <div className="flex flex-col gap-16 items-start w-1/2 min-w-0">
             {wwdData.map((item, index) => {
               const cardId = `wwd-${index}`;
               return (
-                <div key={cardId} id={`card-${cardId}`} className="bg-zinc-900 rounded-xl w-full max-w-2xl scroll-mt-20">
-                  <div className="bg-zinc-800 rounded-t-xl px-20 py-16 h-96 flex items-center justify-center">
-                    <div className="w-full h-80 flex items-center justify-center overflow-hidden">
+                <div key={cardId} id={`card-${cardId}`} className="bg-zinc-900 rounded-xl w-full scroll-mt-20">
+                  <div className="bg-zinc-800 rounded-t-xl px-8 py-12 h-80 flex items-center justify-center">
+                    <div className="w-full h-64 flex items-center justify-center overflow-hidden">
                       <img 
                         src={getImageUrl(item.image)}
                         alt={`${item.title} illustration`}
-                        className="w-80 h-64 object-cover rounded"
+                        className="w-full h-full object-cover rounded max-w-64 max-h-48"
                       />
                     </div>
                   </div>
-                  <div className="p-8 flex flex-col gap-3">
-                    <h3 className="text-4xl font-light leading-tight text-white tracking-tight max-w-md">
+                  <div className="p-6 flex flex-col gap-3">
+                    <h3 className="text-3xl font-light leading-tight text-white tracking-tight">
                       {item.title}
                     </h3>
                     <p className="text-base font-light text-zinc-400">

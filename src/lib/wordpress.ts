@@ -1,6 +1,5 @@
 const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL || 'http://localhost:8000/wp-json/wp/v2';
-const WORDPRESS_USERNAME = process.env.WORDPRESS_USERNAME;
-const WORDPRESS_APP_PASSWORD = process.env.WORDPRESS_APP_PASSWORD;
+
 
 // Create headers (no auth needed for public endpoints)
 function getHeaders() {
@@ -102,7 +101,142 @@ export async function getPost(id: number) {
   return fetchWordPress(`/posts/${id}`);
 }
 
+// Get post by slug
+export async function getPostBySlug(slug: string): Promise<WordPressPost | null> {
+  try {
+    const posts: WordPressPostResponse[] = await fetchWordPress(`/posts?slug=${slug}&_embed`);
+    if (posts && posts.length > 0) {
+      const post = posts[0];
+      return {
+        id: post.id,
+        title: post.title.rendered,
+        content: post.content.rendered,
+        excerpt: post.excerpt.rendered.replace(/<[^>]*>/g, ''),
+        date: new Date(post.date).toLocaleDateString('en-US', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }),
+        slug: post.slug,
+        categories: post._embedded?.['wp:term']?.[0] || [],
+        featured_media: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || null,
+      };
+    }
+    return null;
+  } catch (error) {
+    console.error('Error fetching post by slug:', error);
+    return null;
+  }
+}
+
 // Get media/images
 export async function getMedia(id: number) {
   return fetchWordPress(`/media/${id}`);
+}
+
+// Get recent articles for homepage
+export async function getRecentArticles(limit = 3): Promise<WordPressArticle[]> {
+  try {
+    const posts: WordPressPostResponse[] = await fetchWordPress(`/posts?per_page=${limit}&orderby=date&order=desc&_embed`);
+    return posts.map((post) => ({
+      id: post.id,
+      title: post.title.rendered,
+      excerpt: post.excerpt.rendered.replace(/<[^>]*>/g, ''), // Strip HTML tags
+      date: new Date(post.date).toLocaleDateString('en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }),
+      slug: post.slug,
+      categories: post._embedded?.['wp:term']?.[0] || [],
+      featured_media: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || null,
+    }));
+  } catch (error) {
+    console.error('Error fetching recent articles:', error);
+    // Return fallback data in case of error
+    return [
+      {
+        id: 1,
+        title: "How to spot your first AI automation opportunity",
+        excerpt: "For product owners or COOs looking to identify low-risk, high-impact areas where AI can deliver efficiency fast.",
+        date: "20 January, 2025",
+        slug: "first-ai-automation-opportunity",
+        categories: [{ name: "Automation" }],
+        featured_media: null,
+      },
+      {
+        id: 2,
+        title: "Proof over promise: The case for small, smart AI pilots",
+        excerpt: "For product owners or COOs looking to identify low-risk, high-impact areas where AI can deliver efficiency fast.",
+        date: "10 March, 2025",
+        slug: "proof-over-promise",
+        categories: [{ name: "Machine learning" }],
+        featured_media: null,
+      },
+      {
+        id: 3,
+        title: "What AI can actually do for your business today.",
+        excerpt: "For product owners or COOs looking to identify low-risk, high-impact areas where AI can deliver efficiency fast.",
+        date: "13 April, 2025",
+        slug: "ai-for-business-today",
+        categories: [{ name: "Machine learning" }],
+        featured_media: null,
+      }
+    ];
+  }
+}
+
+// WordPress API response types
+export interface WordPressTitle {
+  rendered: string;
+}
+
+export interface WordPressContent {
+  rendered: string;
+}
+
+export interface WordPressExcerpt {
+  rendered: string;
+}
+
+export interface WordPressCategory {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+export interface WordPressFeaturedMedia {
+  id: number;
+  source_url: string;
+  alt_text: string;
+}
+
+export interface WordPressEmbedded {
+  'wp:term'?: WordPressCategory[][];
+  'wp:featuredmedia'?: WordPressFeaturedMedia[];
+}
+
+export interface WordPressPostResponse {
+  id: number;
+  title: WordPressTitle;
+  content: WordPressContent;
+  excerpt: WordPressExcerpt;
+  date: string;
+  slug: string;
+  _embedded?: WordPressEmbedded;
+}
+
+// Processed types for our app
+export interface WordPressArticle {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+  slug: string;
+  categories: { name: string }[];
+  featured_media: string | null;
+}
+
+export interface WordPressPost extends WordPressArticle {
+  content: string;
 }
