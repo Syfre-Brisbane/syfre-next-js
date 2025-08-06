@@ -20,14 +20,24 @@ class ZohoOAuthService {
   private accountsUrl: string;
 
   constructor() {
-    this.clientId = process.env.ZOHO_CLIENT_ID!;
-    this.clientSecret = process.env.ZOHO_CLIENT_SECRET!;
-    this.redirectUri = process.env.ZOHO_REDIRECT_URI || 'http://localhost:3000/api/zoho/callback';
-    this.apiDomain = process.env.ZOHO_API_DOMAIN || 'https://www.zohoapis.com';
-    this.accountsUrl = process.env.ZOHO_ACCOUNTS_URL || 'https://accounts.zoho.com';
+    // Support both client-side (NEXT_PUBLIC_) and server-side environment variables
+    this.clientId = process.env.NEXT_PUBLIC_ZOHO_CLIENT_ID || process.env.ZOHO_CLIENT_ID || '';
+    this.clientSecret = process.env.NEXT_PUBLIC_ZOHO_CLIENT_SECRET || process.env.ZOHO_CLIENT_SECRET || '';
+    this.redirectUri = process.env.NEXT_PUBLIC_ZOHO_REDIRECT_URI || process.env.ZOHO_REDIRECT_URI || 'http://localhost:3000/api/zoho/callback';
+    this.apiDomain = process.env.NEXT_PUBLIC_ZOHO_API_DOMAIN || process.env.ZOHO_API_DOMAIN || 'https://www.zohoapis.com';
+    this.accountsUrl = process.env.NEXT_PUBLIC_ZOHO_ACCOUNTS_URL || process.env.ZOHO_ACCOUNTS_URL || 'https://accounts.zoho.com';
+
+    // Debug logging
+    console.log('Zoho OAuth Configuration:', {
+      clientId: this.clientId ? 'SET' : 'MISSING',
+      clientSecret: this.clientSecret ? 'SET' : 'MISSING',
+      redirectUri: this.redirectUri,
+      isClient: typeof window !== 'undefined',
+      env: process.env.NODE_ENV
+    });
 
     if (!this.clientId || !this.clientSecret) {
-      throw new Error('Zoho OAuth credentials not configured. Please set ZOHO_CLIENT_ID and ZOHO_CLIENT_SECRET environment variables.');
+      throw new Error('Zoho OAuth credentials not configured. Please set ZOHO_CLIENT_ID and ZOHO_CLIENT_SECRET (or NEXT_PUBLIC_ versions) environment variables.');
     }
   }
 
@@ -90,9 +100,9 @@ class ZohoOAuthService {
   }
 
   private getStoredTokens(): ZohoTokenStorage | null {
-    const accessToken = process.env.ZOHO_ACCESS_TOKEN;
-    const refreshToken = process.env.ZOHO_REFRESH_TOKEN;
-    const expiresAt = process.env.ZOHO_TOKEN_EXPIRES_AT;
+    const accessToken = process.env.NEXT_PUBLIC_ZOHO_ACCESS_TOKEN || process.env.ZOHO_ACCESS_TOKEN;
+    const refreshToken = process.env.NEXT_PUBLIC_ZOHO_REFRESH_TOKEN || process.env.ZOHO_REFRESH_TOKEN;
+    const expiresAt = process.env.NEXT_PUBLIC_ZOHO_TOKEN_EXPIRES_AT || process.env.ZOHO_TOKEN_EXPIRES_AT;
 
     if (!accessToken || !refreshToken || !expiresAt) {
       return null;
