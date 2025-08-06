@@ -182,35 +182,7 @@ export async function getRecentArticles(limit = 3): Promise<WordPressArticle[]> 
   } catch (error) {
     console.error('Error fetching recent articles:', error);
     // Return fallback data in case of error
-    return [
-      {
-        id: 1,
-        title: "How to spot your first AI automation opportunity",
-        excerpt: "For product owners or COOs looking to identify low-risk, high-impact areas where AI can deliver efficiency fast.",
-        date: "20 January, 2025",
-        slug: "first-ai-automation-opportunity",
-        categories: [{ name: "Automation" }],
-        featured_media: null,
-      },
-      {
-        id: 2,
-        title: "Proof over promise: The case for small, smart AI pilots",
-        excerpt: "For product owners or COOs looking to identify low-risk, high-impact areas where AI can deliver efficiency fast.",
-        date: "10 March, 2025",
-        slug: "proof-over-promise",
-        categories: [{ name: "Machine learning" }],
-        featured_media: null,
-      },
-      {
-        id: 3,
-        title: "What AI can actually do for your business today.",
-        excerpt: "For product owners or COOs looking to identify low-risk, high-impact areas where AI can deliver efficiency fast.",
-        date: "13 April, 2025",
-        slug: "ai-for-business-today",
-        categories: [{ name: "Machine learning" }],
-        featured_media: null,
-      }
-    ];
+    return [];
   }
 }
 
