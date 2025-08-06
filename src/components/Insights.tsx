@@ -17,15 +17,10 @@ export default async function Insights() {
               <span className="font-normal">humans.</span>
             </h2>
           </div>
-          <div className="border border-green-400 rounded-full px-3 py-1.5">
-            <span className="text-lg font-normal text-green-400 leading-7">
-              Explore all insights
-            </span>
-          </div>
         </div>
 
         {/* Insights Grid */}
-        <div className="flex gap-8 w-full">
+        <div className="flex md:flex-row flex-col gap-8 w-full">
           {articles.map((article) => {
             const primaryCategory = article.categories[0]?.name || 'AI Intelligence';
             const badgeVariant = getCategoryBadgeVariant(primaryCategory);
