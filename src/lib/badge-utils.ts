@@ -5,6 +5,7 @@ export function getCategoryBadgeVariant(category: string): 'pink' | 'amber' | 'g
     'machine learning': 'amber',
     'ai intelligence': 'blue',
     'data': 'green',
+    'events': 'pink',
   };
   
   return categoryMap[category.toLowerCase()] || 'amber';
