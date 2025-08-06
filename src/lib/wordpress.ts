@@ -26,6 +26,29 @@ function getHeaders() {
   };
 }
 
+// Function to decode HTML entities
+function decodeHtmlEntities(text: string): string {
+  const entities: { [key: string]: string } = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#039;': "'",
+    '&#8217;': "'",
+    '&#8216;': "'",
+    '&#8220;': '"',
+    '&#8221;': '"',
+    '&#8211;': '–',
+    '&#8212;': '—',
+    '&hellip;': '…',
+    '&nbsp;': ' ',
+  };
+  
+  return text.replace(/&[#\w]+;/g, (entity) => {
+    return entities[entity] || entity;
+  });
+}
+
 // Generic function to fetch from WordPress API
 async function fetchWordPress(endpoint: string) {
   try {
@@ -127,9 +150,9 @@ export async function getPostBySlug(slug: string): Promise<WordPressPost | null>
       const post = posts[0];
       return {
         id: post.id,
-        title: post.title.rendered,
+        title: decodeHtmlEntities(post.title.rendered),
         content: post.content.rendered,
-        excerpt: post.excerpt.rendered.replace(/<[^>]*>/g, ''),
+        excerpt: decodeHtmlEntities(post.excerpt.rendered.replace(/<[^>]*>/g, '')),
         date: new Date(post.date).toLocaleDateString('en-US', {
           day: 'numeric',
           month: 'long',
@@ -158,8 +181,8 @@ export async function getRecentArticles(limit = 3): Promise<WordPressArticle[]> 
     const posts: WordPressPostResponse[] = await fetchWordPress(`/posts?per_page=${limit}&orderby=date&order=desc&_embed`);
     return posts.map((post) => ({
       id: post.id,
-      title: post.title.rendered,
-      excerpt: post.excerpt.rendered.replace(/<[^>]*>/g, ''), // Strip HTML tags
+      title: decodeHtmlEntities(post.title.rendered),
+      excerpt: decodeHtmlEntities(post.excerpt.rendered.replace(/<[^>]*>/g, '')), // Strip HTML tags and decode entities
       date: new Date(post.date).toLocaleDateString('en-US', {
         day: 'numeric',
         month: 'long',
