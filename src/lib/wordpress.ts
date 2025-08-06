@@ -1,12 +1,23 @@
-const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL 
-  ? `${process.env.WORDPRESS_API_URL}/wp-json/wp/v2`
-  : 'http://localhost:8000/wp-json/wp/v2';
+// Use NEXT_PUBLIC_ for client-side access, fallback to server-side env var
+const getWordPressApiUrl = () => {
+  const clientSideUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+  const serverSideUrl = process.env.WORDPRESS_API_URL;
+  const baseUrl = clientSideUrl || serverSideUrl;
+  
+  return baseUrl 
+    ? `${baseUrl}/wp-json/wp/v2`
+    : 'http://localhost:8000/wp-json/wp/v2';
+};
+
+const WORDPRESS_API_URL = getWordPressApiUrl();
 
 // Debug logging for environment variable
 console.log('WordPress API Configuration:', {
-  env_var: process.env.WORDPRESS_API_URL,
+  client_env: process.env.NEXT_PUBLIC_WORDPRESS_API_URL,
+  server_env: process.env.WORDPRESS_API_URL,
   final_url: WORDPRESS_API_URL,
-  node_env: process.env.NODE_ENV
+  node_env: process.env.NODE_ENV,
+  is_client: typeof window !== 'undefined'
 });
 
 
