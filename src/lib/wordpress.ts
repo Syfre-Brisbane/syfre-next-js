@@ -4,9 +4,10 @@ const getWordPressApiUrl = () => {
   const serverSideUrl = process.env.WORDPRESS_API_URL;
   const baseUrl = clientSideUrl || serverSideUrl;
   
-  // Temporary hardcoded fallback for production debugging
-  if (!baseUrl && typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
-    console.warn('No WordPress API URL found in environment variables, using production fallback');
+  // Production fallback for both client and server side
+  if (!baseUrl && process.env.NODE_ENV === 'production') {
+    const fallbackMessage = `No WordPress API URL found in environment variables, using production fallback (${typeof window !== 'undefined' ? 'client' : 'server'} side)`;
+    console.warn(fallbackMessage);
     return 'https://api.syfre.ai/wp-json/wp/v2';
   }
   
@@ -16,17 +17,6 @@ const getWordPressApiUrl = () => {
 };
 
 const WORDPRESS_API_URL = getWordPressApiUrl();
-
-// Enhanced debug logging
-console.log('WordPress API Configuration:', {
-  client_env: process.env.NEXT_PUBLIC_WORDPRESS_API_URL,
-  server_env: process.env.WORDPRESS_API_URL,
-  final_url: WORDPRESS_API_URL,
-  node_env: process.env.NODE_ENV,
-  is_client: typeof window !== 'undefined',
-  all_env_keys: Object.keys(process.env).filter(key => key.includes('WORDPRESS')),
-  next_public_keys: Object.keys(process.env).filter(key => key.startsWith('NEXT_PUBLIC_'))
-});
 
 
 // Create headers (no auth needed for public endpoints)
@@ -181,7 +171,9 @@ export async function getRecentArticles(limit = 3): Promise<WordPressArticle[]> 
     }));
   } catch (error) {
     console.error('Error fetching recent articles:', error);
-    // Return fallback data in case of error
+    console.error('WordPress API URL being used:', WORDPRESS_API_URL);
+    console.error('Full fetch URL was:', `${WORDPRESS_API_URL}/posts?per_page=${limit}&orderby=date&order=desc&_embed`);
+    // Return empty array in case of error
     return [];
   }
 }
