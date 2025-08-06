@@ -47,145 +47,58 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     <>
       <Header />
       <main className="min-h-screen bg-black">
-        <div className="box-border content-stretch flex flex-col gap-[60px] items-center justify-start px-4 sm:px-6 lg:px-10 py-12 sm:py-24 relative rounded-tl-[60px] rounded-tr-[60px] size-full">
-          <div className="box-border content-stretch flex flex-col gap-20 items-start justify-start p-0 relative shrink-0 w-full max-w-[894px]">
-            <div
-              className="box-border content-stretch flex flex-col gap-10 items-start justify-start p-0 relative shrink-0"
-              
-            >
-              <div
-                className="box-border content-stretch flex flex-row gap-[30px] h-6 items-center justify-start p-0 relative shrink-0 w-full"
-                
-              >
-                <div
-                  className="font-source-sans-3-regular leading-[0] relative shrink-0 text-[14px] text-left text-nowrap text-zinc-300"
-                  
-                >
-                  <p className="block leading-[normal] whitespace-pre">
-                    {article.date}
-                  </p>
-                </div>
+        <div className="px-4 sm:px-6 py-12 sm:py-24">
+          <div className="max-w-4xl mx-auto flex flex-col gap-16">
+            {/* Article Header */}
+            <div className="flex flex-col gap-8">
+              {/* Date and Badge */}
+              <div className="flex items-center gap-6">
+                <span className="text-sm text-zinc-300">
+                  {article.date}
+                </span>
                 {showBadge && (
                   <div
-                    className="box-border content-stretch flex flex-row items-center justify-start px-1.5 py-0.5 relative rounded-[9999px] shrink-0"
+                    className="px-2 py-1 rounded-full text-xs text-black"
                     style={{ backgroundColor: badgeColor }}
                   >
-                    <div
-                      className="font-source-sans-3-regular leading-[0] relative shrink-0 text-[#000000] text-[14px] text-left text-nowrap"
-                    >
-                      <p className="block leading-[normal] whitespace-pre">
-                        {primaryCategory}
-                      </p>
-                    </div>
+                    {primaryCategory}
                   </div>
                 )}
               </div>
-              <div
-                className="font-source-sans-3-regular leading-[0] relative shrink-0 text-4xl sm:text-6xl lg:text-[72px] text-left text-zinc-300 tracking-[-1.44px] w-full"
-
-              >
-                <p className="adjustLetterSpacing block leading-[82px]">
-                  {article.title}
-                </p>
-              </div>
-              <div
-                  className="box-border content-stretch flex flex-row gap-3 items-center justify-start p-0 relative shrink-0"
-                  
-
-              >
-                <div
-                    className="font-source-sans-3-regular leading-[0] relative shrink-0 text-[#71717b] text-[14px] text-left text-nowrap"
-
-                >
-                  <p className="block leading-[normal] whitespace-pre">
-                    Share this insight
-                  </p>
-                </div>
+              {/* Article Title */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight tracking-tight text-white">
+                {article.title}
+              </h1>
+              {/* Share Section */}
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-zinc-500">Share this insight</span>
                 <ShareButtons title={article.title} />
               </div>
             </div>
-            <div
-                className="box-border content-stretch flex flex-row gap-[60px] items-start justify-start p-0 relative rounded-tl-[60px] rounded-tr-[60px] shrink-0 w-full"
-              
-
-            >
-              <div
-                className="box-border content-stretch flex flex-col gap-[60px] items-start justify-start p-0 relative rounded-xl shrink-0 w-full"
-
-              >
-                <div
-                  className="box-border content-stretch flex flex-row gap-4 items-center justify-start p-0 relative shrink-0"
-                  
-
-                >
-                  <div
-                    className="font-source-sans-3-regular leading-[0] relative shrink-0 text-[#71717b] text-[14px] text-left text-nowrap"
-
-                  >
-                    <p className="block leading-[normal] whitespace-pre">Home</p>
-                  </div>
-                  <div
-                    className="h-[7.5px] relative shrink-0 w-[18px]"
-                    
-
-                  >
-                    <div className="absolute bottom-[-6.667%] left-[-2.778%] right-[-2.778%] top-[-6.667%]">
-                      <img
-                        alt="arrow right"
-                        className="block max-w-none size-full"
-                        src="/arrow-right.png"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className="font-source-sans-3-regular leading-[0] relative shrink-0 text-[#71717b] text-[14px] text-left text-nowrap"
-
-                  >
-                    <p className="block leading-[normal] whitespace-pre">
-                      Insights
-                    </p>
-                  </div>
-                  <div
-                    className="h-[7.5px] relative shrink-0 w-[18px]"
-                    
-
-                  >
-                    <div className="absolute bottom-[-6.667%] left-[-2.778%] right-[-2.778%] top-[-6.667%]">
-                      <img
-                        alt="arrow right"
-                        className="block max-w-none size-full"
-                        src="/arrow-right.png"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className="font-source-sans-3-regular leading-[0] relative shrink-0 text-[#00c950] text-[14px] text-left text-nowrap"
-
-                  >
-                    <p className="block leading-[normal] whitespace-pre">
-                      {article.title}
-                    </p>
-                  </div>
-                </div>
-                {/* Article Content from WordPress */}
-                <div
-                  className="box-border content-stretch flex flex-col gap-8 items-start justify-start p-0 relative shrink-0 w-full"
-                  
-                >
-                  <div
-                    className="prose prose-invert prose-lg max-w-none w-full
-                      prose-headings:font-source-sans-3-semibold prose-headings:text-gray-50 prose-headings:tracking-tight
-                      prose-p:font-source-sans-3-light prose-p:text-zinc-100 prose-p:leading-relaxed prose-p:text-2xl
-                      prose-ul:font-source-sans-3-light prose-ul:text-zinc-100 prose-ul:text-2xl
-                      prose-li:leading-8 prose-li:mb-2
-                      prose-strong:font-source-sans-3-semibold prose-strong:text-gray-50
-                      prose-a:text-green-400 prose-a:underline prose-a:decoration-green-400 hover:prose-a:text-green-300
-                      [&_a]:text-green-400 [&_a]:underline [&_a]:decoration-green-400"
-                    dangerouslySetInnerHTML={{ __html: article.content }}
-                  />
-                </div>
+            {/* Article Content */}
+            <div className="flex flex-col gap-12">
+              {/* Breadcrumb */}
+              <div className="flex items-center gap-2 text-sm text-zinc-500">
+                <span>Home</span>
+                <img src="/arrow-right.png" alt="arrow" className="w-3 h-3" />
+                <span>Insights</span>
+                <img src="/arrow-right.png" alt="arrow" className="w-3 h-3" />
+                <span className="text-green-400">{article.title}</span>
               </div>
+              {/* Article Content from WordPress */}
+              <div
+                className="prose prose-invert prose-lg max-w-none w-full
+                  prose-headings:font-source-sans-3-semibold prose-headings:text-gray-50 prose-headings:tracking-tight
+                  prose-p:font-source-sans-3-light prose-p:text-zinc-100 prose-p:leading-relaxed prose-p:text-2xl
+                  prose-ul:font-source-sans-3-light prose-ul:text-zinc-100 prose-ul:text-2xl
+                  prose-li:leading-8 prose-li:mb-2
+                  prose-strong:font-source-sans-3-semibold prose-strong:text-gray-50
+                  prose-a:text-green-400 prose-a:underline prose-a:decoration-green-400 hover:prose-a:text-green-300
+                  [&_a]:text-green-400 [&_a]:underline [&_a]:decoration-green-400"
+                dangerouslySetInnerHTML={{ __html: article.content }}
+              />
             </div>
+            
             {/* CTA Section */}
             <CTA />
           </div>
