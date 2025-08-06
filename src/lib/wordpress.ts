@@ -1,4 +1,13 @@
-const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL || 'http://localhost:8000/wp-json/wp/v2';
+const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL 
+  ? `${process.env.WORDPRESS_API_URL}/wp-json/wp/v2`
+  : 'http://localhost:8000/wp-json/wp/v2';
+
+// Debug logging for environment variable
+console.log('WordPress API Configuration:', {
+  env_var: process.env.WORDPRESS_API_URL,
+  final_url: WORDPRESS_API_URL,
+  node_env: process.env.NODE_ENV
+});
 
 
 // Create headers (no auth needed for public endpoints)
