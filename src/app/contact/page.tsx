@@ -7,7 +7,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-black text-white">
       <Header />
       
-      <main className="px-4 sm:px-6 py-12 sm:py-24">
+        <main className="px-4 sm:px-6 py-12 sm:py-24">
         <div className="max-w-6xl mx-auto">
           {/* Mobile: Stacked layout */}
           <div className="flex flex-col gap-12 sm:hidden">

@@ -47,14 +47,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     <>
       <Header />
       <main className="min-h-screen bg-black">
-        <div className="box-border content-stretch flex flex-col gap-[60px] items-center justify-start px-10 py-0 relative rounded-tl-[60px] rounded-tr-[60px] size-full">
-          <div className="box-border content-stretch flex flex-col gap-20 items-start justify-start p-0 relative shrink-0 w-[894px]">
+        <div className="box-border content-stretch flex flex-col gap-[60px] items-center justify-start px-4 sm:px-6 lg:px-10 py-12 sm:py-24 relative rounded-tl-[60px] rounded-tr-[60px] size-full">
+          <div className="box-border content-stretch flex flex-col gap-20 items-start justify-start p-0 relative shrink-0 w-full max-w-[894px]">
             <div
               className="box-border content-stretch flex flex-col gap-10 items-start justify-start p-0 relative shrink-0"
               
             >
               <div
-                className="box-border content-stretch flex flex-row gap-[30px] h-6 items-center justify-start p-0 relative shrink-0 w-[894px]"
+                className="box-border content-stretch flex flex-row gap-[30px] h-6 items-center justify-start p-0 relative shrink-0 w-full"
                 
               >
                 <div
@@ -81,7 +81,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 )}
               </div>
               <div
-                className="font-source-sans-3-regular leading-[0] relative shrink-0 text-[72px] text-left text-zinc-300 tracking-[-1.44px] w-[894px]"
+                className="font-source-sans-3-regular leading-[0] relative shrink-0 text-4xl sm:text-6xl lg:text-[72px] text-left text-zinc-300 tracking-[-1.44px] w-full"
 
               >
                 <p className="adjustLetterSpacing block leading-[82px]">
@@ -110,7 +110,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
             >
               <div
-                className="box-border content-stretch flex flex-col gap-[60px] items-start justify-start p-0 relative rounded-xl shrink-0 w-[899px]"
+                className="box-border content-stretch flex flex-col gap-[60px] items-start justify-start p-0 relative rounded-xl shrink-0 w-full"
 
               >
                 <div
@@ -169,7 +169,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 </div>
                 {/* Article Content from WordPress */}
                 <div
-                  className="box-border content-stretch flex flex-col gap-8 items-start justify-start p-0 relative shrink-0 w-[899px]"
+                  className="box-border content-stretch flex flex-col gap-8 items-start justify-start p-0 relative shrink-0 w-full"
                   
                 >
                   <div
@@ -179,7 +179,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                       prose-ul:font-source-sans-3-light prose-ul:text-zinc-100 prose-ul:text-2xl
                       prose-li:leading-8 prose-li:mb-2
                       prose-strong:font-source-sans-3-semibold prose-strong:text-gray-50
-                      prose-a:text-green-400 prose-a:underline hover:prose-a:text-green-300"
+                      prose-a:text-green-400 prose-a:underline prose-a:decoration-green-400 hover:prose-a:text-green-300
+                      [&_a]:text-green-400 [&_a]:underline [&_a]:decoration-green-400"
                     dangerouslySetInnerHTML={{ __html: article.content }}
                   />
                 </div>
