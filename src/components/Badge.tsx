@@ -1,6 +1,6 @@
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: 'pink' | 'amber' | 'green' | 'blue';
+  variant?: 'pink' | 'amber' | 'green' | 'blue' | 'purple';
 }
 
 export default function Badge({ children, variant = 'pink' }: BadgeProps) {
@@ -8,7 +8,8 @@ export default function Badge({ children, variant = 'pink' }: BadgeProps) {
     pink: 'bg-pink-400',
     amber: 'bg-amber-400',
     green: 'bg-green-400',
-    blue: 'bg-blue-400'
+    blue: 'bg-blue-400',
+    purple: 'bg-purple-400'
   };
 
   return (
