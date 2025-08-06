@@ -24,8 +24,8 @@ class ZohoOAuthService {
     this.clientId = process.env.NEXT_PUBLIC_ZOHO_CLIENT_ID || process.env.ZOHO_CLIENT_ID || '';
     this.clientSecret = process.env.NEXT_PUBLIC_ZOHO_CLIENT_SECRET || process.env.ZOHO_CLIENT_SECRET || '';
     this.redirectUri = process.env.NEXT_PUBLIC_ZOHO_REDIRECT_URI || process.env.ZOHO_REDIRECT_URI || 'http://localhost:3000/api/zoho/callback';
-    this.apiDomain = process.env.NEXT_PUBLIC_ZOHO_API_DOMAIN || process.env.ZOHO_API_DOMAIN || 'https://www.zohoapis.com';
-    this.accountsUrl = process.env.NEXT_PUBLIC_ZOHO_ACCOUNTS_URL || process.env.ZOHO_ACCOUNTS_URL || 'https://accounts.zoho.com';
+    this.apiDomain = process.env.NEXT_PUBLIC_ZOHO_API_DOMAIN || process.env.ZOHO_API_DOMAIN || 'https://www.zohoapis.com.au';
+    this.accountsUrl = process.env.NEXT_PUBLIC_ZOHO_ACCOUNTS_URL || process.env.ZOHO_ACCOUNTS_URL || 'https://accounts.zoho.com.au';
 
     // Debug logging
     console.log('Zoho OAuth Configuration:', {
