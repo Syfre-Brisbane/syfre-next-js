@@ -2,13 +2,10 @@
 
 import { useState } from 'react';
 import Button from './Button';
+import { useHashModal } from '@/hooks/useHashModal';
 
-interface WorkshopModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export default function WorkshopModal({ isOpen, onClose }: WorkshopModalProps) {
+export default function WorkshopModal() {
+  const { isOpen, closeModal } = useHashModal('workshop');
   const [formData, setFormData] = useState({
     name: '',
     mobile: '',
@@ -71,7 +68,7 @@ export default function WorkshopModal({ isOpen, onClose }: WorkshopModalProps) {
 
   const handleClose = () => {
     setIsSubmitted(false);
-    onClose();
+    closeModal();
   };
 
   if (!isOpen) return null;
