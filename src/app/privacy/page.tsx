@@ -130,8 +130,6 @@ export default function PrivacyPolicy() {
                 </p>
                 <div className="mt-4 text-zinc-300 space-y-2">
                   <p>Email: hello@syfre.com.au</p>
-                  <p>Phone: +61 0414 383 094</p>
-                  <p>Address: 40 Prospect Street, Fortitude Valley, QLD 4006</p>
                 </div>
               </section>
             </div>
