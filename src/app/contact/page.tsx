@@ -38,14 +38,6 @@ export default function ContactPage() {
                     hello@syfre.com.au
                   </a>
                 </div>
-                <div className="flex gap-4">
-                  <span className="text-white text-base font-normal">+61 0414 383 094</span>
-                </div>
-                <div className="flex gap-4">
-                  <span className="text-white text-base font-normal">
-                    40 Prospect Street, Fortitude Valley, QLD 4006
-                  </span>
-                </div>
               </div>
             </div>
 
