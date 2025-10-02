@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CTA from '@/components/CTA';
 import ShareButtons from '@/components/ShareButtons';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getPostBySlug } from '@/lib/wordpress';
@@ -79,9 +80,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <div className="flex flex-col gap-12">
               {/* Breadcrumb */}
               <div className="flex items-center gap-2 text-sm text-zinc-500">
-                <span>Home</span>
+                <Link href="/" className="hover:text-zinc-300 transition-colors">Home</Link>
                 <img src="/arrow-right.png" alt="arrow" className="w-3 h-3" />
-                <span>Insights</span>
+                <Link href="/insights" className="hover:text-zinc-300 transition-colors">Insights</Link>
                 <img src="/arrow-right.png" alt="arrow" className="w-3 h-3" />
                 <span className="text-green-400">{article.title}</span>
               </div>
