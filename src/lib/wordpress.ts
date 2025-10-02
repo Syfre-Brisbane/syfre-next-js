@@ -1,19 +1,7 @@
 // Use NEXT_PUBLIC_ for client-side access, fallback to server-side env var
 const getWordPressApiUrl = () => {
-  const clientSideUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
-  const serverSideUrl = process.env.WORDPRESS_API_URL;
-  const baseUrl = clientSideUrl || serverSideUrl;
-  
-  // Production fallback for both client and server side
-  if (!baseUrl && process.env.NODE_ENV === 'production') {
-    const fallbackMessage = `No WordPress API URL found in environment variables, using production fallback (${typeof window !== 'undefined' ? 'client' : 'server'} side)`;
-    console.warn(fallbackMessage);
-    return 'https://api.syfre.ai/wp-json/wp/v2';
-  }
-  
-  return baseUrl 
-    ? `${baseUrl}/wp-json/wp/v2`
-    : 'http://localhost:8000/wp-json/wp/v2';
+  return 'https://api.syfre.ai/wp-json/wp/v2';
+  //TODO let environemnt variables handle this
 };
 
 const WORDPRESS_API_URL = getWordPressApiUrl();

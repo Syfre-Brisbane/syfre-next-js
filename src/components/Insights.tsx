@@ -17,6 +17,12 @@ export default async function Insights() {
               <span className="font-normal">humans.</span>
             </h2>
           </div>
+          <Link
+            href="/insights"
+            className="px-4 py-2 rounded-full border border-[#05df72] text-[#05df72] text-sm font-normal hover:bg-[#05df72] hover:text-black transition-colors"
+          >
+            Explore all insights
+          </Link>
         </div>
 
         {/* Insights Grid */}
