@@ -92,7 +92,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   prose-headings:font-source-sans-3-semibold prose-headings:text-gray-50 prose-headings:tracking-tight
                   prose-p:font-source-sans-3-light prose-p:text-zinc-100 prose-p:leading-relaxed prose-p:text-2xl
                   prose-ul:font-source-sans-3-light prose-ul:text-zinc-100 prose-ul:text-2xl
-                  prose-li:leading-8 prose-li:mb-2
+                  prose-li:leading-8 prose-li:mb-2 prose-li:marker:text-green-400
                   prose-strong:font-source-sans-3-semibold prose-strong:text-gray-50
                   prose-a:text-green-400 prose-a:underline prose-a:decoration-green-400 hover:prose-a:text-green-300
                   [&_a]:text-green-400 [&_a]:underline [&_a]:decoration-green-400"
