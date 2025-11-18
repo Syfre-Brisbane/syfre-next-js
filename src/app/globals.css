@@ -82,10 +82,29 @@ body {
 .prose ul {
   margin-bottom: 1rem;
   padding-left: 1.5rem;
+  list-style-type: disc;
 }
 
 .prose li {
   margin-bottom: 0.5rem;
+  display: list-item;
+}
+
+.prose li::marker {
+  color: #00c950;
+}
+
+.wp-block-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.wp-block-list li {
+  display: list-item;
+}
+
+.wp-block-list li::marker {
+  color: #00c950;
 }
 
 .prose blockquote {
