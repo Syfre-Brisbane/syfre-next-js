@@ -10,16 +10,16 @@ export default async function Insights() {
     <section className="px-6 py-36 w-full rounded-t-[60px]">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
         {/* Header */}
-        <div className="flex items-center justify-between w-full">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between w-full gap-6">
           <div>
-            <h2 className="text-6xl font-light leading-tight tracking-tight text-white">
+            <h2 className="text-4xl md:text-6xl font-light leading-tight tracking-tight text-white">
               <span>Insights on AI written by </span>
               <span className="font-normal">humans.</span>
             </h2>
           </div>
           <Link
             href="/insights"
-            className="px-4 py-2 rounded-full border border-[#05df72] text-[#05df72] text-sm font-normal hover:bg-[#05df72] hover:text-black transition-colors"
+            className="px-4 py-2 rounded-full border border-[#05df72] text-[#05df72] text-sm font-normal hover:bg-[#05df72] hover:text-black transition-colors whitespace-nowrap self-start md:self-auto"
           >
             Explore all insights
           </Link>
