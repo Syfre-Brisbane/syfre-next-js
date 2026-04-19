@@ -10,6 +10,8 @@ import Insights from '@/components/Insights';
 import Humans from '@/components/Humans';
 import SecondCTA from '@/components/SecondCTA';
 import Footer from '@/components/Footer';
+import { getHomepageData } from '@/lib/wordpress';
+import { HomepageData } from '@/types/wordpress';
 
 export const metadata: Metadata = {
   title: 'Syfre AI Solutions | Brisbane AI Consulting & Automation',
@@ -24,18 +26,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const homepage = await getHomepageData() as HomepageData | null;
+
   return (
     <div className="min-h-screen bg-black text-white">
       <Header />
-      <Hero />
-      <Positioning />
-      <ServicesGrid />
-      <LogoGrid />
-      <WhatWeDo />
+      <Hero homepage={homepage} />
+      <Positioning homepage={homepage} />
+      <ServicesGrid homepage={homepage} />
+      <LogoGrid homepage={homepage} />
+      <WhatWeDo homepage={homepage} />
       <CTA />
       <Insights />
-      <Humans />
+      <Humans homepage={homepage} />
       <SecondCTA />
       <Footer />
     </div>

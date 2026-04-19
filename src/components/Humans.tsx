@@ -1,15 +1,13 @@
-'use client';
-
-import { useHomepage } from '@/hooks/useWordPress';
 import { getImageUrl } from '@/lib/image-utils';
+import { HomepageData } from '@/types/wordpress';
 
-export default function Humans() {
-  const { data, loading, error } = useHomepage();
-  
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error loading data: {error}</div>;
-  
-  const teamImageUrl = getImageUrl(data?.acf?.team_image);
+interface HumansProps {
+  homepage: HomepageData | null;
+}
+
+export default function Humans({ homepage }: HumansProps) {
+  const teamImageUrl = getImageUrl(homepage?.acf?.team_image);
+
   return (
     <section className="flex flex-col gap-2.5 px-4 sm:px-10 py-8 sm:py-0 w-full">
       {/* Mobile: Single column layout */}

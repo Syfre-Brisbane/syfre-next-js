@@ -19,6 +19,11 @@ export interface ServiceUseCase {
   description: string;
 }
 
+export interface ServiceExplainer {
+  heading: string;
+  body: string;
+}
+
 export interface ServicePageData {
   slug: string;
   title: string;
@@ -26,6 +31,7 @@ export interface ServicePageData {
   badge: string;
   h1: ServiceH1;
   valueProposition: string;
+  explainer: ServiceExplainer;
   ctaText: string;
   ctaHref: string;
   differentiator: {
@@ -48,6 +54,10 @@ export interface ServicePageData {
     heading: string;
     items: ServiceUseCase[];
   };
+  faqs: Array<{
+    question: string;
+    answer: string;
+  }>;
   relatedServices: string[];
   jsonLd: {
     serviceName: string;

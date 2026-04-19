@@ -42,7 +42,7 @@ async function fetchWordPress(endpoint: string) {
   try {
     const response = await fetch(`${WORDPRESS_API_URL}${endpoint}`, {
       headers: getHeaders(),
-      cache: 'no-store', // Disable caching for development
+      next: { tags: ['wordpress'] },
     });
     
     if (!response.ok) {

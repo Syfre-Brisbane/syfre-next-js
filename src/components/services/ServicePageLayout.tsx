@@ -2,11 +2,14 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SecondCTA from '@/components/SecondCTA';
 import ServiceHero from './ServiceHero';
+import ServiceExplainer from './ServiceExplainer';
+import ServiceClients from './ServiceClients';
 import ServiceDifferentiator from './ServiceDifferentiator';
 import ServiceFeatures from './ServiceFeatures';
 import ServiceProcess from './ServiceProcess';
 import ServiceUseCases from './ServiceUseCases';
 import ServiceRelatedLinks from './ServiceRelatedLinks';
+import ServiceFAQ from './ServiceFAQ';
 import ServiceJsonLd from './ServiceJsonLd';
 import { ServicePageData } from '@/types/services';
 
@@ -32,6 +35,11 @@ export default function ServicePageLayout({ service }: ServicePageLayoutProps) {
           ctaText={service.ctaText}
           ctaHref={service.ctaHref}
         />
+        <ServiceExplainer
+          heading={service.explainer.heading}
+          body={service.explainer.body}
+        />
+        <ServiceClients />
         <ServiceDifferentiator
           heading={service.differentiator.heading}
           intro={service.differentiator.intro}
@@ -49,6 +57,7 @@ export default function ServicePageLayout({ service }: ServicePageLayoutProps) {
           heading={service.useCases.heading}
           items={service.useCases.items}
         />
+        <ServiceFAQ faqs={service.faqs} />
         <ServiceRelatedLinks
           currentSlug={service.slug}
           relatedSlugs={service.relatedServices}

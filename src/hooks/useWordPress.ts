@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getHomepageData, getPage, getPosts } from '@/lib/wordpress';
+import { getPage, getPosts } from '@/lib/wordpress';
 import { HomepageData, WordPressPage, WordPressPost, HeroTitle, PositioningText } from '@/types/wordpress';
 
-// Hook to fetch homepage data
+// Hook to fetch homepage data (via cached API route)
 export function useHomepage() {
   const [data, setData] = useState<HomepageData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -15,8 +15,9 @@ export function useHomepage() {
       try {
         setLoading(true);
         setError(null);
-        const homepage = await getHomepageData();
-        console.log('Fetched homepage data:', homepage);
+        const response = await fetch('/api/wordpress/homepage');
+        if (!response.ok) throw new Error(`API error: ${response.status}`);
+        const homepage = await response.json();
         setData(homepage);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch homepage data');

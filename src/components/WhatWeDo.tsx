@@ -2,15 +2,18 @@
 
 import React, { useState, useEffect } from 'react';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import { useHomepage } from '@/hooks/useWordPress';
 import { getImageUrl } from '@/lib/image-utils';
+import { HomepageData } from '@/types/wordpress';
 
-export default function WhatWeDo() {
-  const { data, loading, error } = useHomepage();
+interface WhatWeDoProps {
+  homepage: HomepageData | null;
+}
+
+export default function WhatWeDo({ homepage }: WhatWeDoProps) {
   const [activeCard, setActiveCard] = useState('');
-  
-  const wwdData = data?.acf?.wwd || [];
-  
+
+  const wwdData = homepage?.acf?.wwd || [];
+
   // Set initial active card when data loads
   useEffect(() => {
     if (wwdData.length > 0 && !activeCard) {
@@ -45,13 +48,10 @@ export default function WhatWeDo() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [wwdData]);
-  
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error loading data: {error}</div>;
 
   const handleLinkClick = (cardId: string) => {
     setActiveCard(cardId);
-    
+
     // Smooth scroll to the card
     const cardElement = document.getElementById(`card-${cardId}`);
     if (cardElement) {
@@ -77,7 +77,7 @@ export default function WhatWeDo() {
           <p className="text-lg sm:text-2xl font-light leading-7 sm:leading-8 text-zinc-100 tracking-tight sm:tracking-tight">
             We partner with CEOs, product teams and technical leaders who need clarity, capability and a high standard of delivery. Working within complex sectors, moving fast, and solving real problems.
           </p>
-          
+
           <p className="text-lg sm:text-xl font-normal leading-7 sm:leading-8 text-zinc-100">
             We do this by
           </p>
@@ -88,7 +88,7 @@ export default function WhatWeDo() {
               <div key={index} className="bg-zinc-900 rounded-xl w-full">
                 <div className="bg-zinc-800 rounded-t-xl px-6 py-8 h-[250px] flex items-center justify-center">
                   <div className="w-full h-[200px] flex items-center justify-center overflow-hidden">
-                    <img 
+                    <img
                       src={getImageUrl(item.image)}
                       alt={`${item.title} illustration`}
                       className="w-full h-full object-cover rounded"
@@ -115,7 +115,7 @@ export default function WhatWeDo() {
             <p className="text-2xl font-light leading-8 text-zinc-100 tracking-tight">
               We partner with CEOs, product teams and technical leaders who need clarity, capability and a high standard of delivery. Working within complex sectors, moving fast, and solving real problems.
             </p>
-            
+
             <p className="text-xl font-normal leading-8 text-zinc-100">
               We do this by
             </p>
@@ -124,7 +124,7 @@ export default function WhatWeDo() {
               {wwdData.map((item, index) => {
                 const cardId = `wwd-${index}`;
                 const isActive = activeCard === cardId;
-                
+
                 return (
                   <div key={cardId}>
                     <button
@@ -157,7 +157,7 @@ export default function WhatWeDo() {
                 <div key={cardId} id={`card-${cardId}`} className="bg-zinc-900 rounded-xl w-full scroll-mt-20">
                   <div className="bg-zinc-800 rounded-t-xl px-8 py-12 h-80 flex items-center justify-center">
                     <div className="w-full h-64 flex items-center justify-center overflow-hidden">
-                      <img 
+                      <img
                         src={getImageUrl(item.image)}
                         alt={`${item.title} illustration`}
                         className="w-full h-full object-cover rounded max-w-64 max-h-48"

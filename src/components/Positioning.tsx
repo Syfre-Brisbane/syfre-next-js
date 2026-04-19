@@ -1,31 +1,15 @@
-'use client';
+import { HomepageData } from '@/types/wordpress';
 
-import { useHomepage } from "@/hooks/useWordPress";
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+interface PositioningProps {
+  homepage: HomepageData | null;
+}
 
-export default function Positioning() {
-  const { loading, error, getPositioningText } = useHomepage();
-
-  if (loading) {
-    return (
-      <SkeletonTheme baseColor="#27272A" highlightColor="#3F3F46">
-        <section className="px-6 py-40">
-          <div className="max-w-7xl mx-auto flex items-center justify-center">
-            <div className="max-w-4xl text-center">
-              <Skeleton height={60} count={3} className="mb-4" />
-            </div>
-          </div>
-        </section>
-      </SkeletonTheme>
-    );
-  }
-
-  if (error) {
-    console.error('Positioning error:', error);
-  }
-
-  const positioningText = getPositioningText();
+export default function Positioning({ homepage }: PositioningProps) {
+  const positioningText = {
+    part1: homepage?.acf?.positioning?.part_1,
+    highlight: homepage?.acf?.positioning?.highlight,
+    part2: homepage?.acf?.positioning?.part_2,
+  };
 
   return (
     <section className="px-6 py-40">
