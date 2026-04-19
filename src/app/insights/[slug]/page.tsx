@@ -25,9 +25,22 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     };
   }
   
+  const description = article.excerpt.length > 160
+    ? article.excerpt.substring(0, 157) + '...'
+    : article.excerpt;
+
   return {
-    title: `${article.title} | Syfre`,
-    description: article.excerpt,
+    title: article.title,
+    description,
+    alternates: {
+      canonical: `/insights/${resolvedParams.slug}`,
+    },
+    openGraph: {
+      title: article.title,
+      description,
+      type: 'article',
+      url: `https://syfre.ai/insights/${resolvedParams.slug}`,
+    },
   };
 }
 

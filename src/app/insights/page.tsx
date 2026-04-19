@@ -1,7 +1,16 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SecondCTA from '@/components/SecondCTA';
 import { getRecentArticles, WordPressArticle } from '@/lib/wordpress';
+
+export const metadata: Metadata = {
+  title: 'AI Insights & Articles',
+  description: 'Expert insights on AI strategy, machine learning, automation, and data analytics from Brisbane AI consultants. Written by humans, for humans.',
+  alternates: {
+    canonical: '/insights',
+  },
+};
 
 // Map WordPress categories to badge colors
 const categoryColors: { [key: string]: string } = {

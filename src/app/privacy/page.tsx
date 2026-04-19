@@ -4,7 +4,10 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Our privacy policy and how we handle your personal information.',
+  description: 'Read how Syfre AI Solutions collects, uses, and protects your personal information. Brisbane-based AI consulting privacy practices.',
+  alternates: {
+    canonical: '/privacy',
+  },
 };
 
 export default function PrivacyPolicy() {

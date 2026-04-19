@@ -10,8 +10,27 @@ const sourceSans3 = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "Syfre AI Solutions",
+  metadataBase: new URL('https://syfre.ai'),
+  title: {
+    default: 'Syfre AI Solutions',
+    template: '%s | Syfre',
+  },
   description: "Brisbane-based AI consulting and automation specialists. We help businesses leverage artificial intelligence to drive efficiency, growth, and innovation.",
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Syfre AI Solutions',
+    description: 'Brisbane-based AI consulting and automation specialists. We help businesses leverage artificial intelligence to drive efficiency, growth, and innovation.',
+    url: 'https://syfre.ai',
+    siteName: 'Syfre AI Solutions',
+    type: 'website',
+    locale: 'en_AU',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@syfre_ai',
+  },
 };
 
 export default function RootLayout({

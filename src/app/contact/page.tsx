@@ -1,6 +1,15 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
+
+export const metadata: Metadata = {
+  title: 'Contact Us',
+  description: 'Get in touch with Syfre AI Solutions. Book a call or send us a message to discuss your AI strategy, automation, and consulting needs in Brisbane.',
+  alternates: {
+    canonical: '/contact',
+  },
+};
 
 export default function ContactPage() {
   return (
@@ -14,10 +23,10 @@ export default function ContactPage() {
             {/* Mobile - Heading and contact info */}
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-6">
-                <h1 className="text-4xl sm:text-6xl font-light leading-tight tracking-tight">
+                <div className="text-4xl sm:text-6xl font-light leading-tight tracking-tight">
                   <span className="text-zinc-300">Let&apos;s build something </span>
                   <span className="text-white font-normal">intelligent.</span>
-                </h1>
+                </div>
                 <p className="text-lg sm:text-2xl font-light leading-7 sm:leading-8 tracking-tight text-white">
                   Leave a message or simply book a video call.
                 </p>
