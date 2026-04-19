@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getRecentArticles } from '@/lib/wordpress';
+import { servicesList } from '@/lib/services-data';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getRecentArticles(100);
@@ -11,6 +12,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
+  const serviceUrls: MetadataRoute.Sitemap = servicesList.map((service) => ({
+    url: `https://syfre.ai/services/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
+
   return [
     {
       url: 'https://syfre.ai',
@@ -18,6 +26,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 1,
     },
+    {
+      url: 'https://syfre.ai/services',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    ...serviceUrls,
     {
       url: 'https://syfre.ai/contact',
       lastModified: new Date(),

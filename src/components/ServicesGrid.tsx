@@ -11,7 +11,6 @@ export default function ServicesGrid() {
   if (error) return <div>Error loading services: {error}</div>;
   
   const serviceTiles = data?.acf?.service_tiles || [];
-  console.log(serviceTiles)
 
   // Create rows of 3 items each
   const createRows = (items: unknown[], itemsPerRow: number) => {
