@@ -7,13 +7,13 @@ import { servicesList } from '@/lib/services-data';
 
 export const metadata: Metadata = {
   title: 'AI Consulting Services Brisbane',
-  description: 'Explore Syfre\'s AI consulting services in Brisbane: strategy, automation, machine learning, agentic AI, business intelligence, and generative engine optimization.',
+  description: 'Explore Syfre\'s AI consulting services in Brisbane: strategy, automation, machine learning, agentic AI, business intelligence, and generative engine optimisation.',
   alternates: {
     canonical: '/services',
   },
   openGraph: {
     title: 'AI Consulting Services Brisbane | Syfre',
-    description: 'Explore Syfre\'s AI consulting services in Brisbane: strategy, automation, machine learning, agentic AI, business intelligence, and generative engine optimization.',
+    description: 'Explore Syfre\'s AI consulting services in Brisbane: strategy, automation, machine learning, agentic AI, business intelligence, and generative engine optimisation.',
     url: 'https://syfre.ai/services',
   },
 };

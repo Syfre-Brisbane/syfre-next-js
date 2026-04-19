@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ServicePageLayout from '@/components/services/ServicePageLayout';
 import { getServiceBySlug } from '@/lib/services-data';
 
-const service = getServiceBySlug('generative-engine-optimization')!;
+const service = getServiceBySlug('generative-engine-optimisation')!;
 
 export const metadata: Metadata = {
   title: service.title,

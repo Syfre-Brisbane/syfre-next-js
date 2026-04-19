@@ -13,10 +13,6 @@ export const HEADER_MENU: MenuItem[] = [
     href: '/services'
   },
   {
-    label: 'About',
-    href: '/about'
-  },
-  {
     label: 'Insights',
     href: '/insights'
   },

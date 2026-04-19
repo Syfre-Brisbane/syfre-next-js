@@ -55,6 +55,62 @@ export default function RootLayout({
       <body
         className={`${sourceSans3.variable} antialiased font-sans`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  '@id': 'https://syfre.ai/#organization',
+                  name: 'Syfre AI Solutions',
+                  url: 'https://syfre.ai',
+                  logo: {
+                    '@type': 'ImageObject',
+                    url: 'https://syfre.ai/logo.svg',
+                  },
+                  contactPoint: {
+                    '@type': 'ContactPoint',
+                    email: 'hello@syfre.com.au',
+                    contactType: 'sales',
+                    url: 'https://syfre.ai/contact',
+                  },
+                  sameAs: [
+                    'https://www.linkedin.com/company/syfreai',
+                    'https://x.com/syfre_ai',
+                  ],
+                },
+                {
+                  '@type': 'LocalBusiness',
+                  '@id': 'https://syfre.ai/#localbusiness',
+                  name: 'Syfre AI Solutions',
+                  url: 'https://syfre.ai',
+                  description: 'Brisbane-based AI consulting and automation specialists.',
+                  address: {
+                    '@type': 'PostalAddress',
+                    addressLocality: 'Brisbane',
+                    addressRegion: 'QLD',
+                    addressCountry: 'AU',
+                  },
+                  areaServed: [
+                    { '@type': 'City', name: 'Brisbane' },
+                    { '@type': 'State', name: 'Queensland' },
+                    { '@type': 'Country', name: 'Australia' },
+                  ],
+                  priceRange: '$$',
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': 'https://syfre.ai/#website',
+                  url: 'https://syfre.ai',
+                  name: 'Syfre AI Solutions',
+                  publisher: { '@id': 'https://syfre.ai/#organization' },
+                },
+              ],
+            }),
+          }}
+        />
         {children}
       </body>
     </html>

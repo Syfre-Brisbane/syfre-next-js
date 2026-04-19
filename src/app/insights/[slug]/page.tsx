@@ -57,18 +57,85 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const badgeColor = getBadgeBackgroundColor(badgeVariant);
   const showBadge = primaryCategory.toLowerCase() !== 'uncategorized';
   
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Article',
+        headline: article.title,
+        description: article.excerpt.length > 160
+          ? article.excerpt.substring(0, 157) + '...'
+          : article.excerpt,
+        datePublished: article.date,
+        author: {
+          '@type': 'Person',
+          name: 'Steve Macfarlane',
+          jobTitle: 'Founder & AI Consultant',
+          url: 'https://syfre.ai',
+          sameAs: [
+            'https://www.linkedin.com/in/stevemacfarlaneaibrisbane',
+          ],
+          worksFor: {
+            '@type': 'Organization',
+            name: 'Syfre AI Solutions',
+            url: 'https://syfre.ai',
+          },
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Syfre AI Solutions',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://syfre.ai/logo.svg',
+          },
+        },
+        mainEntityOfPage: `https://syfre.ai/insights/${resolvedParams.slug}`,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://syfre.ai',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Insights',
+            item: 'https://syfre.ai/insights',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: article.title,
+            item: `https://syfre.ai/insights/${resolvedParams.slug}`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <Header />
       <main className="min-h-screen bg-black">
         <div className="px-4 sm:px-6 py-12 sm:py-24">
           <div className="max-w-4xl mx-auto flex flex-col gap-16">
             {/* Article Header */}
             <div className="flex flex-col gap-8">
-              {/* Date and Badge */}
+              {/* Date, Author, and Badge */}
               <div className="flex items-center gap-6">
                 <span className="text-sm text-zinc-300">
                   {article.date}
+                </span>
+                <span className="text-sm text-zinc-500">
+                  Steve Macfarlane
                 </span>
                 {showBadge && (
                   <div
