@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/contact',
   },
+  openGraph: {
+    title: 'Contact Us | Syfre',
+    description: 'Get in touch with Syfre AI Solutions. Book a call or send us a message to discuss your AI strategy, automation, and consulting needs in Brisbane.',
+    url: 'https://syfre.ai/contact',
+    type: 'website',
+  },
 };
 
 export default function ContactPage() {

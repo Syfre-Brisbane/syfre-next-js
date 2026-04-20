@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: 'Syfre AI Solutions | Brisbane AI Consulting & Automation',
     description: 'Brisbane-based AI consulting specialists. We build AI strategy, automation, machine learning, and agentic AI solutions for ambitious businesses.',
     url: 'https://syfre.ai',
+    type: 'website',
   },
 };
 

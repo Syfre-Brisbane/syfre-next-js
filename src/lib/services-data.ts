@@ -274,7 +274,7 @@ export const services: Record<string, ServicePageData> = {
   'business-intelligence-data-analytics': {
     slug: 'business-intelligence-data-analytics',
     title: 'Business Intelligence & Data Analytics Consulting Brisbane',
-    description: 'Platform-agnostic business intelligence and data analytics consulting in Brisbane. We turn your data into decisions with dashboards, reporting, and predictive insights.',
+    description: 'Business intelligence and data analytics consulting in Brisbane. We turn your data into decisions with dashboards and predictive insights.',
     badge: 'Business Intelligence',
     h1: {
       muted: 'Business Intelligence &',
@@ -405,7 +405,7 @@ export const services: Record<string, ServicePageData> = {
   'machine-learning-predictive-modelling': {
     slug: 'machine-learning-predictive-modelling',
     title: 'Machine Learning & Predictive Modelling Services Brisbane',
-    description: 'Custom machine learning and predictive modelling services in Brisbane. We build ML models that forecast, classify, and optimise, turning your data into competitive advantage.',
+    description: 'Custom machine learning and predictive modelling services in Brisbane. ML models that forecast, classify, and optimise your operations.',
     badge: 'Machine Learning',
     h1: {
       muted: 'Machine Learning &',
@@ -536,7 +536,7 @@ export const services: Record<string, ServicePageData> = {
   'agentic-ai-solutions': {
     slug: 'agentic-ai-solutions',
     title: 'Agentic AI Solutions Brisbane',
-    description: 'Custom AI agent development in Brisbane. We build autonomous AI systems that reason, plan, and execute complex tasks, moving beyond chatbots to intelligent automation.',
+    description: 'Custom AI agent development in Brisbane. Autonomous AI systems that reason, plan, and execute complex tasks beyond simple chatbots.',
     badge: 'Agentic AI',
     h1: {
       muted: 'Agentic AI',
@@ -667,7 +667,7 @@ export const services: Record<string, ServicePageData> = {
   'ai-automation': {
     slug: 'ai-automation',
     title: 'AI Automation Services Brisbane',
-    description: 'AI-powered business automation in Brisbane. We automate complex workflows using intelligent systems that learn, adapt, and handle exceptions, going beyond basic RPA.',
+    description: 'AI-powered business automation in Brisbane. Intelligent workflow automation that adapts and handles exceptions — beyond basic RPA.',
     badge: 'AI Automation',
     h1: {
       muted: 'AI Automation',

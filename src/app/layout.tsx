@@ -26,6 +26,14 @@ export const metadata: Metadata = {
     siteName: 'Syfre AI Solutions',
     type: 'website',
     locale: 'en_AU',
+    images: [
+      {
+        url: 'https://syfre.ai/logo.svg',
+        width: 200,
+        height: 200,
+        alt: 'Syfre AI Solutions',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',

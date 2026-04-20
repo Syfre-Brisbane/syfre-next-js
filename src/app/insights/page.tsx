@@ -10,6 +10,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/insights',
   },
+  openGraph: {
+    title: 'AI Insights & Articles | Syfre',
+    description: 'Expert insights on AI strategy, machine learning, automation, and data analytics from Brisbane AI consultants. Written by humans, for humans.',
+    url: 'https://syfre.ai/insights',
+    type: 'website',
+  },
 };
 
 // Map WordPress categories to badge colors

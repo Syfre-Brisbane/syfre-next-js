@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/privacy',
   },
+  openGraph: {
+    title: 'Privacy Policy | Syfre',
+    description: 'Read how Syfre AI Solutions collects, uses, and protects your personal information. Brisbane-based AI consulting privacy practices.',
+    url: 'https://syfre.ai/privacy',
+    type: 'website',
+  },
 };
 
 export default function PrivacyPolicy() {
