@@ -41,7 +41,9 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       description,
       type: 'article',
       url: `https://syfre.ai/insights/${resolvedParams.slug}`,
-      images: [OG_IMAGE],
+      images: article.featured_media
+        ? [{ url: article.featured_media, width: 1200, height: 630, alt: article.title }]
+        : [OG_IMAGE],
     },
   };
 }
