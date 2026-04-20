@@ -5,6 +5,8 @@ import Footer from '@/components/Footer';
 import SecondCTA from '@/components/SecondCTA';
 import { getRecentArticles, WordPressArticle } from '@/lib/wordpress';
 
+export const revalidate = 300; // revalidate every 5 minutes
+
 export const metadata: Metadata = {
   title: 'AI Insights & Articles',
   description: 'Expert insights on AI strategy, machine learning, automation, and data analytics from Brisbane AI consultants. Written by humans, for humans.',

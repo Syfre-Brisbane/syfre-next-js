@@ -14,6 +14,8 @@ import Footer from '@/components/Footer';
 import { getHomepageData } from '@/lib/wordpress';
 import { HomepageData } from '@/types/wordpress';
 
+export const revalidate = 300; // revalidate every 5 minutes
+
 export const metadata: Metadata = {
   title: 'Syfre AI Solutions | Brisbane AI Consulting & Automation',
   description: 'Brisbane-based AI consulting specialists. We build AI strategy, automation, machine learning, and agentic AI solutions for ambitious businesses.',
