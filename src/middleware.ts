@@ -8,10 +8,9 @@ export function middleware(request: NextRequest) {
   const needsHttpsRedirect = proto === 'http';
 
   if (needsWwwRedirect || needsHttpsRedirect) {
-    const newUrl = new URL(request.url);
-    newUrl.host = host.replace(/^www\./, '');
-    newUrl.protocol = 'https:';
-    return NextResponse.redirect(newUrl, 301);
+    const cleanHost = host.replace(/^www\./, '').replace(/:\d+$/, '');
+    const url = new URL(request.url);
+    return NextResponse.redirect(`https://${cleanHost}${url.pathname}${url.search}`, 301);
   }
 
   return NextResponse.next();
