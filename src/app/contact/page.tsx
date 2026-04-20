@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     description: 'Get in touch with Syfre AI Solutions. Book a call or send us a message to discuss your AI strategy, automation, and consulting needs in Brisbane.',
     url: 'https://syfre.ai/contact',
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 

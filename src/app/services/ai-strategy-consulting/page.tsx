@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/metadata';
 import ServicePageLayout from '@/components/services/ServicePageLayout';
 import { getServiceBySlug } from '@/lib/services-data';
 
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     description: service.description,
     url: `https://syfre.ai/services/${service.slug}`,
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 

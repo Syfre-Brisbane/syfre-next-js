@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     description: 'Read how Syfre AI Solutions collects, uses, and protects your personal information. Brisbane-based AI consulting privacy practices.',
     url: 'https://syfre.ai/privacy',
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 

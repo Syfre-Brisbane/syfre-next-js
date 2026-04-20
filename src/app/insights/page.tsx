@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SecondCTA from '@/components/SecondCTA';
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     description: 'Expert insights on AI strategy, machine learning, automation, and data analytics from Brisbane AI consultants. Written by humans, for humans.',
     url: 'https://syfre.ai/insights',
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 

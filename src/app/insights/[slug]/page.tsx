@@ -5,6 +5,7 @@ import ShareButtons from '@/components/ShareButtons';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/metadata';
 import { getPostBySlug } from '@/lib/wordpress';
 import { getCategoryBadgeVariant, getBadgeBackgroundColor } from '@/lib/badge-utils';
 
@@ -40,6 +41,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       description,
       type: 'article',
       url: `https://syfre.ai/insights/${resolvedParams.slug}`,
+      images: [OG_IMAGE],
     },
   };
 }

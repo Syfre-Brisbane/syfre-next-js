@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/metadata';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Positioning from '@/components/Positioning';
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     description: 'Brisbane-based AI consulting specialists. We build AI strategy, automation, machine learning, and agentic AI solutions for ambitious businesses.',
     url: 'https://syfre.ai',
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 
