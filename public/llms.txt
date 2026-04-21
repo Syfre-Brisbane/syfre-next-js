@@ -1,0 +1,49 @@
+# Syfre AI Solutions
+
+> Syfre is a Brisbane-based AI consulting firm that helps businesses build and deploy artificial intelligence systems with real commercial impact. We work with CEOs, product teams, and technical leaders across Australia — from mid-market companies to professional services firms and small businesses — delivering AI strategy consulting, automation, machine learning, agentic AI, business intelligence, and generative engine optimisation (GEO).
+
+## What Makes Syfre Different
+
+Syfre is an AI-native consultancy, not a traditional IT firm that added AI to its service list. Every engagement is grounded in deep understanding of how AI systems actually work — from large language models and retrieval-augmented generation (RAG) to production machine learning and multi-agent architectures. We bridge the gap between AI strategy and implementation, delivering production-ready systems rather than slide decks.
+
+## Services
+
+### AI Strategy Consulting
+We help businesses build actionable AI roadmaps, identify high-impact opportunities, and avoid costly missteps. Services include AI readiness assessments, opportunity identification, prioritised AI roadmaps, business case development, technology and vendor guidance, and governance and risk frameworks. Based in Brisbane, serving Queensland and all of Australia.
+
+### AI Automation
+AI-powered business process automation that goes beyond basic RPA. We build intelligent systems that handle messy, variable, judgement-heavy tasks — including intelligent document processing, workflow automation, data entry and migration, communication automation, and reporting. Ideal for businesses that need to automate business processes with AI across complex operations.
+
+### Machine Learning & Predictive Modelling
+Custom machine learning model development in Brisbane. We build production-ready ML models for demand forecasting, churn prediction, anomaly detection, classification, and natural language processing. Our focus is on models that actually make it to production — including data engineering, feature development, model deployment, and MLOps.
+
+### Agentic AI Solutions
+Custom AI agent development for businesses that need autonomous systems beyond simple chatbots. We design and build AI agents that reason, plan, use tools, and execute complex multi-step workflows. Capabilities include multi-agent systems, tool integration and API connectivity, retrieval-augmented generation (RAG) implementation, and governance and safety frameworks.
+
+### Business Intelligence & Data Analytics
+Business intelligence consulting and data analytics in Brisbane. We build BI systems people actually use — connecting data to decisions on platforms that fit your team. Services include data strategy and architecture, dashboard and report development (including Power BI), data pipeline and integration, self-service analytics enablement, and KPI design.
+
+### Generative Engine Optimisation (GEO)
+We help brands get cited by ChatGPT, Gemini, Perplexity, and AI Overviews. As an AI consultancy first, we understand how large language models reason, retrieve, and cite — giving us an edge no traditional SEO agency can match. Services include AI visibility audits, entity and authority optimisation, content strategy for AI citations, technical implementation, and ongoing AI search monitoring.
+
+## Location and Coverage
+
+- Headquarters: Brisbane, Queensland, Australia
+- Service area: Brisbane, Gold Coast, Queensland, and all of Australia
+- Delivery: On-site and remote engagements
+
+## Contact
+
+- Website: https://syfre.ai
+- Contact: https://syfre.ai/contact
+
+## Key Pages
+
+- [AI Strategy Consulting](https://syfre.ai/services/ai-strategy-consulting)
+- [AI Automation](https://syfre.ai/services/ai-automation)
+- [Machine Learning & Predictive Modelling](https://syfre.ai/services/machine-learning-predictive-modelling)
+- [Agentic AI Solutions](https://syfre.ai/services/agentic-ai-solutions)
+- [Business Intelligence & Data Analytics](https://syfre.ai/services/business-intelligence-data-analytics)
+- [Generative Engine Optimisation](https://syfre.ai/services/generative-engine-optimisation)
+- [Insights & Articles](https://syfre.ai/insights)
+- [Contact](https://syfre.ai/contact)
