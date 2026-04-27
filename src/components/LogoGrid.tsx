@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { getImageUrl } from '@/lib/image-utils';
 import { useEffect, useRef, useState } from 'react';
 import { HomepageData } from '@/types/wordpress';
@@ -182,9 +183,12 @@ export default function LogoGrid({ homepage }: LogoGridProps) {
                   key={index}
                   className="relative w-[150px] sm:w-[200px] h-[75px] sm:h-[100px] flex items-center justify-center shrink-0"
                 >
-                  <img
+                  <Image
                     src={getImageUrl(logoItem.logo)}
                     alt={`Client logo ${index + 1}`}
+                    width={200}
+                    height={100}
+                    sizes="(max-width: 640px) 150px, 200px"
                     className="max-w-full max-h-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
                   />
                 </div>

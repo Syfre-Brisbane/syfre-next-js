@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Button from './Button';
 import WorkshopModal from './WorkshopModal';
 
@@ -11,10 +12,12 @@ export default function CTA() {
         <div className="max-w-7xl mx-auto">
           <div className="bg-teal-400 flex flex-col sm:flex-row sm:items-center sm:justify-between px-6 sm:px-9 py-6 sm:py-8 rounded-lg w-full gap-4 sm:gap-0">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
-            <div className="w-12 h-12 bg-center bg-cover bg-no-repeat shrink-0 rounded">
-              <img 
+            <div className="w-12 h-12 shrink-0 rounded">
+              <Image
                 src="/workshop.svg"
                 alt="AI Workshop icon"
+                width={48}
+                height={48}
                 className="w-full h-full object-cover rounded"
               />
             </div>
@@ -29,8 +32,8 @@ export default function CTA() {
           </div>
             <div className="shrink-0 sm:pr-4 self-start sm:self-auto">
               <a href="#workshop">
-                <Button 
-                  variant="secondary" 
+                <Button
+                  variant="secondary"
                   className="bg-white text-black hover:bg-gray-100"
                 >
                   Apply now

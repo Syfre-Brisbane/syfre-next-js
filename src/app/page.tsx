@@ -37,15 +37,17 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Header />
-      <Hero homepage={homepage} />
-      <Positioning homepage={homepage} />
-      <ServicesGrid homepage={homepage} />
-      <LogoGrid homepage={homepage} />
-      <WhatWeDo homepage={homepage} />
-      <CTA />
-      <Insights />
-      <Humans homepage={homepage} />
-      <SecondCTA />
+      <main>
+        <Hero homepage={homepage} />
+        <Positioning homepage={homepage} />
+        <ServicesGrid homepage={homepage} />
+        <LogoGrid homepage={homepage} />
+        <WhatWeDo homepage={homepage} />
+        <CTA />
+        <Insights />
+        <Humans homepage={homepage} />
+        <SecondCTA />
+      </main>
       <Footer />
     </div>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { getImageUrl } from '@/lib/image-utils';
 import { HomepageData } from '@/types/wordpress';
@@ -87,11 +88,13 @@ export default function WhatWeDo({ homepage }: WhatWeDoProps) {
             {wwdData.map((item, index) => (
               <div key={index} className="bg-zinc-900 rounded-xl w-full">
                 <div className="bg-zinc-800 rounded-t-xl px-6 py-8 h-[250px] flex items-center justify-center">
-                  <div className="w-full h-[200px] flex items-center justify-center overflow-hidden">
-                    <img
+                  <div className="relative w-full h-[200px] overflow-hidden">
+                    <Image
                       src={getImageUrl(item.image)}
                       alt={`${item.title} illustration`}
-                      className="w-full h-full object-cover rounded"
+                      fill
+                      sizes="(max-width: 640px) 100vw, 300px"
+                      className="object-cover rounded"
                     />
                   </div>
                 </div>
@@ -156,11 +159,13 @@ export default function WhatWeDo({ homepage }: WhatWeDoProps) {
               return (
                 <div key={cardId} id={`card-${cardId}`} className="bg-zinc-900 rounded-xl w-full scroll-mt-20">
                   <div className="bg-zinc-800 rounded-t-xl px-8 py-12 h-80 flex items-center justify-center">
-                    <div className="w-full h-64 flex items-center justify-center overflow-hidden">
-                      <img
+                    <div className="relative w-full h-64 max-w-64 max-h-48 overflow-hidden">
+                      <Image
                         src={getImageUrl(item.image)}
                         alt={`${item.title} illustration`}
-                        className="w-full h-full object-cover rounded max-w-64 max-h-48"
+                        fill
+                        sizes="(max-width: 640px) 100vw, 256px"
+                        className="object-cover rounded"
                       />
                     </div>
                   </div>

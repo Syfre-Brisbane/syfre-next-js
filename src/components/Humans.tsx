@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { getImageUrl } from '@/lib/image-utils';
 import { HomepageData } from '@/types/wordpress';
 
@@ -19,12 +20,16 @@ export default function Humans({ homepage }: HumansProps) {
             <span> innovations with AI</span>
           </h2>
         </div>
-        <div className="relative">
-          <img
-            src={teamImageUrl}
-            alt="Brisbane Team photo"
-            className="w-full h-[300px] object-cover rounded-xl"
-          />
+        <div className="relative w-full h-[300px] rounded-xl overflow-hidden">
+          {teamImageUrl && (
+            <Image
+              src={teamImageUrl}
+              alt="Brisbane Team photo"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          )}
         </div>
       </div>
 
@@ -40,12 +45,16 @@ export default function Humans({ homepage }: HumansProps) {
             </h2>
           </div>
         </div>
-        <div className="relative">
-          <img
-            src={teamImageUrl}
-            alt="Brisbane Team photo"
-            className="w-full max-w-md lg:max-w-lg xl:max-w-3xl h-auto lg:h-[500px] xl:h-[670px] object-cover rounded-xl"
-          />
+        <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-3xl h-auto lg:h-[500px] xl:h-[670px] rounded-xl overflow-hidden">
+          {teamImageUrl && (
+            <Image
+              src={teamImageUrl}
+              alt="Brisbane Team photo"
+              fill
+              sizes="(max-width: 1024px) 448px, (max-width: 1280px) 512px, 768px"
+              className="object-cover"
+            />
+          )}
         </div>
       </div>
     </section>

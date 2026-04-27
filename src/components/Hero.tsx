@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { getImageUrl } from '@/lib/image-utils';
 import { HomepageData } from '@/types/wordpress';
 
@@ -32,10 +33,18 @@ export default function Hero({ homepage }: HeroProps) {
         </div>
 
         <div className="w-full">
-          <div
-            className="w-full h-64 sm:h-96 md:h-[760px] rounded-xl bg-cover bg-center"
-            style={{ backgroundImage: `url('${heroImageUrl}')` }}
-          />
+          <div className="relative w-full h-64 sm:h-96 md:h-[760px] rounded-xl overflow-hidden">
+            {heroImageUrl && (
+              <Image
+                src={heroImageUrl}
+                alt="Syfre AI hero image"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 1280px"
+                className="object-cover"
+              />
+            )}
+          </div>
         </div>
       </div>
     </section>

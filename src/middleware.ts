@@ -3,6 +3,12 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const host = request.headers.get('host') || '';
+
+  // Skip redirects in local development
+  if (host.includes('localhost') || host.includes('127.0.0.1')) {
+    return NextResponse.next();
+  }
+
   const proto = request.headers.get('x-forwarded-proto') || 'https';
   const needsWwwRedirect = host.startsWith('www.');
   const needsHttpsRedirect = proto === 'http';

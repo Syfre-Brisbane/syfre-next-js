@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { getImageUrl } from '@/lib/image-utils';
 import { HomepageData, ServiceTile } from '@/types/wordpress';
@@ -49,11 +50,13 @@ export default function ServicesGrid({ homepage }: ServicesGridProps) {
               <div
                 className="bg-zinc-900 flex flex-col h-[400px] items-center justify-between px-6 py-12 rounded-xl w-full"
               >
-                <div className="flex items-center justify-center h-[250px] w-full overflow-hidden">
-                  <img
+                <div className="relative h-[250px] w-full">
+                  <Image
                     src={getImageUrl(serviceData.service_image)}
                     alt={serviceData.service_label || ''}
-                    className="max-w-full max-h-full object-contain"
+                    fill
+                    sizes="(max-width: 640px) 100vw, 300px"
+                    className="object-contain"
                   />
                 </div>
                 <div className="font-light text-2xl text-center tracking-tight leading-8 text-zinc-300">
@@ -82,11 +85,13 @@ export default function ServicesGrid({ homepage }: ServicesGridProps) {
                   <div
                     className="bg-zinc-900 flex flex-col h-[579px] items-center justify-between px-8 py-16 rounded-xl w-full max-w-sm lg:max-w-md xl:max-w-lg"
                   >
-                    <div className="flex items-center justify-center h-[390px] w-full overflow-hidden">
-                      <img
+                    <div className="relative h-[390px] w-full">
+                      <Image
                         src={getImageUrl(serviceData.service_image)}
                         alt={serviceData.service_label || ''}
-                        className="max-w-full max-h-full object-contain"
+                        fill
+                        sizes="(max-width: 1024px) 300px, 400px"
+                        className="object-contain"
                       />
                     </div>
                     <div className="font-light text-3xl text-center tracking-tight leading-10 text-zinc-300">

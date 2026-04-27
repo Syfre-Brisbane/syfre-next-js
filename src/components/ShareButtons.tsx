@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 interface ShareButtonsProps {
   title: string;
 }
@@ -27,10 +29,12 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
         className="cursor-pointer hover:opacity-70 transition-opacity"
         title="Copy link"
       >
-        <img
+        <Image
           alt="Share link"
           className="block max-w-none size-full"
           src="/link.png"
+          width={24}
+          height={24}
         />
       </button>
       <button
@@ -38,10 +42,12 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
         className="cursor-pointer hover:opacity-70 transition-opacity"
         title="Share on X"
       >
-        <img
+        <Image
           alt="Share on X"
           className="block max-w-none size-full"
           src="/x.png"
+          width={24}
+          height={24}
         />
       </button>
       <button
@@ -49,10 +55,12 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
         className="cursor-pointer hover:opacity-70 transition-opacity"
         title="Share on LinkedIn"
       >
-        <img
+        <Image
           alt="Share on LinkedIn"
           className="block max-w-none size-full"
           src="/linkedin.png"
+          width={24}
+          height={24}
         />
       </button>
     </>
