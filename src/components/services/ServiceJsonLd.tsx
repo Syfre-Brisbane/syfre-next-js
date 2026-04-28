@@ -2,10 +2,11 @@ interface ServiceJsonLdProps {
   serviceName: string;
   serviceDescription: string;
   serviceType: string;
+  slug: string;
   url: string;
 }
 
-export default function ServiceJsonLd({ serviceName, serviceDescription, serviceType, url }: ServiceJsonLdProps) {
+export default function ServiceJsonLd({ serviceName, serviceDescription, serviceType, slug, url }: ServiceJsonLdProps) {
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -88,6 +89,29 @@ export default function ServiceJsonLd({ serviceName, serviceDescription, service
             url: 'https://syfre.ai',
           },
         },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://syfre.ai',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Services',
+            item: 'https://syfre.ai/services',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: serviceName,
+            item: `https://syfre.ai/services/${slug}`,
+          },
+        ],
       },
     ],
   };

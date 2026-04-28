@@ -21,9 +21,43 @@ export const metadata: Metadata = {
   },
 };
 
+const servicesJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': 'https://syfre.ai/services/#collectionpage',
+      url: 'https://syfre.ai/services',
+      name: 'AI Consulting Services Brisbane',
+      description: 'AI consulting services in Brisbane — strategy, automation, machine learning, agentic AI, BI, and generative engine optimisation.',
+      isPartOf: { '@id': 'https://syfre.ai/#website' },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: servicesList.map((service, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: service.title,
+          url: `https://syfre.ai/services/${service.slug}`,
+        })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://syfre.ai' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://syfre.ai/services' },
+      ],
+    },
+  ],
+};
+
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
+      />
       <Header />
       <main>
         <section className="px-4 sm:px-6 pt-12 sm:pt-24 pb-16 sm:pb-20">

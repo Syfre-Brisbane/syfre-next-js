@@ -1,5 +1,7 @@
 # Syfre AI Solutions
 
+> For full details including service breakdowns, FAQs, technology stack, and engagement model, see [llms-full.txt](https://syfre.ai/llms-full.txt).
+
 > Syfre is a Brisbane-based AI consulting firm that helps businesses build and deploy artificial intelligence systems with real commercial impact. We work with CEOs, product teams, and technical leaders across Australia — from mid-market companies to professional services firms and small businesses — delivering AI strategy consulting, automation, machine learning, agentic AI, business intelligence, and generative engine optimisation (GEO).
 
 ## What Makes Syfre Different

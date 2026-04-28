@@ -24,6 +24,7 @@ export default function ServicePageLayout({ service }: ServicePageLayoutProps) {
         serviceName={service.jsonLd.serviceName}
         serviceDescription={service.jsonLd.serviceDescription}
         serviceType={service.jsonLd.serviceType}
+        slug={service.slug}
         url={`https://syfre.ai/services/${service.slug}`}
       />
       <Header />

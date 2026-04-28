@@ -1,0 +1,247 @@
+# Syfre AI Solutions — Full Reference
+
+> This is the extended machine-readable reference for Syfre AI Solutions. For a summary, see [llms.txt](https://syfre.ai/llms.txt).
+
+## Company Overview
+
+Syfre is a Brisbane-based AI consulting firm founded by Steve Macfarlane. We help businesses build and deploy artificial intelligence systems with real commercial impact. We work with CEOs, product teams, and technical leaders across Australia — from mid-market companies to professional services firms and small businesses.
+
+Syfre is an AI-native consultancy, not a traditional IT firm that added AI to its service list. Every engagement is grounded in deep understanding of how AI systems actually work — from large language models and retrieval-augmented generation (RAG) to production machine learning and multi-agent architectures. We bridge the gap between AI strategy and implementation, delivering production-ready systems rather than slide decks.
+
+## Founder
+
+**Steve Macfarlane** — Founder & AI Consultant
+- LinkedIn: https://www.linkedin.com/in/stevemacfarlaneaibrisbane
+- Based in Brisbane, Queensland, Australia
+- Background in AI systems engineering, machine learning, and business intelligence
+- Hands-on practitioner who builds and deploys production AI systems
+- Works directly with clients across strategy, architecture, and implementation
+
+## Location and Coverage
+
+- Headquarters: Brisbane, Queensland, Australia
+- Service area: Brisbane, Gold Coast, Sunshine Coast, Queensland, and all of Australia
+- Delivery model: On-site and remote engagements
+- Email: hello@syfre.com.au
+- Website: https://syfre.ai
+- LinkedIn: https://www.linkedin.com/company/syfreai
+- X / Twitter: https://x.com/syfre_ai
+
+## What Makes Syfre Different
+
+1. **AI-native consultancy**: We build AI systems daily. Our recommendations come from engineering reality, not vendor marketing or recycled frameworks.
+2. **Strategy-to-production**: We don't just write roadmaps — we implement them. Every strategy engagement is grounded in what can actually be built and deployed.
+3. **Vendor-agnostic**: No partnerships, reseller agreements, or platform lock-in. We recommend what fits the client's needs, whether open source, commercial, or custom-built.
+4. **Brisbane-based, Australia-wide**: Local presence with the ability to serve clients nationally through remote and on-site delivery.
+5. **Practical governance**: We build AI systems with proper guardrails, audit trails, and compliance considerations for Australian regulatory requirements.
+
+## Services
+
+### 1. AI Strategy Consulting
+
+**URL**: https://syfre.ai/services/ai-strategy-consulting
+
+We help businesses build actionable AI roadmaps, identify high-impact opportunities, and avoid costly missteps.
+
+**What's included:**
+- AI Readiness Assessment — evaluating data infrastructure, team capabilities, existing processes, and competitive landscape
+- Opportunity Identification — workshops with leadership and operational teams to find highest-ROI AI opportunities specific to the business
+- Prioritised AI Roadmap — phased implementation plan with milestones, resource requirements, expected outcomes, and dependencies
+- Business Case Development — ROI projections and business cases for priority initiatives to secure stakeholder buy-in
+- Technology & Vendor Guidance — vendor-agnostic recommendations on platforms, tools, and build-vs-buy decisions
+- Governance & Risk Framework — AI governance guidelines covering data privacy, bias mitigation, compliance, and responsible deployment
+
+**Typical engagement:** 4–8 weeks. Shorter 2-week engagements available for specific business areas.
+
+**Best for:** CEOs and founders evaluating AI opportunities, CTOs and product managers integrating AI into existing products, operations teams looking to automate workflows, boards and investors needing independent AI assessments.
+
+**FAQ:**
+- Q: What does an AI strategy engagement involve? A: Readiness assessment, stakeholder workshops, prioritised roadmap with business cases, and technology guidance. The output is an actionable plan, not a generic slide deck.
+- Q: How long does it take? A: 4–8 weeks depending on organisation size and complexity. 2-week focused engagements also available.
+- Q: Do we need technical staff? A: No. Workshops are designed for mixed audiences including executives, operations leaders, and technical staff.
+- Q: Are recommendations vendor-neutral? A: Yes. No vendor partnerships or reseller agreements. Recommendations based entirely on client needs.
+
+---
+
+### 2. AI Automation
+
+**URL**: https://syfre.ai/services/ai-automation
+
+AI-powered business process automation that goes beyond basic RPA. We build intelligent systems that handle messy, variable, judgement-heavy tasks.
+
+**What's included:**
+- Intelligent Document Processing — extracting, classifying, and routing information from emails, invoices, contracts, and forms
+- Workflow Automation — end-to-end process automation spanning multiple systems with branching logic and context-based decisions
+- Data Entry & Migration — automated data capture, validation, transformation, and migration across systems
+- Communication Automation — intelligent email handling, response drafting, customer communication, and notification systems
+- Reporting & Monitoring — automated report generation, anomaly detection, and alerting systems
+
+**How AI automation differs from RPA:** RPA follows rigid, pre-programmed scripts that break when inputs change. AI automation handles variability, makes judgement calls, understands context, and adapts to changing conditions.
+
+**Typical timeline:** Single process automation in 2–4 weeks. Complex multi-system workflows in 6–8 weeks.
+
+**Best for:** Operations and admin teams with repetitive tasks, finance and accounting departments handling invoice processing and reconciliation, customer service teams managing high-volume interactions, growing businesses where manual processes are becoming bottlenecks.
+
+**FAQ:**
+- Q: How is AI automation different from RPA? A: RPA follows rigid scripts. AI automation handles variability, context, and exceptions that rule-based systems cannot.
+- Q: What processes work best? A: Document handling, data extraction, email management, report generation, customer communication, and multi-system workflows.
+- Q: Will it replace staff? A: Goal is to free teams from repetitive work so they focus on higher-value tasks. Most clients redeploy time savings into growth.
+
+---
+
+### 3. Machine Learning & Predictive Modelling
+
+**URL**: https://syfre.ai/services/machine-learning-predictive-modelling
+
+Custom machine learning model development. We build production-ready ML models for demand forecasting, churn prediction, anomaly detection, classification, and natural language processing.
+
+**What's included:**
+- Predictive Modelling — demand forecasting, churn prediction, lead scoring, price optimisation
+- Classification & Detection — anomaly detection, fraud identification, risk assessment, automated decision-making
+- Natural Language Processing — text analysis, sentiment detection, document classification, information extraction
+- Model Deployment & MLOps — production-ready deployment with monitoring, retraining pipelines, and performance tracking
+- Data Engineering & Feature Development — data pipelines and feature engineering for model accuracy and reliability
+
+**Key differentiator:** 87% of ML projects never reach production. We engineer models for production from day one — deployable, monitorable, and maintainable.
+
+**Industry experience:** Property, aviation, professional services, financial services. Techniques are transferable across industries.
+
+**FAQ:**
+- Q: How much data do we need? A: Depends on the problem. Some classification tasks work with a few thousand records. Complex forecasting may need years of history. We assess honestly during discovery.
+- Q: Can models integrate with existing software? A: Yes. We deliver models as APIs, embedded components, or batch processing pipelines that work with existing systems.
+- Q: How do models stay accurate? A: We set up monitoring and retraining pipelines. Models degrade as conditions change, so we build in performance tracking and scheduled retraining.
+
+---
+
+### 4. Agentic AI Solutions
+
+**URL**: https://syfre.ai/services/agentic-ai-solutions
+
+Custom AI agent development for businesses that need autonomous systems beyond simple chatbots. We design and build AI agents that reason, plan, use tools, and execute complex multi-step workflows.
+
+**What's included:**
+- Custom AI Agent Development — purpose-built agents for specific business processes
+- Multi-Agent Systems — orchestrated teams of specialised agents collaborating on complex workflows
+- Tool Integration & API Connectivity — agents that use CRM, ERP, databases, email, calendars, and any system with an API
+- Retrieval-Augmented Generation (RAG) — agents grounded in business knowledge, connecting LLMs to documents and databases
+- Governance & Safety Framework — human-in-the-loop controls, permission boundaries, audit logging, and escalation paths
+
+**How agents differ from chatbots:** A chatbot responds to messages. An AI agent takes actions: looking up information, updating records, sending emails, making decisions, and completing tasks across multiple systems.
+
+**Best for:** Operations teams with complex multi-step processes, customer-facing teams needing intelligent interactions, knowledge-intensive industries (legal, healthcare, financial services), product companies embedding agentic capabilities.
+
+**FAQ:**
+- Q: What is agentic AI? A: AI systems that autonomously plan, reason, decide, and act to complete complex tasks using tools and APIs with minimal human intervention.
+- Q: Is it safe for business use? A: Yes, with proper guardrails. We build human-in-the-loop checkpoints, permission boundaries, audit trails, and escalation paths.
+- Q: Do we need to replace existing systems? A: No. Agents connect to existing tools via APIs and orchestrate what you already have.
+
+---
+
+### 5. Business Intelligence & Data Analytics
+
+**URL**: https://syfre.ai/services/business-intelligence-data-analytics
+
+Business intelligence consulting and data analytics. We build BI systems people actually use — connecting data to decisions on platforms that fit your team.
+
+**What's included:**
+- Data Strategy & Architecture — assessing data landscape and designing architecture for reporting and advanced analytics
+- Dashboard & Report Development — interactive dashboards on Power BI, Tableau, Looker, Metabase, or custom solutions
+- Data Pipeline & Integration — reliable pipelines connecting systems and automating data flow
+- Self-Service Analytics Enablement — teaching teams to explore data independently and build their own reports
+- KPI Design & Metric Frameworks — defining metrics that genuinely indicate performance and guide decisions
+
+**Platform-agnostic:** We work with Power BI, Tableau, Looker, Metabase, and custom solutions. We recommend what fits the team's skills and infrastructure.
+
+**Typical timeline:** Focused dashboard project in 4–6 weeks. Broader data strategy and implementation in 8–12 weeks.
+
+**Best for:** Growing businesses that have outgrown spreadsheets, data-rich but insight-poor organisations, executive leadership needing real-time visibility, operations and finance teams needing live dashboards.
+
+**FAQ:**
+- Q: Which BI platforms do you use? A: Platform-agnostic. Power BI, Tableau, Looker, Metabase, and custom solutions based on client needs.
+- Q: Can you work with our existing data systems? A: Yes. We integrate with spreadsheets, CRMs, ERPs, databases, APIs, and cloud data warehouses.
+- Q: Our data quality is poor. Can you help? A: Yes. We frequently help organisations clean and standardise data as a precursor to building analytics.
+
+---
+
+### 6. Generative Engine Optimisation (GEO)
+
+**URL**: https://syfre.ai/services/generative-engine-optimisation
+
+We help brands get cited by ChatGPT, Gemini, Perplexity, and AI Overviews. As an AI consultancy first, we understand how large language models reason, retrieve, and cite — giving us an edge no traditional SEO agency can match.
+
+**What's included:**
+- AI Visibility Audit — testing how your brand appears across ChatGPT, Gemini, Perplexity, and Google AI Overviews with baseline reporting
+- Entity & Authority Optimisation — structuring web presence with schema markup, knowledge panels, brand mentions, and structured data
+- Content Strategy for AI Citations — content designed to be cited by AI models with definitive answers, structured data, and expert attribution
+- Technical Implementation — JSON-LD structured data, FAQ schema, HowTo markup, author attribution
+- Ongoing Monitoring & Reporting — monthly tracking of AI visibility with citation frequency, sentiment, and competitor share of voice
+- Traditional SEO Alignment — ensuring GEO strategy reinforces organic search presence
+
+**Key insight:** 73% of ChatGPT Search results overlap with Bing rankings. 61% of Google AI Overviews draw from page one organic results. GEO and SEO are complementary, not competing.
+
+**Why Syfre has an edge:** Traditional SEO agencies bolted GEO onto their services. We build AI systems daily and understand retrieval-augmented generation, embedding similarity, and citation behaviour from the inside.
+
+**Results timeline:** Most clients see changes in AI citations within 8–12 weeks of implementation.
+
+**Best for:** B2B service companies, SaaS and technology firms, local and regional businesses in Brisbane and Queensland, established brands seeing declining organic traffic from AI zero-click searches.
+
+**FAQ:**
+- Q: What is GEO? A: Optimising your brand's visibility in AI-generated answers from ChatGPT, Gemini, Perplexity, and AI Overviews.
+- Q: How is GEO different from SEO? A: SEO optimises for rankings. GEO optimises for AI citations using entities, authority signals, and structured data. 73% overlap means they reinforce each other.
+- Q: Do I still need SEO? A: Yes. Strong SEO makes GEO more effective, and vice versa.
+
+## Client Types
+
+Syfre works with:
+- Mid-market companies (50–500 employees) looking to integrate AI into operations
+- Professional services firms (legal, accounting, consulting) seeking efficiency through AI
+- Small businesses and startups building AI-powered products or automating processes
+- Technology companies embedding AI capabilities into their platforms
+- Enterprise teams running AI proof-of-concepts or scaling pilot projects
+
+## Industries Served
+
+- Professional services
+- Financial services
+- Property and real estate
+- Aviation and transport
+- Technology and SaaS
+- Healthcare
+- Education and training
+
+## Engagement Model
+
+1. **Discovery call** — free initial conversation to understand the opportunity
+2. **Scoping** — we define the engagement, deliverables, timeline, and investment
+3. **Execution** — iterative delivery with regular check-ins and stakeholder visibility
+4. **Handover** — documentation, training, and knowledge transfer
+5. **Ongoing support** — available for continued partnership after initial engagement
+
+## Technology Expertise
+
+- **Large Language Models**: OpenAI GPT-4, Anthropic Claude, Google Gemini, open-source models (Llama, Mistral)
+- **AI Frameworks**: LangChain, LlamaIndex, CrewAI, Autogen, Semantic Kernel
+- **Machine Learning**: scikit-learn, XGBoost, PyTorch, TensorFlow
+- **Data & BI**: Power BI, Tableau, Looker, Metabase, dbt, Apache Airflow
+- **Cloud**: AWS, Google Cloud, Azure
+- **Development**: Python, TypeScript, Next.js, Node.js
+- **Databases**: PostgreSQL, MongoDB, Pinecone, Weaviate, ChromaDB
+- **Automation**: n8n, Make, custom API integrations
+
+## Key Pages
+
+- Homepage: https://syfre.ai
+- AI Strategy Consulting: https://syfre.ai/services/ai-strategy-consulting
+- AI Automation: https://syfre.ai/services/ai-automation
+- Machine Learning & Predictive Modelling: https://syfre.ai/services/machine-learning-predictive-modelling
+- Agentic AI Solutions: https://syfre.ai/services/agentic-ai-solutions
+- Business Intelligence & Data Analytics: https://syfre.ai/services/business-intelligence-data-analytics
+- Generative Engine Optimisation: https://syfre.ai/services/generative-engine-optimisation
+- Insights & Articles: https://syfre.ai/insights
+- Contact: https://syfre.ai/contact
+
+## Contact
+
+- Website: https://syfre.ai
+- Email: hello@syfre.com.au
+- Book a call: https://syfre.ai/contact

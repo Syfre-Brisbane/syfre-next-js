@@ -71,7 +71,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         description: article.excerpt.length > 160
           ? article.excerpt.substring(0, 157) + '...'
           : article.excerpt,
+        image: article.featured_media || 'https://syfre.ai/og-default.png',
         datePublished: article.date,
+        dateModified: article.dateModified,
         author: {
           '@type': 'Person',
           name: 'Steve Macfarlane',
@@ -95,6 +97,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           },
         },
         mainEntityOfPage: `https://syfre.ai/insights/${resolvedParams.slug}`,
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['[data-article-content] h1', '[data-article-content] h2', '[data-article-content] p:first-of-type'],
+        },
       },
       {
         '@type': 'BreadcrumbList',
@@ -173,6 +179,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </div>
               {/* Article Content from WordPress */}
               <div
+                data-article-content
                 className="prose prose-invert prose-lg max-w-none w-full
                   prose-headings:font-source-sans-3-semibold prose-headings:text-gray-50 prose-headings:tracking-tight
                   prose-p:font-source-sans-3-light prose-p:text-zinc-100 prose-p:leading-relaxed prose-p:text-2xl

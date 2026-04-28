@@ -19,9 +19,40 @@ export const metadata: Metadata = {
   },
 };
 
+const contactJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ContactPage',
+      '@id': 'https://syfre.ai/contact/#contactpage',
+      url: 'https://syfre.ai/contact',
+      name: 'Contact Syfre AI Solutions',
+      description: 'Get in touch with Syfre AI Solutions. Book a call or send us a message to discuss your AI strategy, automation, and consulting needs in Brisbane.',
+      isPartOf: { '@id': 'https://syfre.ai/#website' },
+      mainEntity: {
+        '@type': 'ContactPoint',
+        email: 'hello@syfre.com.au',
+        contactType: 'sales',
+        url: 'https://syfre.ai/contact',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://syfre.ai' },
+        { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://syfre.ai/contact' },
+      ],
+    },
+  ],
+};
+
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+      />
       <Header />
       
         <main className="px-4 sm:px-6 py-12 sm:py-24">

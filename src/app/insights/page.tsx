@@ -80,11 +80,37 @@ async function getInsightsByCategory() {
   return categories;
 }
 
+const insightsJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Blog',
+      '@id': 'https://syfre.ai/insights/#blog',
+      url: 'https://syfre.ai/insights',
+      name: 'AI Insights & Articles',
+      description: 'Expert insights on AI strategy, machine learning, automation, and data analytics from Brisbane AI consultants.',
+      publisher: { '@id': 'https://syfre.ai/#organization' },
+      isPartOf: { '@id': 'https://syfre.ai/#website' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://syfre.ai' },
+        { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://syfre.ai/insights' },
+      ],
+    },
+  ],
+};
+
 export default async function InsightsPage() {
   const categorizedInsights = await getInsightsByCategory();
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(insightsJsonLd) }}
+      />
       <Header />
 
       {/* Main content */}

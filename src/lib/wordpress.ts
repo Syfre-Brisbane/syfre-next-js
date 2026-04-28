@@ -146,6 +146,7 @@ export async function getPostBySlug(slug: string): Promise<WordPressPost | null>
           month: 'long',
           year: 'numeric'
         }),
+        dateModified: post.modified,
         slug: post.slug,
         categories: post._embedded?.['wp:term']?.[0] || [],
         featured_media: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || null,
@@ -225,6 +226,7 @@ export interface WordPressPostResponse {
   content: WordPressContent;
   excerpt: WordPressExcerpt;
   date: string;
+  modified: string;
   slug: string;
   _embedded?: WordPressEmbedded;
 }
@@ -242,4 +244,5 @@ export interface WordPressArticle {
 
 export interface WordPressPost extends WordPressArticle {
   content: string;
+  dateModified: string;
 }
