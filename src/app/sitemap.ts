@@ -2,6 +2,9 @@ import { MetadataRoute } from 'next';
 import { getRecentArticles } from '@/lib/wordpress';
 import { servicesList } from '@/lib/services-data';
 
+// Regenerate sitemap every 5 minutes so new articles appear automatically
+export const revalidate = 300;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getRecentArticles(100);
 
