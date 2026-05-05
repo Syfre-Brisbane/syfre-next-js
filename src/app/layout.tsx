@@ -70,20 +70,37 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@graph': [
                 {
-                  '@type': 'Organization',
+                  '@type': ['LocalBusiness', 'Organization'],
                   '@id': 'https://syfre.ai/#organization',
                   name: 'Syfre AI Solutions',
                   url: 'https://syfre.ai',
+                  description: 'Brisbane-based AI consulting and automation specialists.',
+                  telephone: '+61414383094',
                   logo: {
                     '@type': 'ImageObject',
                     url: 'https://syfre.ai/logo.svg',
                   },
+                  image: 'https://syfre.ai/og-default.png',
                   contactPoint: {
                     '@type': 'ContactPoint',
+                    telephone: '+61414383094',
                     email: 'hello@syfre.com.au',
                     contactType: 'sales',
                     url: 'https://syfre.ai/contact',
                   },
+                  address: {
+                    '@type': 'PostalAddress',
+                    addressLocality: 'Brisbane',
+                    addressRegion: 'QLD',
+                    postalCode: '4006',
+                    addressCountry: 'AU',
+                  },
+                  areaServed: [
+                    { '@type': 'City', name: 'Brisbane' },
+                    { '@type': 'State', name: 'Queensland' },
+                    { '@type': 'Country', name: 'Australia' },
+                  ],
+                  priceRange: '$$',
                   sameAs: [
                     'https://www.linkedin.com/company/syfreai',
                     'https://x.com/syfre_ai',
@@ -107,25 +124,6 @@ export default function RootLayout({
                     'Workflow Automation',
                     'Intelligent Document Processing',
                   ],
-                },
-                {
-                  '@type': 'LocalBusiness',
-                  '@id': 'https://syfre.ai/#localbusiness',
-                  name: 'Syfre AI Solutions',
-                  url: 'https://syfre.ai',
-                  description: 'Brisbane-based AI consulting and automation specialists.',
-                  address: {
-                    '@type': 'PostalAddress',
-                    addressLocality: 'Brisbane',
-                    addressRegion: 'QLD',
-                    addressCountry: 'AU',
-                  },
-                  areaServed: [
-                    { '@type': 'City', name: 'Brisbane' },
-                    { '@type': 'State', name: 'Queensland' },
-                    { '@type': 'Country', name: 'Australia' },
-                  ],
-                  priceRange: '$$',
                 },
                 {
                   '@type': 'WebSite',
