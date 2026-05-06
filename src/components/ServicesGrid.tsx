@@ -8,6 +8,7 @@ const serviceLabelToSlug: Record<string, string> = {
   'AI Strategy and Advisory': '/services/ai-strategy-consulting',
   'AI Strategy & Advisory': '/services/ai-strategy-consulting',
   'AI Automation': '/services/ai-automation',
+  'AI-Powered Automation': '/services/ai-automation',
   'Agentic AI Solutions': '/services/agentic-ai-solutions',
   'Business Intelligence & Data Analytics': '/services/business-intelligence-data-analytics',
   'Machine Learning & Predictive Modelling': '/services/machine-learning-predictive-modelling',

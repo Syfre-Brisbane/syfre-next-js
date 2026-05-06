@@ -7,8 +7,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { OG_IMAGE } from '@/lib/metadata';
-import { getPostBySlug } from '@/lib/wordpress';
+import { getPostBySlug, getRecentArticles } from '@/lib/wordpress';
 import { getCategoryBadgeVariant, getBadgeBackgroundColor } from '@/lib/badge-utils';
+
+export async function generateStaticParams() {
+  const articles = await getRecentArticles(100);
+  return articles.map((article) => ({ slug: article.slug }));
+}
 
 interface ArticlePageProps {
   params: Promise<{
