@@ -1,9 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidateTag, revalidatePath } from 'next/cache';
 import { CloudFrontClient, CreateInvalidationCommand } from '@aws-sdk/client-cloudfront';
+import { AmplifyClient, StartJobCommand } from '@aws-sdk/client-amplify';
 
 const REVALIDATION_SECRET = process.env.REVALIDATION_SECRET || 'syfre-revalidate-2026';
 const CLOUDFRONT_DISTRIBUTION_ID = process.env.CLOUDFRONT_DISTRIBUTION_ID || 'EUB1KLL6L8KAI';
+const AMPLIFY_APP_ID = process.env.AMPLIFY_APP_ID || 'd1058331pi6lxg';
+const AMPLIFY_BRANCH = process.env.AMPLIFY_BRANCH || 'main';
+
+async function triggerAmplifyRebuild() {
+  const client = new AmplifyClient({ region: 'ap-southeast-2' });
+  const result = await client.send(new StartJobCommand({
+    appId: AMPLIFY_APP_ID,
+    branchName: AMPLIFY_BRANCH,
+    jobType: 'RELEASE',
+  }));
+  return result.jobSummary?.jobId;
+}
 
 async function invalidateCloudFront(paths: string[]) {
   const client = new CloudFrontClient({ region: 'ap-southeast-2' });
@@ -29,14 +42,25 @@ async function handleRevalidate(request: NextRequest) {
   revalidateTag('wordpress');
   revalidatePath('/insights', 'layout');
 
+  const results: Record<string, string> = {};
+
   try {
-    await invalidateCloudFront(['/insights/*']);
+    const jobId = await triggerAmplifyRebuild();
+    results.amplify = `rebuild started (job ${jobId})`;
   } catch (error) {
-    console.error('CloudFront invalidation failed:', error);
-    return NextResponse.json({ revalidated: true, cloudfront: 'failed', now: Date.now() });
+    console.error('Amplify rebuild failed:', error);
+    results.amplify = 'failed';
   }
 
-  return NextResponse.json({ revalidated: true, cloudfront: 'invalidated', now: Date.now() });
+  try {
+    await invalidateCloudFront(['/insights/*', '/']);
+    results.cloudfront = 'invalidated';
+  } catch (error) {
+    console.error('CloudFront invalidation failed:', error);
+    results.cloudfront = 'failed';
+  }
+
+  return NextResponse.json({ revalidated: true, ...results, now: Date.now() });
 }
 
 export async function POST(request: NextRequest) {
