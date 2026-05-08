@@ -10,6 +10,8 @@ import { OG_IMAGE } from '@/lib/metadata';
 import { getPostBySlug, getRecentArticles } from '@/lib/wordpress';
 import { getCategoryBadgeVariant, getBadgeBackgroundColor } from '@/lib/badge-utils';
 
+export const revalidate = 86400; // 24 hours, or on-demand via /api/revalidate
+
 export async function generateStaticParams() {
   const articles = await getRecentArticles(100);
   return articles.map((article) => ({ slug: article.slug }));

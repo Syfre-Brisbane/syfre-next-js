@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { revalidateTag } from 'next/cache';
+import { revalidateTag, revalidatePath } from 'next/cache';
 
 const REVALIDATION_SECRET = process.env.REVALIDATION_SECRET || 'syfre-revalidate-2026';
 
@@ -11,6 +11,7 @@ async function handleRevalidate(request: NextRequest) {
   }
 
   revalidateTag('wordpress');
+  revalidatePath('/insights', 'layout');
 
   return NextResponse.json({ revalidated: true, now: Date.now() });
 }
