@@ -39,10 +39,44 @@ async function handleRevalidate(request: NextRequest) {
     return NextResponse.json({ message: 'Invalid secret' }, { status: 401 });
   }
 
+  // Parse webhook payload if present (POST with body)
+  let postSlug: string | null = null;
+  let postStatus: string | null = null;
+
+  if (request.method === 'POST') {
+    try {
+      const body = await request.json();
+      postSlug = body?.post?.post_name || null;
+      postStatus = body?.post?.post_status || null;
+    } catch {
+      // No body or invalid JSON — proceed with general revalidation
+    }
+  }
+
   revalidateTag('wordpress');
   revalidatePath('/insights', 'layout');
+  revalidatePath('/sitemap.xml');
 
-  const results: Record<string, string> = {};
+  // Revalidate the specific article path if we have a slug
+  if (postSlug) {
+    revalidatePath(`/insights/${postSlug}`);
+  }
+
+  const isUnpublished = postStatus && postStatus !== 'publish';
+  const cloudfrontPaths = ['/insights/*', '/', '/sitemap.xml'];
+
+  // If a specific article was unpublished/deleted, also invalidate its path
+  if (postSlug && isUnpublished) {
+    cloudfrontPaths.push(`/insights/${postSlug}`);
+  }
+
+  const results: Record<string, string | null> = {};
+
+  if (postSlug) {
+    results.slug = postSlug;
+    results.status = postStatus;
+    results.action = isUnpublished ? 'unpublished' : 'published/updated';
+  }
 
   try {
     const jobId = await triggerAmplifyRebuild();
@@ -53,7 +87,7 @@ async function handleRevalidate(request: NextRequest) {
   }
 
   try {
-    await invalidateCloudFront(['/insights/*', '/']);
+    await invalidateCloudFront(cloudfrontPaths);
     results.cloudfront = 'invalidated';
   } catch (error) {
     console.error('CloudFront invalidation failed:', error);
