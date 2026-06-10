@@ -1,6 +1,153 @@
 import { ServicePageData } from '@/types/services';
 
 export const services: Record<string, ServicePageData> = {
+  'ai-roadmap-workshop': {
+    slug: 'ai-roadmap-workshop',
+    title: 'AI Roadmap Workshop Brisbane',
+    description: 'A structured AI Roadmap Workshop for Brisbane and Queensland teams. Two-day, expert-led workshop that produces a prioritised, FAIRA-aligned AI roadmap your team can execute — not a slide deck.',
+    badge: 'AI Roadmap Workshop',
+    h1: {
+      muted: 'AI Roadmap',
+      highlight: 'Workshop Brisbane',
+    },
+    valueProposition: 'The Syfre AI Roadmap Workshop is a structured, expert-led engagement that takes a leadership team from "we know AI matters" to a prioritised, costed, and governance-ready roadmap in two weeks. You leave with a documented AI strategy, a phased delivery plan, FAIRA-aligned governance scaffolding, and a clear next-step backlog — built collaboratively with your team, not handed down in a slide deck.',
+    explainer: {
+      heading: 'What is the AI Roadmap Workshop?',
+      body: 'The AI Roadmap Workshop is a fixed-scope, two-week engagement that produces a prioritised AI roadmap for a single business unit, agency, or organisation. The workshop combines short discovery interviews, two facilitated working days with cross-functional stakeholders, an opportunity-prioritisation sprint, and a roadmap synthesis phase. Every workshop delivers four standard artefacts: an AI Opportunity Register (every identified use case scored on value, feasibility, risk, and data readiness), a 12-month phased delivery roadmap with named owners and milestones, a governance scaffold mapped to the QGEA AI Governance Policy and the 8 Australian AI Ethics Principles (with FAIRA-ready scoping for high-risk use cases), and an executive-ready business case for the first three priority initiatives. The workshop is designed for organisations that want to move past AI experimentation and commit to a credible, costed plan — without the multi-month consulting engagement that usually precedes one.',
+    },
+    ctaText: 'Book an AI Roadmap Workshop',
+    ctaHref: '/contact',
+    differentiator: {
+      heading: 'Why most AI roadmaps fail before they start',
+      intro: 'The roadmap deliverable is the easy part. The reason most AI roadmaps never get executed is in how they were built.',
+      painPoints: [
+        {
+          title: 'Roadmaps built without the people who will execute them',
+          description: 'Strategy consultancies interview a few executives and produce a roadmap nobody on the delivery side believes in. Our workshop puts operations, IT, risk, and leadership in the same room — the people who own the work are the people who shape the plan.',
+        },
+        {
+          title: 'Governance treated as a separate workstream',
+          description: 'Most roadmaps bolt on governance at the end and stall at the first gate review. We embed FAIRA scoping, ethics-principle mapping, and human-oversight design into the prioritisation step, so every initiative on the roadmap is already governance-ready.',
+        },
+        {
+          title: 'Generic frameworks instead of your reality',
+          description: 'A roadmap pulled from a consulting template is a roadmap of someone else\'s priorities. Our prioritisation uses your data maturity, your team capability, your risk appetite, and your existing tech stack as inputs — not as afterthoughts.',
+        },
+      ],
+    },
+    features: {
+      heading: 'What the workshop delivers',
+      items: [
+        {
+          title: 'AI Opportunity Register',
+          description: 'A complete inventory of AI use cases across your business, each scored on commercial value, technical feasibility, data readiness, governance risk, and time-to-value. The register becomes the source-of-truth for every future AI decision — what to pursue, what to defer, and what to retire.',
+        },
+        {
+          title: '12-Month Phased Delivery Roadmap',
+          description: 'A sequenced plan covering the next 12 months: Phase 1 quick wins (0–3 months), Phase 2 foundation (3–6 months), Phase 3 strategic capability (6–12 months). Each phase includes named owners, milestones, resource estimates, and success metrics.',
+        },
+        {
+          title: 'FAIRA-Aligned Governance Scaffold',
+          description: 'A governance arrangement mapped directly to the QGEA AI Governance Policy and the 8 Australian AI Ethics Principles, with FAIRA scoping templates pre-completed for every high-risk use case on the roadmap. Public sector clients get PAF Gate 3 evidence scaffolding included.',
+        },
+        {
+          title: 'Executive Business Case Pack',
+          description: 'Ready-to-present business cases for the top three priority initiatives, including ROI projections, implementation cost ranges, risk register, and decision-ready recommendations. Designed to secure budget and board approval without rework.',
+        },
+        {
+          title: 'AI Capability & Data Readiness Assessment',
+          description: 'An honest assessment of where your team and data stand today. We score data maturity, team AI literacy, infrastructure readiness, and governance posture — and the roadmap is shaped to match what is actually achievable.',
+        },
+        {
+          title: 'Implementation Backlog & Next-Step Plan',
+          description: 'A prioritised backlog of the next 30, 60, and 90-day actions: what to start, who owns each step, and how to know it is on track. The workshop ends with an executable plan, not an aspiration.',
+        },
+      ],
+    },
+    process: {
+      heading: 'How the workshop runs',
+      steps: [
+        {
+          title: 'Week 1 — Discovery & Pre-Reads',
+          description: 'Stakeholder interviews (4–6 sessions), data and systems review, and a pre-read pack distributed to all workshop participants. We arrive on Day 1 already grounded in your business, so the workshop time is spent on decisions, not orientation.',
+        },
+        {
+          title: 'Day 1 — Opportunity Mapping Workshop',
+          description: 'A full-day facilitated session with your leadership and operational teams. We map current-state workflows, identify candidate AI use cases across every function, and capture the constraints that will shape prioritisation. Output: raw AI Opportunity Register (typically 30–60 candidate use cases).',
+        },
+        {
+          title: 'Day 2 — Prioritisation & Governance Workshop',
+          description: 'A full-day facilitated session focused on scoring, sequencing, and governance. We score the opportunity register, design the phased roadmap, and walk through FAIRA scoping for high-risk use cases. Output: prioritised roadmap and governance scaffold.',
+        },
+        {
+          title: 'Week 2 — Synthesis & Roadmap Delivery',
+          description: 'We synthesise the workshop outputs into the four standard artefacts: opportunity register, 12-month roadmap, governance scaffold, and executive business cases. Final readout session with your leadership team to walk through the roadmap and agree the first 30-day actions.',
+        },
+      ],
+    },
+    useCases: {
+      heading: 'Who the AI Roadmap Workshop is for',
+      items: [
+        {
+          title: 'Queensland Government Agencies',
+          description: 'State agencies, departments, and Queensland Health teams that need a FAIRA-aligned AI roadmap and a governance scaffold ready for PAF Gate 3 review — without commissioning a six-month strategy engagement.',
+        },
+        {
+          title: 'Queensland Local Councils',
+          description: 'Council leadership teams that want a practical, governance-ready AI roadmap scaled for council resources and aligned to community transparency obligations.',
+        },
+        {
+          title: 'CEOs, CTOs & Boards',
+          description: 'Executive teams ready to move past AI experimentation and commit to a costed, prioritised plan they can fund and execute. Best for organisations of 50–2,000 staff.',
+        },
+        {
+          title: 'Operations & Transformation Leaders',
+          description: 'Heads of operations, transformation, or digital who own the AI agenda and need a roadmap that the delivery side actually believes in.',
+        },
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is an AI Roadmap Workshop?',
+        answer: 'The Syfre AI Roadmap Workshop is a structured, two-week engagement that produces a prioritised, costed, and governance-ready AI roadmap for a single organisation or business unit. It combines stakeholder discovery, two facilitated full-day workshops, and a synthesis phase to deliver four artefacts: an AI Opportunity Register, a 12-month phased delivery roadmap, a FAIRA-aligned governance scaffold, and an executive business case pack for priority initiatives.',
+      },
+      {
+        question: 'How long does the AI Roadmap Workshop take and what does it cost?',
+        answer: 'The workshop runs over two weeks: a discovery week (interviews and pre-reads), two facilitated workshop days, and a synthesis week to produce final deliverables. Pricing is fixed-scope and depends on organisation size and number of business units in scope. We provide a fixed quote after a 30-minute scoping call. Most workshops complete within 10 business days from kickoff.',
+      },
+      {
+        question: 'What does the AI Roadmap Workshop deliver?',
+        answer: 'Every workshop delivers four standard artefacts: (1) an AI Opportunity Register with every identified use case scored on value, feasibility, risk, and data readiness; (2) a 12-month phased delivery roadmap with named owners, milestones, and success metrics; (3) a governance scaffold mapped to the QGEA AI Governance Policy and the 8 Australian AI Ethics Principles, with FAIRA scoping for high-risk use cases; and (4) executive-ready business cases for the top three priority initiatives.',
+      },
+      {
+        question: 'Is the AI Roadmap Workshop suitable for Queensland Government agencies?',
+        answer: 'Yes. The workshop is explicitly designed to produce a roadmap that satisfies Queensland Government AI governance requirements. The governance scaffold is mapped to the QGEA AI Governance Policy, ethics-principle alignment is built in for every prioritised use case, and FAIRA scoping templates are pre-completed for high-risk initiatives. Public sector clients receive PAF Gate 3 evidence scaffolding as a standard deliverable.',
+      },
+      {
+        question: 'Who needs to attend the AI Roadmap Workshop?',
+        answer: 'The two facilitated workshop days require a cross-functional group of 6–12 people, typically including executive sponsors, operations and process owners, IT or data leadership, a risk or compliance representative, and the people who will own delivery of any prioritised initiatives. Pre-workshop discovery interviews are run individually with 4–6 stakeholders.',
+      },
+      {
+        question: 'How is this different from generic AI strategy consulting?',
+        answer: 'AI strategy consulting engagements typically run 6–12 weeks and produce a strategy document. The Roadmap Workshop is a fixed-scope, two-week engagement that produces an execution-ready roadmap. The roadmap is built collaboratively with the people who will deliver it, governance is embedded from the prioritisation step (not retrofitted), and the output is a prioritised backlog with named owners — not a slide deck.',
+      },
+      {
+        question: 'Can the workshop be run remotely or on-site?',
+        answer: 'Both. The two facilitated workshop days can be run on-site in Brisbane or across Queensland, or delivered remotely via video conference with collaborative whiteboarding tools. On-site delivery is included for Brisbane metropolitan engagements; travel costs apply for regional Queensland and interstate engagements.',
+      },
+      {
+        question: 'What happens after the AI Roadmap Workshop?',
+        answer: 'The workshop ends with a 30/60/90-day implementation backlog so your team can begin executing immediately. Syfre can be engaged to deliver any of the prioritised initiatives (AI automation, agentic AI, machine learning, business intelligence, or FAIRA-mapped governance work), or the roadmap can be handed off to your internal team or another delivery partner. There is no obligation to engage Syfre for implementation.',
+      },
+    ],
+    relatedServices: ['ai-strategy-consulting', 'ai-automation', 'agentic-ai-solutions'],
+    jsonLd: {
+      serviceName: 'AI Roadmap Workshop',
+      serviceDescription: 'A structured, two-week, expert-led AI Roadmap Workshop that produces a prioritised, costed, and FAIRA-aligned AI roadmap for Brisbane and Queensland organisations.',
+      serviceType: 'AI Strategy Workshop',
+    },
+  },
+
   'generative-engine-optimisation': {
     slug: 'generative-engine-optimisation',
     title: 'Generative Engine Optimisation (GEO) Services Brisbane',
@@ -666,19 +813,19 @@ export const services: Record<string, ServicePageData> = {
 
   'ai-automation': {
     slug: 'ai-automation',
-    title: 'AI Automation Services Brisbane',
-    description: 'AI-powered business automation in Brisbane. Intelligent workflow automation that adapts and handles exceptions — beyond basic RPA.',
+    title: 'AI Automation Services Brisbane | Book an AI Automation Consultation',
+    description: 'AI-powered business automation in Brisbane. Book an AI automation consultation with a Brisbane AI consultant to scope intelligent workflow automation that adapts and handles exceptions — beyond basic RPA.',
     badge: 'AI Automation',
     h1: {
       muted: 'AI Automation',
       highlight: 'Services Brisbane',
     },
-    valueProposition: 'Traditional automation breaks when conditions change. AI automation adapts. We build intelligent systems that handle the messy, variable, judgement-heavy tasks that rule-based automation can\'t touch, freeing your team to focus on work that genuinely requires human creativity and decision-making.',
+    valueProposition: 'Traditional automation breaks when conditions change. AI automation adapts. We build intelligent systems that handle the messy, variable, judgement-heavy tasks that rule-based automation can\'t touch, freeing your team to focus on work that genuinely requires human creativity and decision-making. Book an AI automation consultation to scope your highest-ROI automation opportunities and a delivery plan.',
     explainer: {
       heading: 'What is AI automation?',
       body: 'AI automation is the use of artificial intelligence to automate business processes that are too variable, judgement-heavy, or context-dependent for traditional rule-based automation (RPA). Where conventional automation follows rigid scripts that break when inputs change, AI automation understands context, handles exceptions, and adapts to variation. Common applications include intelligent document processing (extracting data from invoices, contracts, and emails with varying formats), workflow automation that spans multiple systems, automated communication that understands tone and context, and anomaly detection in operational data. AI automation sits between simple RPA and fully autonomous AI agents: it handles complex, repetitive tasks intelligently but within defined boundaries, making it suitable for operations, finance, customer service, and administrative workflows.',
     },
-    ctaText: 'Automate Smarter',
+    ctaText: 'Book an AI automation consultation',
     ctaHref: '/contact',
     differentiator: {
       heading: 'Why traditional automation hits a ceiling',
@@ -786,8 +933,16 @@ export const services: Record<string, ServicePageData> = {
         question: 'What happens when the automation encounters something unexpected?',
         answer: 'We design every automation with exception handling built in. When something falls outside expected parameters, the system can flag it for human review, retry with different logic, or escalate according to rules you define. No automation should fail silently.',
       },
+      {
+        question: 'How do I book an AI automation consultation with Syfre?',
+        answer: 'Book an AI automation consultation directly from our contact page or via the booking link in this page. The first consultation is a 30-minute scoping call with Steve Macfarlane, our founder and lead AI consultant, run via video conference or in person in Brisbane. We use the call to understand the process you want to automate, identify whether AI automation is the right approach (versus simpler RPA), and outline a fixed-scope build plan with timeline and indicative cost. There is no charge for the initial consultation.',
+      },
+      {
+        question: 'What should I prepare before the AI automation consultation?',
+        answer: 'Come with a short description of one or two processes you want to automate, an idea of the volume (how many times per day or week the process runs), and any current pain points or exceptions that break your existing automation. If you have screenshots, sample documents, or system diagrams, bring them — but it is not required. We can scope an AI automation engagement from a single 30-minute conversation.',
+      },
     ],
-    relatedServices: ['agentic-ai-solutions', 'ai-strategy-consulting', 'business-intelligence-data-analytics'],
+    relatedServices: ['ai-roadmap-workshop', 'agentic-ai-solutions', 'ai-strategy-consulting'],
     jsonLd: {
       serviceName: 'AI Automation',
       serviceDescription: 'AI-powered business automation services including intelligent document processing, workflow automation, and process optimisation for Brisbane businesses.',
