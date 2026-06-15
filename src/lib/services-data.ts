@@ -4,16 +4,16 @@ export const services: Record<string, ServicePageData> = {
   'ai-roadmap-workshop': {
     slug: 'ai-roadmap-workshop',
     title: 'AI Roadmap Workshop Brisbane',
-    description: 'A structured AI Roadmap Workshop for Brisbane and Queensland teams. Two-day, expert-led workshop that produces a prioritised, FAIRA-aligned AI roadmap your team can execute — not a slide deck.',
+    description: 'A structured AI Roadmap Workshop for Brisbane and Queensland teams. Two-day, expert-led workshop that produces a prioritised, governance-ready AI roadmap your team can execute — not a slide deck.',
     badge: 'AI Roadmap Workshop',
     h1: {
       muted: 'AI Roadmap',
       highlight: 'Workshop Brisbane',
     },
-    valueProposition: 'The Syfre AI Roadmap Workshop is a structured, expert-led engagement that takes a leadership team from "we know AI matters" to a prioritised, costed, and governance-ready roadmap in two weeks. You leave with a documented AI strategy, a phased delivery plan, FAIRA-aligned governance scaffolding, and a clear next-step backlog — built collaboratively with your team, not handed down in a slide deck.',
+    valueProposition: 'The Syfre AI Roadmap Workshop is a structured, expert-led engagement that takes a leadership team from "we know AI matters" to a prioritised, costed, and governance-ready roadmap in two weeks. You leave with a documented AI strategy, a phased delivery plan, governance scaffolding, and a clear next-step backlog — built collaboratively with your team, not handed down in a slide deck.',
     explainer: {
       heading: 'What is the AI Roadmap Workshop?',
-      body: 'The AI Roadmap Workshop is a fixed-scope, two-week engagement that produces a prioritised AI roadmap for a single business unit, agency, or organisation. The workshop combines short discovery interviews, two facilitated working days with cross-functional stakeholders, an opportunity-prioritisation sprint, and a roadmap synthesis phase. Every workshop delivers four standard artefacts: an AI Opportunity Register (every identified use case scored on value, feasibility, risk, and data readiness), a 12-month phased delivery roadmap with named owners and milestones, a governance scaffold mapped to the QGEA AI Governance Policy and the 8 Australian AI Ethics Principles (with FAIRA-ready scoping for high-risk use cases), and an executive-ready business case for the first three priority initiatives. The workshop is designed for organisations that want to move past AI experimentation and commit to a credible, costed plan — without the multi-month consulting engagement that usually precedes one.',
+      body: 'The AI Roadmap Workshop is a fixed-scope, two-week engagement that produces a prioritised AI roadmap for a single business unit or organisation. The workshop combines short discovery interviews, two facilitated working days with cross-functional stakeholders, an opportunity-prioritisation sprint, and a roadmap synthesis phase. Every workshop delivers four standard artefacts: an AI Opportunity Register (every identified use case scored on value, feasibility, risk, and data readiness), a 12-month phased delivery roadmap with named owners and milestones, a governance scaffold mapped to the 8 Australian AI Ethics Principles (with risk-assessment scoping for high-risk use cases), and an executive-ready business case for the first three priority initiatives. The workshop is designed for organisations that want to move past AI experimentation and commit to a credible, costed plan — without the multi-month consulting engagement that usually precedes one.',
     },
     ctaText: 'Book an AI Roadmap Workshop',
     ctaHref: '/contact',
@@ -27,7 +27,7 @@ export const services: Record<string, ServicePageData> = {
         },
         {
           title: 'Governance treated as a separate workstream',
-          description: 'Most roadmaps bolt on governance at the end and stall at the first gate review. We embed FAIRA scoping, ethics-principle mapping, and human-oversight design into the prioritisation step, so every initiative on the roadmap is already governance-ready.',
+          description: 'Most roadmaps bolt on governance at the end and stall at the first gate review. We embed risk assessment, ethics-principle mapping, and human-oversight design into the prioritisation step, so every initiative on the roadmap is already governance-ready.',
         },
         {
           title: 'Generic frameworks instead of your reality',
@@ -47,8 +47,8 @@ export const services: Record<string, ServicePageData> = {
           description: 'A sequenced plan covering the next 12 months: Phase 1 quick wins (0–3 months), Phase 2 foundation (3–6 months), Phase 3 strategic capability (6–12 months). Each phase includes named owners, milestones, resource estimates, and success metrics.',
         },
         {
-          title: 'FAIRA-Aligned Governance Scaffold',
-          description: 'A governance arrangement mapped directly to the QGEA AI Governance Policy and the 8 Australian AI Ethics Principles, with FAIRA scoping templates pre-completed for every high-risk use case on the roadmap. Public sector clients get PAF Gate 3 evidence scaffolding included.',
+          title: 'Governance Scaffold',
+          description: 'A governance arrangement mapped directly to the 8 Australian AI Ethics Principles, with risk-assessment templates pre-completed for every high-risk use case on the roadmap. Every initiative ships with the evidence scaffolding leadership needs to approve it.',
         },
         {
           title: 'Executive Business Case Pack',
@@ -77,7 +77,7 @@ export const services: Record<string, ServicePageData> = {
         },
         {
           title: 'Day 2 — Prioritisation & Governance Workshop',
-          description: 'A full-day facilitated session focused on scoring, sequencing, and governance. We score the opportunity register, design the phased roadmap, and walk through FAIRA scoping for high-risk use cases. Output: prioritised roadmap and governance scaffold.',
+          description: 'A full-day facilitated session focused on scoring, sequencing, and governance. We score the opportunity register, design the phased roadmap, and walk through risk-assessment scoping for high-risk use cases. Output: prioritised roadmap and governance scaffold.',
         },
         {
           title: 'Week 2 — Synthesis & Roadmap Delivery',
@@ -88,14 +88,6 @@ export const services: Record<string, ServicePageData> = {
     useCases: {
       heading: 'Who the AI Roadmap Workshop is for',
       items: [
-        {
-          title: 'Queensland Government Agencies',
-          description: 'State agencies, departments, and Queensland Health teams that need a FAIRA-aligned AI roadmap and a governance scaffold ready for PAF Gate 3 review — without commissioning a six-month strategy engagement.',
-        },
-        {
-          title: 'Queensland Local Councils',
-          description: 'Council leadership teams that want a practical, governance-ready AI roadmap scaled for council resources and aligned to community transparency obligations.',
-        },
         {
           title: 'CEOs, CTOs & Boards',
           description: 'Executive teams ready to move past AI experimentation and commit to a costed, prioritised plan they can fund and execute. Best for organisations of 50–2,000 staff.',
@@ -109,7 +101,7 @@ export const services: Record<string, ServicePageData> = {
     faqs: [
       {
         question: 'What is an AI Roadmap Workshop?',
-        answer: 'The Syfre AI Roadmap Workshop is a structured, two-week engagement that produces a prioritised, costed, and governance-ready AI roadmap for a single organisation or business unit. It combines stakeholder discovery, two facilitated full-day workshops, and a synthesis phase to deliver four artefacts: an AI Opportunity Register, a 12-month phased delivery roadmap, a FAIRA-aligned governance scaffold, and an executive business case pack for priority initiatives.',
+        answer: 'The Syfre AI Roadmap Workshop is a structured, two-week engagement that produces a prioritised, costed, and governance-ready AI roadmap for a single organisation or business unit. It combines stakeholder discovery, two facilitated full-day workshops, and a synthesis phase to deliver four artefacts: an AI Opportunity Register, a 12-month phased delivery roadmap, a governance scaffold, and an executive business case pack for priority initiatives.',
       },
       {
         question: 'How long does the AI Roadmap Workshop take and what does it cost?',
@@ -117,11 +109,7 @@ export const services: Record<string, ServicePageData> = {
       },
       {
         question: 'What does the AI Roadmap Workshop deliver?',
-        answer: 'Every workshop delivers four standard artefacts: (1) an AI Opportunity Register with every identified use case scored on value, feasibility, risk, and data readiness; (2) a 12-month phased delivery roadmap with named owners, milestones, and success metrics; (3) a governance scaffold mapped to the QGEA AI Governance Policy and the 8 Australian AI Ethics Principles, with FAIRA scoping for high-risk use cases; and (4) executive-ready business cases for the top three priority initiatives.',
-      },
-      {
-        question: 'Is the AI Roadmap Workshop suitable for Queensland Government agencies?',
-        answer: 'Yes. The workshop is explicitly designed to produce a roadmap that satisfies Queensland Government AI governance requirements. The governance scaffold is mapped to the QGEA AI Governance Policy, ethics-principle alignment is built in for every prioritised use case, and FAIRA scoping templates are pre-completed for high-risk initiatives. Public sector clients receive PAF Gate 3 evidence scaffolding as a standard deliverable.',
+        answer: 'Every workshop delivers four standard artefacts: (1) an AI Opportunity Register with every identified use case scored on value, feasibility, risk, and data readiness; (2) a 12-month phased delivery roadmap with named owners, milestones, and success metrics; (3) a governance scaffold mapped to the 8 Australian AI Ethics Principles, with risk-assessment scoping for high-risk use cases; and (4) executive-ready business cases for the top three priority initiatives.',
       },
       {
         question: 'Who needs to attend the AI Roadmap Workshop?',
@@ -137,13 +125,13 @@ export const services: Record<string, ServicePageData> = {
       },
       {
         question: 'What happens after the AI Roadmap Workshop?',
-        answer: 'The workshop ends with a 30/60/90-day implementation backlog so your team can begin executing immediately. Syfre can be engaged to deliver any of the prioritised initiatives (AI automation, agentic AI, machine learning, business intelligence, or FAIRA-mapped governance work), or the roadmap can be handed off to your internal team or another delivery partner. There is no obligation to engage Syfre for implementation.',
+        answer: 'The workshop ends with a 30/60/90-day implementation backlog so your team can begin executing immediately. Syfre can be engaged to deliver any of the prioritised initiatives (AI automation, agentic AI, machine learning, business intelligence, or governance work), or the roadmap can be handed off to your internal team or another delivery partner. There is no obligation to engage Syfre for implementation.',
       },
     ],
     relatedServices: ['ai-strategy-consulting', 'ai-automation', 'agentic-ai-solutions'],
     jsonLd: {
       serviceName: 'AI Roadmap Workshop',
-      serviceDescription: 'A structured, two-week, expert-led AI Roadmap Workshop that produces a prioritised, costed, and FAIRA-aligned AI roadmap for Brisbane and Queensland organisations.',
+      serviceDescription: 'A structured, two-week, expert-led AI Roadmap Workshop that produces a prioritised, costed, and governance-ready AI roadmap for Brisbane and Queensland organisations.',
       serviceType: 'AI Strategy Workshop',
     },
   },

@@ -48,24 +48,13 @@ const consultationTypes = [
   {
     name: 'AI Roadmap Workshop Scoping Call',
     href: '/services/ai-roadmap-workshop',
-    audience: 'CEOs, CTOs, boards, government agency leadership',
+    audience: 'CEOs, CTOs, and boards',
     duration: '30 minutes',
     price: 'No charge',
     description:
-      'Scope a two-week AI Roadmap Workshop that delivers a prioritised AI Opportunity Register, a 12-month delivery roadmap, and a FAIRA-aligned governance scaffold. Suitable for organisations of 50–2,000 staff.',
+      'Scope a two-week AI Roadmap Workshop that delivers a prioritised AI Opportunity Register, a 12-month delivery roadmap, and a governance scaffold. Suitable for organisations of 50–2,000 staff.',
     cta: 'Book a workshop scoping call',
     keywords: 'book AI roadmap workshop Brisbane',
-  },
-  {
-    name: 'FAIRA-Mapped Governance Briefing',
-    href: '/governance',
-    audience: 'Queensland Government agencies and councils',
-    duration: '45 minutes',
-    price: 'No charge',
-    description:
-      'A briefing on how Syfre aligns to the QGEA AI Governance Policy, FAIRA, and the 8 Australian AI Ethics Principles — with a walkthrough of the artefacts we produce for PAF Gate 3 evidence.',
-    cta: 'Book a FAIRA briefing',
-    keywords: 'book FAIRA AI governance briefing Queensland',
   },
 ];
 

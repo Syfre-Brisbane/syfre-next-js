@@ -14,9 +14,7 @@ export const metadata: Metadata = {
     'AI roadmap workshop',
     'AI roadmap workshop Brisbane',
     'AI strategy workshop',
-    'AI roadmap Queensland Government',
-    'FAIRA-aligned AI roadmap',
-    'QGEA AI roadmap',
+    'governance-ready AI roadmap',
     'book an AI roadmap workshop',
     'AI opportunity assessment workshop',
   ],
@@ -40,7 +38,7 @@ const workshopEntitySchema = {
       '@id': `${PAGE_URL}#course`,
       name: 'AI Roadmap Workshop',
       description:
-        'A structured, two-week, expert-led workshop that produces a prioritised, costed, and FAIRA-aligned AI roadmap for a single organisation or business unit. Delivers an AI Opportunity Register, a 12-month phased delivery roadmap, a QGEA-aligned governance scaffold, and executive business cases for priority initiatives.',
+        'A structured, two-week, expert-led workshop that produces a prioritised, costed, and governance-ready AI roadmap for a single organisation or business unit. Delivers an AI Opportunity Register, a 12-month phased delivery roadmap, a governance scaffold, and executive business cases for priority initiatives.',
       url: PAGE_URL,
       provider: {
         '@type': 'Organization',
@@ -54,15 +52,14 @@ const workshopEntitySchema = {
         'AI opportunity identification',
         'AI use case prioritisation',
         'AI governance scaffolding',
-        'FAIRA risk assessment scoping',
-        'QGEA AI Governance Policy alignment',
+        'AI risk assessment scoping',
         '8 Australian AI Ethics Principles mapping',
         'AI business case development',
       ],
       audience: {
         '@type': 'Audience',
         audienceType:
-          'Executive leadership, transformation leads, government agencies, councils, CTOs',
+          'Executive leadership, transformation leads, CTOs, boards',
       },
       hasCourseInstance: {
         '@type': 'CourseInstance',
@@ -99,8 +96,7 @@ const workshopEntitySchema = {
       about: [
         { '@type': 'Thing', name: 'AI Strategy' },
         { '@type': 'Thing', name: 'AI Roadmap' },
-        { '@type': 'Thing', name: 'QGEA AI Governance Policy' },
-        { '@type': 'Thing', name: 'Foundational AI Risk Assessment (FAIRA)' },
+        { '@type': 'Thing', name: 'AI Governance' },
         { '@type': 'Thing', name: 'Australian AI Ethics Principles' },
       ],
     },
@@ -109,7 +105,7 @@ const workshopEntitySchema = {
       '@id': `${PAGE_URL}#event`,
       name: 'Syfre AI Roadmap Workshop',
       description:
-        'A two-week, expert-led AI Roadmap Workshop for Brisbane and Queensland organisations. Produces a prioritised, FAIRA-aligned roadmap, governance scaffold, and executive business cases.',
+        'A two-week, expert-led AI Roadmap Workshop for Brisbane and Queensland organisations. Produces a prioritised AI roadmap, governance scaffold, and executive business cases.',
       eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
       eventStatus: 'https://schema.org/EventScheduled',
       location: [
