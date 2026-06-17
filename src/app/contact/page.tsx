@@ -52,7 +52,7 @@ const consultationTypes = [
     duration: '30 minutes',
     price: 'No charge',
     description:
-      'Scope a two-week AI Roadmap Workshop that delivers a prioritised AI Opportunity Register, a 12-month delivery roadmap, and a governance scaffold. Suitable for organisations of 50–2,000 staff.',
+      'Scope a half-day AI Roadmap Workshop that brings a cross-section of your staff together and delivers a prioritised AI Opportunity Register, a 12-month delivery roadmap, and a governance scaffold. Suitable for organisations of 50–2,000 staff.',
     cta: 'Book a workshop scoping call',
     keywords: 'book AI roadmap workshop Brisbane',
   },
@@ -165,7 +165,7 @@ const contactJsonLd = {
       name: 'AI Roadmap Workshop Scoping Call',
       alternateName: ['Book an AI Roadmap Workshop', 'AI Roadmap Workshop Booking'],
       description:
-        'Book a 30-minute scoping call for the Syfre AI Roadmap Workshop — a two-week, expert-led engagement that produces a prioritised AI roadmap, governance scaffold, and executive business cases.',
+        'Book a 30-minute scoping call for the Syfre AI Roadmap Workshop — a half-day, expert-led session that brings a cross-section of your staff together to produce a prioritised AI roadmap, governance scaffold, and executive business cases.',
       serviceType: 'AI Strategy Workshop Booking',
       provider: { '@id': 'https://syfre.ai/#organization' },
       areaServed: [

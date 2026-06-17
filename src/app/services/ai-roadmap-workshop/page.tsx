@@ -38,7 +38,7 @@ const workshopEntitySchema = {
       '@id': `${PAGE_URL}#course`,
       name: 'AI Roadmap Workshop',
       description:
-        'A structured, two-week, expert-led workshop that produces a prioritised, costed, and governance-ready AI roadmap for a single organisation or business unit. Delivers an AI Opportunity Register, a 12-month phased delivery roadmap, a governance scaffold, and executive business cases for priority initiatives.',
+        'A focused, expert-led half-day workshop, followed by a delivered roadmap, that brings a cross-section of an organisation\'s people together to produce a prioritised, costed, governance-ready AI roadmap with genuine cultural buy-in. Delivers an AI Opportunity Register, a 12-month phased delivery roadmap, a governance scaffold, and executive business cases for priority initiatives.',
       url: PAGE_URL,
       provider: {
         '@type': 'Organization',
@@ -54,6 +54,7 @@ const workshopEntitySchema = {
         'AI governance scaffolding',
         'AI risk assessment scoping',
         '8 Australian AI Ethics Principles mapping',
+        'Cross-functional AI adoption and cultural buy-in',
         'AI business case development',
       ],
       audience: {
@@ -66,7 +67,7 @@ const workshopEntitySchema = {
         '@id': `${PAGE_URL}#course-instance`,
         name: 'Syfre AI Roadmap Workshop',
         courseMode: ['Onsite', 'Online'],
-        courseWorkload: 'P2W',
+        courseWorkload: 'PT4H',
         location: [
           { '@type': 'City', name: 'Brisbane' },
           { '@type': 'State', name: 'Queensland' },
@@ -105,7 +106,7 @@ const workshopEntitySchema = {
       '@id': `${PAGE_URL}#event`,
       name: 'Syfre AI Roadmap Workshop',
       description:
-        'A two-week, expert-led AI Roadmap Workshop for Brisbane and Queensland organisations. Produces a prioritised AI roadmap, governance scaffold, and executive business cases.',
+        'A half-day, expert-led AI Roadmap Workshop for Brisbane and Queensland organisations that brings a cross-section of staff together to produce a prioritised AI roadmap, governance scaffold, and executive business cases.',
       eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
       eventStatus: 'https://schema.org/EventScheduled',
       location: [

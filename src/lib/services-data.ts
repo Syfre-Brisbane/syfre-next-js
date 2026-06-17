@@ -4,16 +4,16 @@ export const services: Record<string, ServicePageData> = {
   'ai-roadmap-workshop': {
     slug: 'ai-roadmap-workshop',
     title: 'AI Roadmap Workshop Brisbane',
-    description: 'A structured AI Roadmap Workshop for Brisbane and Queensland teams. Two-day, expert-led workshop that produces a prioritised, governance-ready AI roadmap your team can execute — not a slide deck.',
+    description: 'A half-day AI Roadmap Workshop for Brisbane and Queensland teams. An expert-led session that brings a cross-section of your staff together to build a prioritised, governance-ready AI roadmap — delivered shortly after, ready to execute.',
     badge: 'AI Roadmap Workshop',
     h1: {
       muted: 'AI Roadmap',
       highlight: 'Workshop Brisbane',
     },
-    valueProposition: 'The Syfre AI Roadmap Workshop is a structured, expert-led engagement that takes a leadership team from "we know AI matters" to a prioritised, costed, and governance-ready roadmap in two weeks. You leave with a documented AI strategy, a phased delivery plan, governance scaffolding, and a clear next-step backlog — built collaboratively with your team, not handed down in a slide deck.',
+    valueProposition: 'The Syfre AI Roadmap Workshop is a focused, expert-led half-day session that takes your organisation from "we know AI matters" to a prioritised, costed, and governance-ready roadmap. We deliberately bring a cross-section of your people into the room — leadership, operations, IT, and the frontline staff who will actually use the solutions — so the plan has genuine cultural buy-in from the start, not resistance later. Shortly after the session you receive a documented AI roadmap, a phased delivery plan, governance scaffolding, and a clear next-step backlog — built with your team, not handed down in a slide deck.',
     explainer: {
       heading: 'What is the AI Roadmap Workshop?',
-      body: 'The AI Roadmap Workshop is a fixed-scope, two-week engagement that produces a prioritised AI roadmap for a single business unit or organisation. The workshop combines short discovery interviews, two facilitated working days with cross-functional stakeholders, an opportunity-prioritisation sprint, and a roadmap synthesis phase. Every workshop delivers four standard artefacts: an AI Opportunity Register (every identified use case scored on value, feasibility, risk, and data readiness), a 12-month phased delivery roadmap with named owners and milestones, a governance scaffold mapped to the 8 Australian AI Ethics Principles (with risk-assessment scoping for high-risk use cases), and an executive-ready business case for the first three priority initiatives. The workshop is designed for organisations that want to move past AI experimentation and commit to a credible, costed plan — without the multi-month consulting engagement that usually precedes one.',
+      body: 'The AI Roadmap Workshop is a fixed-scope engagement built around a single half-day, facilitated session. Ahead of it we send a short intake questionnaire to understand your business, systems, and goals — no drawn-out discovery phase and no string of stakeholder interviews. The session itself brings a cross-section of your organisation into one room: leadership, operations, IT, and the frontline people who will live with the changes. Working together, we map current-state workflows, identify and prioritise AI opportunities, and pressure-test them against your data maturity, risk appetite, and governance obligations. Shortly after, you receive a delivered AI roadmap and supporting artefacts: an AI Opportunity Register (every use case scored on value, feasibility, risk, and data readiness), a 12-month phased delivery roadmap, a governance scaffold mapped to the 8 Australian AI Ethics Principles, and an executive-ready business case for priority initiatives. Because the people who own the work helped shape the plan, you get something rarer than a strategy document — genuine buy-in to actually execute it.',
     },
     ctaText: 'Book an AI Roadmap Workshop',
     ctaHref: '/contact',
@@ -23,7 +23,7 @@ export const services: Record<string, ServicePageData> = {
       painPoints: [
         {
           title: 'Roadmaps built without the people who will execute them',
-          description: 'Strategy consultancies interview a few executives and produce a roadmap nobody on the delivery side believes in. Our workshop puts operations, IT, risk, and leadership in the same room — the people who own the work are the people who shape the plan.',
+          description: 'Strategy consultancies interview a handful of executives and hand down a roadmap nobody on the delivery side believes in. We deliberately bring a cross-section of your organisation into the session — leadership, operations, IT, and the frontline staff who will actually use the tools — so the plan earns real cultural buy-in. When the people who own the work help shape it, adoption stops being a fight.',
         },
         {
           title: 'Governance treated as a separate workstream',
@@ -68,20 +68,16 @@ export const services: Record<string, ServicePageData> = {
       heading: 'How the workshop runs',
       steps: [
         {
-          title: 'Week 1 — Discovery & Pre-Reads',
-          description: 'Stakeholder interviews (4–6 sessions), data and systems review, and a pre-read pack distributed to all workshop participants. We arrive on Day 1 already grounded in your business, so the workshop time is spent on decisions, not orientation.',
+          title: 'Before — Short Intake Questionnaire',
+          description: 'Ahead of the session we send a brief intake questionnaire to understand your business, systems, data, and goals. It takes minutes to complete and means we arrive ready to work — no multi-week discovery phase and no string of stakeholder interviews.',
         },
         {
-          title: 'Day 1 — Opportunity Mapping Workshop',
-          description: 'A full-day facilitated session with your leadership and operational teams. We map current-state workflows, identify candidate AI use cases across every function, and capture the constraints that will shape prioritisation. Output: raw AI Opportunity Register (typically 30–60 candidate use cases).',
+          title: 'The Half-Day Workshop',
+          description: 'A single, facilitated half-day session with a cross-section of your people — leadership, operations, IT, and the frontline staff who will actually use the solutions. Together we map current-state workflows, surface AI opportunities across every function, and prioritise them against value, feasibility, risk, and data readiness. Everyone who has to live with the changes helps shape the plan, which is how you get genuine cultural buy-in rather than top-down resistance.',
         },
         {
-          title: 'Day 2 — Prioritisation & Governance Workshop',
-          description: 'A full-day facilitated session focused on scoring, sequencing, and governance. We score the opportunity register, design the phased roadmap, and walk through risk-assessment scoping for high-risk use cases. Output: prioritised roadmap and governance scaffold.',
-        },
-        {
-          title: 'Week 2 — Synthesis & Roadmap Delivery',
-          description: 'We synthesise the workshop outputs into the four standard artefacts: opportunity register, 12-month roadmap, governance scaffold, and executive business cases. Final readout session with your leadership team to walk through the roadmap and agree the first 30-day actions.',
+          title: 'After — Roadmap Delivery',
+          description: 'Shortly after the session we synthesise the outputs into your delivered AI roadmap: a prioritised opportunity register, a 12-month phased delivery plan, a governance scaffold, and business cases for priority initiatives. We walk your team through it and agree the first next steps.',
         },
       ],
     },
@@ -101,11 +97,11 @@ export const services: Record<string, ServicePageData> = {
     faqs: [
       {
         question: 'What is an AI Roadmap Workshop?',
-        answer: 'The Syfre AI Roadmap Workshop is a structured, two-week engagement that produces a prioritised, costed, and governance-ready AI roadmap for a single organisation or business unit. It combines stakeholder discovery, two facilitated full-day workshops, and a synthesis phase to deliver four artefacts: an AI Opportunity Register, a 12-month phased delivery roadmap, a governance scaffold, and an executive business case pack for priority initiatives.',
+        answer: 'The Syfre AI Roadmap Workshop is a fixed-scope engagement built around a single half-day facilitated session. After a short intake questionnaire, we bring a cross-section of your people — leadership, operations, IT, and frontline staff — into one room to map and prioritise AI opportunities. Shortly after, you receive a delivered AI roadmap with four artefacts: an AI Opportunity Register, a 12-month phased delivery roadmap, a governance scaffold, and an executive business case pack for priority initiatives.',
       },
       {
         question: 'How long does the AI Roadmap Workshop take and what does it cost?',
-        answer: 'The workshop runs over two weeks: a discovery week (interviews and pre-reads), two facilitated workshop days, and a synthesis week to produce final deliverables. Pricing is fixed-scope and depends on organisation size and number of business units in scope. We provide a fixed quote after a 30-minute scoping call. Most workshops complete within 10 business days from kickoff.',
+        answer: 'The workshop is a single half-day session, preceded by a short intake questionnaire and followed by delivery of your roadmap shortly after. Pricing is fixed-scope and depends on organisation size and scope. We provide a fixed quote after a 30-minute scoping call.',
       },
       {
         question: 'What does the AI Roadmap Workshop deliver?',
@@ -113,15 +109,15 @@ export const services: Record<string, ServicePageData> = {
       },
       {
         question: 'Who needs to attend the AI Roadmap Workshop?',
-        answer: 'The two facilitated workshop days require a cross-functional group of 6–12 people, typically including executive sponsors, operations and process owners, IT or data leadership, a risk or compliance representative, and the people who will own delivery of any prioritised initiatives. Pre-workshop discovery interviews are run individually with 4–6 stakeholders.',
+        answer: 'This is where the workshop earns its value: we strongly recommend a cross-section of your organisation in the room, not just executives. A typical group is 6–12 people spanning leadership, operations and process owners, IT or data, a risk or compliance voice, and — critically — the frontline staff who will actually use the solutions. Involving the people affected by the changes is how you get genuine cultural buy-in instead of top-down resistance, so the roadmap is one the whole organisation is willing to execute.',
       },
       {
         question: 'How is this different from generic AI strategy consulting?',
-        answer: 'AI strategy consulting engagements typically run 6–12 weeks and produce a strategy document. The Roadmap Workshop is a fixed-scope, two-week engagement that produces an execution-ready roadmap. The roadmap is built collaboratively with the people who will deliver it, governance is embedded from the prioritisation step (not retrofitted), and the output is a prioritised backlog with named owners — not a slide deck.',
+        answer: 'AI strategy consulting engagements typically run 6–12 weeks and produce a strategy document. The Roadmap Workshop is a fixed-scope, half-day session that produces an execution-ready roadmap. The roadmap is built collaboratively with a cross-section of the people who will deliver and live with it, governance is embedded from the start (not retrofitted), and the output is a prioritised backlog with named owners — not a slide deck nobody adopts.',
       },
       {
         question: 'Can the workshop be run remotely or on-site?',
-        answer: 'Both. The two facilitated workshop days can be run on-site in Brisbane or across Queensland, or delivered remotely via video conference with collaborative whiteboarding tools. On-site delivery is included for Brisbane metropolitan engagements; travel costs apply for regional Queensland and interstate engagements.',
+        answer: 'Both. The half-day session can be run on-site in Brisbane or across Queensland, or delivered remotely via video conference with collaborative whiteboarding tools. On-site delivery is included for Brisbane metropolitan engagements; travel costs apply for regional Queensland and interstate engagements.',
       },
       {
         question: 'What happens after the AI Roadmap Workshop?',
@@ -131,7 +127,7 @@ export const services: Record<string, ServicePageData> = {
     relatedServices: ['ai-strategy-consulting', 'ai-automation', 'agentic-ai-solutions'],
     jsonLd: {
       serviceName: 'AI Roadmap Workshop',
-      serviceDescription: 'A structured, two-week, expert-led AI Roadmap Workshop that produces a prioritised, costed, and governance-ready AI roadmap for Brisbane and Queensland organisations.',
+      serviceDescription: 'A focused, expert-led half-day AI Roadmap Workshop that brings a cross-section of your people together to produce a prioritised, costed, governance-ready AI roadmap for Brisbane and Queensland organisations.',
       serviceType: 'AI Strategy Workshop',
     },
   },
