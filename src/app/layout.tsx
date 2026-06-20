@@ -123,6 +123,13 @@ export default function RootLayout({
                     'Structured Data',
                     'Workflow Automation',
                     'Intelligent Document Processing',
+                    'AI Governance',
+                    'QGEA AI Governance Policy',
+                    'Foundational AI Risk Assessment (FAIRA)',
+                    'Australian AI Ethics Principles',
+                    'Queensland Government AI',
+                    'Responsible AI',
+                    'AI Compliance',
                   ],
                 },
                 {

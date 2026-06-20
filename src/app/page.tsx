@@ -11,6 +11,7 @@ import Insights from '@/components/Insights';
 import Humans from '@/components/Humans';
 import SecondCTA from '@/components/SecondCTA';
 import Footer from '@/components/Footer';
+import GovernanceCredentials from '@/components/shared/GovernanceCredentials';
 import { getHomepageData } from '@/lib/wordpress';
 import { HomepageData } from '@/types/wordpress';
 
@@ -76,6 +77,7 @@ export default async function Home() {
         <LogoGrid homepage={homepage} />
         <WhatWeDo homepage={homepage} />
         <CTA />
+        <GovernanceCredentials />
         <Insights />
         <Humans homepage={homepage} />
         <SecondCTA />

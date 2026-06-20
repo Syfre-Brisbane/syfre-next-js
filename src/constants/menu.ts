@@ -1,23 +1,28 @@
 export interface MenuItem {
   label: string;
   href: string;
+  children?: MenuItem[];
 }
 
 export const HEADER_MENU: MenuItem[] = [
   {
     label: 'Home',
-    href: '/'
+    href: '/',
   },
   {
     label: 'Services',
-    href: '/services'
+    href: '/services',
+  },
+  {
+    label: 'Governance',
+    href: '/governance',
   },
   {
     label: 'Insights',
-    href: '/insights'
+    href: '/insights',
   },
   {
     label: 'Contact',
-    href: '/contact'
-  }
+    href: '/contact',
+  },
 ];

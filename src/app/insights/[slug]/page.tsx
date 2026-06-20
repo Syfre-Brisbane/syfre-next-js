@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CTA from '@/components/CTA';
+import ServiceLinks from '@/components/shared/ServiceLinks';
 import ShareButtons from '@/components/ShareButtons';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -199,6 +200,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               />
             </div>
             
+            {/* Links to all service pages for internal linking / crawl priority */}
+            <ServiceLinks />
+
             {/* CTA Section */}
             <CTA />
           </div>

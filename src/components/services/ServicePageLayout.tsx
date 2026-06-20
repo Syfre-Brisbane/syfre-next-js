@@ -11,13 +11,17 @@ import ServiceUseCases from './ServiceUseCases';
 import ServiceRelatedLinks from './ServiceRelatedLinks';
 import ServiceFAQ from './ServiceFAQ';
 import ServiceJsonLd from './ServiceJsonLd';
+import InsightLinks from '@/components/shared/InsightLinks';
+import { getRecentArticles } from '@/lib/wordpress';
 import { ServicePageData } from '@/types/services';
 
 interface ServicePageLayoutProps {
   service: ServicePageData;
 }
 
-export default function ServicePageLayout({ service }: ServicePageLayoutProps) {
+export default async function ServicePageLayout({ service }: ServicePageLayoutProps) {
+  const articles = await getRecentArticles(100);
+
   return (
     <div className="min-h-screen bg-black text-white">
       <ServiceJsonLd
@@ -63,6 +67,7 @@ export default function ServicePageLayout({ service }: ServicePageLayoutProps) {
           currentSlug={service.slug}
           relatedSlugs={service.relatedServices}
         />
+        <InsightLinks articles={articles} />
       </main>
       <SecondCTA />
       <Footer />

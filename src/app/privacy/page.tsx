@@ -4,14 +4,14 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
-  description: 'Read how Syfre AI Solutions collects, uses, and protects your personal information. Brisbane-based AI consulting privacy practices.',
+  title: 'Privacy Policy | Australian Privacy Principles',
+  description: 'Syfre AI Solutions privacy policy aligned to the Australian Privacy Principles (APPs) and Queensland Information Privacy Act 2009. How we collect, use, and protect your personal information.',
   alternates: {
     canonical: '/privacy',
   },
   openGraph: {
     title: 'Privacy Policy | Syfre',
-    description: 'Read how Syfre AI Solutions collects, uses, and protects your personal information. Brisbane-based AI consulting privacy practices.',
+    description: 'Syfre AI Solutions privacy policy aligned to the Australian Privacy Principles (APPs) and Queensland Information Privacy Act 2009.',
     url: 'https://syfre.ai/privacy',
     type: 'website',
     images: [OG_IMAGE],
@@ -36,6 +36,16 @@ export default function PrivacyPolicy() {
             </p>
 
             <div className="space-y-12">
+              <section>
+                <h2 className="text-3xl font-light text-white mb-6">Regulatory Framework</h2>
+                <p className="text-zinc-300 mb-4 leading-relaxed">
+                  This privacy policy is aligned to the Australian Privacy Principles (APPs) under the Privacy Act 1988 (Cth) and the Queensland Information Privacy Act 2009 (Qld). Where Syfre handles personal information on behalf of Queensland Government agencies, we comply with the Information Privacy Principles (IPPs) under Queensland legislation.
+                </p>
+                <p className="text-zinc-300 leading-relaxed">
+                  Syfre AI Solutions Pty Ltd (ABN to be confirmed) is the entity responsible for the personal information described in this policy. Our registered address is Brisbane, Queensland, Australia.
+                </p>
+              </section>
+
               <section>
                 <h2 className="text-3xl font-light text-white mb-6">Information We Collect</h2>
                 <p className="text-zinc-300 mb-4 leading-relaxed">
@@ -97,17 +107,34 @@ export default function PrivacyPolicy() {
               </section>
 
               <section>
-                <h2 className="text-3xl font-light text-white mb-6">Your Rights</h2>
+                <h2 className="text-3xl font-light text-white mb-6">Your Rights Under the Australian Privacy Principles</h2>
                 <p className="text-zinc-300 mb-4 leading-relaxed">
-                  Depending on your location, you may have the right to:
+                  Under the Australian Privacy Principles and the Queensland Information Privacy Act 2009, you have the right to:
                 </p>
                 <ul className="list-disc pl-6 text-zinc-300 space-y-2">
-                  <li>Access your personal information</li>
-                  <li>Correct inaccurate information</li>
-                  <li>Delete your information</li>
-                  <li>Object to processing of your information</li>
-                  <li>Withdraw consent where applicable</li>
+                  <li><strong>Access</strong> — request access to the personal information we hold about you (APP 12)</li>
+                  <li><strong>Correction</strong> — request correction of inaccurate, out-of-date, incomplete, or misleading information (APP 13)</li>
+                  <li><strong>Complaint</strong> — make a complaint about our handling of your personal information</li>
+                  <li><strong>Opt-out</strong> — opt out of receiving direct marketing communications at any time</li>
+                  <li><strong>Anonymity</strong> — where practicable, interact with us without identifying yourself (APP 2)</li>
                 </ul>
+                <p className="text-zinc-300 mt-4 leading-relaxed">
+                  To exercise any of these rights, contact us at hello@syfre.com.au. We will respond within 30 days. If you are not satisfied with our response, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) or the Office of the Information Commissioner Queensland (OIC).
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-3xl font-light text-white mb-6">Cross-Border Data Disclosure</h2>
+                <p className="text-zinc-300 leading-relaxed">
+                  Syfre stores data on Australian-hosted infrastructure. Where we use third-party services that may process data outside Australia (such as cloud-based CRM or analytics tools), we take reasonable steps to ensure those providers comply with the Australian Privacy Principles (APP 8). We do not disclose personal information to overseas recipients without appropriate safeguards.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-3xl font-light text-white mb-6">Queensland Government Engagements</h2>
+                <p className="text-zinc-300 leading-relaxed">
+                  Where Syfre processes personal information on behalf of a Queensland Government agency, we do so in accordance with the Information Privacy Principles (IPPs) under the Information Privacy Act 2009 (Qld) and any specific data handling requirements specified in the engagement agreement. Data classification follows the Queensland Government Information Security Classification Framework (QGISCF).
+                </p>
               </section>
 
               <section>

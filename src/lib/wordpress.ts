@@ -42,7 +42,7 @@ async function fetchWordPress(endpoint: string) {
   try {
     const response = await fetch(`${WORDPRESS_API_URL}${endpoint}`, {
       headers: getHeaders(),
-      cache: 'no-store',
+      next: { revalidate: 300 },
     });
     
     if (!response.ok) {
@@ -177,6 +177,7 @@ export async function getRecentArticles(limit = 3): Promise<WordPressArticle[]> 
         month: 'long',
         year: 'numeric'
       }),
+      modified: post.modified, // raw ISO date, used for accurate sitemap lastModified
       slug: post.slug,
       categories: post._embedded?.['wp:term']?.[0] || [],
       featured_media: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || null,
@@ -237,6 +238,7 @@ export interface WordPressArticle {
   title: string;
   excerpt: string;
   date: string;
+  modified?: string; // raw ISO modified date from WordPress
   slug: string;
   categories: { name: string }[];
   featured_media: string | null;
