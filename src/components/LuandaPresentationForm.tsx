@@ -28,7 +28,7 @@ export default function LuandaPresentationForm() {
     };
 
     try {
-      const response = await fetch('/api/zoho/create-lead', {
+      const response = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(leadData),

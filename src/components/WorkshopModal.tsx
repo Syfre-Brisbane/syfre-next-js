@@ -32,7 +32,6 @@ export default function WorkshopModal() {
     const firstName = nameParts[0] || '';
     const lastName = nameParts.slice(1).join(' ') || '';
 
-    // Format data for Zoho CRM API
     const leadData = {
       First_Name: firstName,
       Last_Name: lastName,
@@ -45,7 +44,7 @@ export default function WorkshopModal() {
     };
 
     try {
-      const response = await fetch('/api/zoho/create-lead', {
+      const response = await fetch('/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -15,7 +15,6 @@ export default function ContactForm() {
 
     const formData = new FormData(e.currentTarget);
     
-    // Prepare lead data for Zoho CRM
     const leadData = {
       First_Name: formData.get('firstName') as string,
       Last_Name: formData.get('lastName') as string,
@@ -27,8 +26,7 @@ export default function ContactForm() {
     };
 
     try {
-      // Send to your API route that handles Zoho CRM integration
-      const response = await fetch('/api/zoho/create-lead', {
+      const response = await fetch('/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
