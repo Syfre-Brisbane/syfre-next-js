@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidateTag, revalidatePath } from 'next/cache';
-import { CloudFrontClient, CreateInvalidationCommand } from '@aws-sdk/client-cloudfront';
 import { AmplifyClient, StartJobCommand } from '@aws-sdk/client-amplify';
 
 const REVALIDATION_SECRET = process.env.REVALIDATION_SECRET || 'syfre-revalidate-2026';
-const CLOUDFRONT_DISTRIBUTION_ID = process.env.CLOUDFRONT_DISTRIBUTION_ID || 'EUB1KLL6L8KAI';
-const AMPLIFY_APP_ID = process.env.AMPLIFY_APP_ID || 'd1058331pi6lxg';
+// syfre-next-js app (serves syfre.ai). The previous default (d1058331pi6lxg)
+// was a different app entirely — webhook rebuilds never touched this site.
+const AMPLIFY_APP_ID = process.env.AMPLIFY_APP_ID || 'd1as6cm94gf3nw';
 const AMPLIFY_BRANCH = process.env.AMPLIFY_BRANCH || 'main';
 
 async function triggerAmplifyRebuild() {
@@ -16,20 +16,6 @@ async function triggerAmplifyRebuild() {
     jobType: 'RELEASE',
   }));
   return result.jobSummary?.jobId;
-}
-
-async function invalidateCloudFront(paths: string[]) {
-  const client = new CloudFrontClient({ region: 'ap-southeast-2' });
-  await client.send(new CreateInvalidationCommand({
-    DistributionId: CLOUDFRONT_DISTRIBUTION_ID,
-    InvalidationBatch: {
-      CallerReference: `revalidate-${Date.now()}`,
-      Paths: {
-        Quantity: paths.length,
-        Items: paths,
-      },
-    },
-  }));
 }
 
 async function handleRevalidate(request: NextRequest) {
@@ -64,14 +50,6 @@ async function handleRevalidate(request: NextRequest) {
   }
 
   const isUnpublished = postStatus && postStatus !== 'publish';
-  // '/insights/*' only matches paths under /insights — the listing page itself
-  // must be invalidated separately or CloudFront keeps serving the old list.
-  const cloudfrontPaths = ['/insights', '/insights/*', '/', '/sitemap.xml'];
-
-  // If a specific article was unpublished/deleted, also invalidate its path
-  if (postSlug && isUnpublished) {
-    cloudfrontPaths.push(`/insights/${postSlug}`);
-  }
 
   const results: Record<string, string | null> = {};
 
@@ -81,20 +59,16 @@ async function handleRevalidate(request: NextRequest) {
     results.action = isUnpublished ? 'unpublished' : 'published/updated';
   }
 
+  // The rebuild redeploys the site, which also flushes Amplify's managed
+  // CloudFront cache. (That CDN is AWS-managed and cannot be invalidated via
+  // the CloudFront API — the invalidation code previously here targeted a
+  // defunct distribution left over from the pre-Next.js S3 site.)
   try {
     const jobId = await triggerAmplifyRebuild();
     results.amplify = `rebuild started (job ${jobId})`;
   } catch (error) {
     console.error('Amplify rebuild failed:', error);
     results.amplify = 'failed';
-  }
-
-  try {
-    await invalidateCloudFront(cloudfrontPaths);
-    results.cloudfront = 'invalidated';
-  } catch (error) {
-    console.error('CloudFront invalidation failed:', error);
-    results.cloudfront = 'failed';
   }
 
   return NextResponse.json({ revalidated: true, ...results, now: Date.now() });
