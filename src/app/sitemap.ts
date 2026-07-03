@@ -12,7 +12,10 @@ export const revalidate = 300;
 const STATIC_LAST_MODIFIED = new Date('2026-06-17');
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const articles = await getRecentArticles(100);
+  // throwOnError: a failed WordPress fetch must NOT silently produce a sitemap
+  // with zero articles — erroring here keeps the last good sitemap being served
+  // instead of caching (and letting Google crawl) an empty one.
+  const articles = await getRecentArticles(100, { throwOnError: true });
 
   const articleUrls: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `https://syfre.ai/insights/${article.slug}`,

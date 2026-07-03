@@ -54,6 +54,7 @@ async function handleRevalidate(request: NextRequest) {
   }
 
   revalidateTag('wordpress');
+  revalidatePath('/', 'page'); // homepage renders the 3 latest posts
   revalidatePath('/insights', 'layout');
   revalidatePath('/sitemap.xml');
 
@@ -63,7 +64,9 @@ async function handleRevalidate(request: NextRequest) {
   }
 
   const isUnpublished = postStatus && postStatus !== 'publish';
-  const cloudfrontPaths = ['/insights/*', '/', '/sitemap.xml'];
+  // '/insights/*' only matches paths under /insights — the listing page itself
+  // must be invalidated separately or CloudFront keeps serving the old list.
+  const cloudfrontPaths = ['/insights', '/insights/*', '/', '/sitemap.xml'];
 
   // If a specific article was unpublished/deleted, also invalidate its path
   if (postSlug && isUnpublished) {

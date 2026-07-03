@@ -42,7 +42,11 @@ async function fetchWordPress(endpoint: string) {
   try {
     const response = await fetch(`${WORDPRESS_API_URL}${endpoint}`, {
       headers: getHeaders(),
-      next: { revalidate: 300 },
+      // Tag every WordPress fetch so revalidateTag('wordpress') in the
+      // /api/revalidate webhook actually purges this data. Without the tag the
+      // webhook's revalidateTag call was a no-op and new/updated posts stayed
+      // cached until the 300s time-based revalidate happened to run.
+      next: { revalidate: 300, tags: ['wordpress'] },
     });
     
     if (!response.ok) {
@@ -165,7 +169,10 @@ export async function getMedia(id: number) {
 }
 
 // Get recent articles for homepage
-export async function getRecentArticles(limit = 3): Promise<WordPressArticle[]> {
+export async function getRecentArticles(
+  limit = 3,
+  options: { throwOnError?: boolean } = {}
+): Promise<WordPressArticle[]> {
   try {
     const posts: WordPressPostResponse[] = await fetchWordPress(`/posts?per_page=${limit}&orderby=date&order=desc&_embed`);
     return posts.map((post) => ({
@@ -186,6 +193,9 @@ export async function getRecentArticles(limit = 3): Promise<WordPressArticle[]> 
     console.error('Error fetching recent articles:', error);
     console.error('WordPress API URL being used:', WORDPRESS_API_URL);
     console.error('Full fetch URL was:', `${WORDPRESS_API_URL}/posts?per_page=${limit}&orderby=date&order=desc&_embed`);
+    if (options.throwOnError) {
+      throw error;
+    }
     // Return empty array in case of error
     return [];
   }
