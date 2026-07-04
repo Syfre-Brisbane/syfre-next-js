@@ -51,6 +51,13 @@ async function handleRevalidate(request: NextRequest) {
 
   const isUnpublished = postStatus && postStatus !== 'publish';
 
+  // WP Webhooks fires on every editor save, roughly once a minute while
+  // drafting. Draft/autosave events don't change the public site, so skip the
+  // rebuild for them — otherwise one writing session queues a rebuild per
+  // save. 'publish' and 'trash' (and manual GET calls with no status) rebuild.
+  const DRAFT_STATUSES = ['draft', 'auto-draft', 'pending', 'inherit', 'future'];
+  const isDraftEvent = postStatus !== null && DRAFT_STATUSES.includes(postStatus);
+
   const results: Record<string, string | null> = {};
 
   if (postSlug) {
@@ -63,12 +70,16 @@ async function handleRevalidate(request: NextRequest) {
   // CloudFront cache. (That CDN is AWS-managed and cannot be invalidated via
   // the CloudFront API — the invalidation code previously here targeted a
   // defunct distribution left over from the pre-Next.js S3 site.)
-  try {
-    const jobId = await triggerAmplifyRebuild();
-    results.amplify = `rebuild started (job ${jobId})`;
-  } catch (error) {
-    console.error('Amplify rebuild failed:', error);
-    results.amplify = 'failed';
+  if (isDraftEvent) {
+    results.amplify = 'rebuild skipped (draft save)';
+  } else {
+    try {
+      const jobId = await triggerAmplifyRebuild();
+      results.amplify = `rebuild started (job ${jobId})`;
+    } catch (error) {
+      console.error('Amplify rebuild failed:', error);
+      results.amplify = 'failed';
+    }
   }
 
   return NextResponse.json({ revalidated: true, ...results, now: Date.now() });
