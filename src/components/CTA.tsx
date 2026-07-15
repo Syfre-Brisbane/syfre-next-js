@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import Button from './Button';
 import WorkshopModal from './WorkshopModal';
 
@@ -31,14 +32,14 @@ export default function CTA() {
             </div>
           </div>
             <div className="shrink-0 sm:pr-4 self-start sm:self-auto">
-              <a href="#workshop">
+              <Link href="/services/ai-roadmap-workshop">
                 <Button
                   variant="secondary"
                   className="bg-white text-black hover:bg-gray-100"
                 >
                   Apply now
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

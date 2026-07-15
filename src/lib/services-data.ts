@@ -125,6 +125,11 @@ export const services: Record<string, ServicePageData> = {
       },
     ],
     relatedServices: ['ai-strategy-consulting', 'ai-automation', 'agentic-ai-solutions'],
+    relatedInsights: [
+      'hello-world',
+      'the-ai-metabolism-gap-how-momentum-becomes-strategy',
+      'leadership-in-the-age-of-ai',
+    ],
     jsonLd: {
       serviceName: 'AI Roadmap Workshop',
       serviceDescription: 'A focused, expert-led half-day AI Roadmap Workshop that brings a cross-section of your people together to produce a prioritised, costed, governance-ready AI roadmap for Brisbane and Queensland organisations.',
@@ -260,6 +265,11 @@ export const services: Record<string, ServicePageData> = {
       },
     ],
     relatedServices: ['ai-strategy-consulting', 'ai-automation', 'agentic-ai-solutions'],
+    relatedInsights: [
+      'is-your-competitive-edge-disappearing-into-the-ai-blur',
+      'ai-isnt-just-being-built-its-being-negotiated',
+      'a-quiet-rise-a-booming-alarm',
+    ],
     jsonLd: {
       serviceName: 'Generative Engine Optimisation (GEO)',
       serviceDescription: 'AI search optimisation services to improve brand visibility in ChatGPT, Gemini, Perplexity, and Google AI Overviews.',
@@ -394,7 +404,12 @@ export const services: Record<string, ServicePageData> = {
         answer: 'Yes. We have no vendor partnerships or reseller agreements. Our recommendations are based entirely on what fits your needs, budget, and technical environment. We recommend open source, commercial, or custom-built solutions depending on what makes sense.',
       },
     ],
-    relatedServices: ['ai-automation', 'agentic-ai-solutions', 'machine-learning-predictive-modelling'],
+    relatedServices: ['ai-roadmap-workshop', 'ai-automation', 'agentic-ai-solutions'],
+    relatedInsights: [
+      'the-ai-metabolism-gap-how-momentum-becomes-strategy',
+      'leadership-in-the-age-of-ai',
+      'is-your-competitive-edge-disappearing-into-the-ai-blur',
+    ],
     jsonLd: {
       serviceName: 'AI Strategy Consulting',
       serviceDescription: 'AI strategy consulting services including readiness assessments, roadmap development, and opportunity identification for Brisbane businesses.',
@@ -526,6 +541,11 @@ export const services: Record<string, ServicePageData> = {
       },
     ],
     relatedServices: ['machine-learning-predictive-modelling', 'ai-strategy-consulting', 'ai-automation'],
+    relatedInsights: [
+      'ibm-datastax-and-syfre-real-estate-summit',
+      'the-ai-metabolism-gap-how-momentum-becomes-strategy',
+      'hello-world',
+    ],
     jsonLd: {
       serviceName: 'Business Intelligence & Data Analytics',
       serviceDescription: 'Platform-agnostic business intelligence and data analytics consulting including dashboard development, data strategy, and reporting solutions.',
@@ -657,6 +677,11 @@ export const services: Record<string, ServicePageData> = {
       },
     ],
     relatedServices: ['business-intelligence-data-analytics', 'ai-automation', 'ai-strategy-consulting'],
+    relatedInsights: [
+      'is-the-singularity-a-mathematical-mirage',
+      'prometheus-and-the-new-frontier-of-physical-ai',
+      'ibm-datastax-and-syfre-real-estate-summit',
+    ],
     jsonLd: {
       serviceName: 'Machine Learning & Predictive Modelling',
       serviceDescription: 'Custom machine learning model development and predictive modelling services for Brisbane businesses including forecasting, classification, and NLP.',
@@ -788,6 +813,11 @@ export const services: Record<string, ServicePageData> = {
       },
     ],
     relatedServices: ['ai-automation', 'ai-strategy-consulting', 'machine-learning-predictive-modelling'],
+    relatedInsights: [
+      'who-is-accountable-when-an-ai-agent-makes-a-mistake',
+      'you-dont-deploy-agent-swarms-you-grow-into-them',
+      'beyond-the-org-chart-how-ai-agents-are-reshaping-workflow',
+    ],
     jsonLd: {
       serviceName: 'Agentic AI Solutions',
       serviceDescription: 'Custom AI agent development services including autonomous AI systems, multi-agent orchestration, and RAG implementations for Brisbane businesses.',
@@ -927,6 +957,11 @@ export const services: Record<string, ServicePageData> = {
       },
     ],
     relatedServices: ['ai-roadmap-workshop', 'agentic-ai-solutions', 'ai-strategy-consulting'],
+    relatedInsights: [
+      'when-automation-met-hollywood-how-a-1980s-hacker-rewired-wall-street-and-foreshadowed-the-ai-age',
+      'beyond-the-org-chart-how-ai-agents-are-reshaping-workflow',
+      'adventures-in-botsitting',
+    ],
     jsonLd: {
       serviceName: 'AI Automation',
       serviceDescription: 'AI-powered business automation services including intelligent document processing, workflow automation, and process optimisation for Brisbane businesses.',

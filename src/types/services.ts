@@ -59,6 +59,9 @@ export interface ServicePageData {
     answer: string;
   }>;
   relatedServices: string[];
+  // WordPress post slugs most relevant to this service, shown first in the
+  // "From our insights" block. Slugs that no longer exist are skipped.
+  relatedInsights?: string[];
   jsonLd: {
     serviceName: string;
     serviceDescription: string;

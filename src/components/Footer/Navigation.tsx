@@ -27,6 +27,9 @@ export function NavigationCol2() {
   return (
     <div className="flex flex-col gap-1 text-sm w-32">
       <h3 className="font-semibold text-white mb-1">Services</h3>
+      <Link href="/services/ai-roadmap-workshop" className="font-light text-white hover:text-green-400 transition-colors">
+        AI Roadmap Workshop
+      </Link>
       <Link href="/services/ai-strategy-consulting" className="font-light text-white hover:text-green-400 transition-colors">
         AI Strategy
       </Link>

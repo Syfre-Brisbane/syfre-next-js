@@ -67,7 +67,11 @@ export default async function ServicePageLayout({ service }: ServicePageLayoutPr
           currentSlug={service.slug}
           relatedSlugs={service.relatedServices}
         />
-        <InsightLinks articles={articles} />
+        <InsightLinks
+          articles={articles}
+          preferredSlugs={service.relatedInsights}
+          variantKey={service.slug}
+        />
       </main>
       <SecondCTA />
       <Footer />
