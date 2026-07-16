@@ -17,9 +17,12 @@ import { ServicePageData } from '@/types/services';
 
 interface ServicePageLayoutProps {
   service: ServicePageData;
+  // Optional page-specific section (e.g. an application form), rendered
+  // after the use-cases section.
+  children?: React.ReactNode;
 }
 
-export default async function ServicePageLayout({ service }: ServicePageLayoutProps) {
+export default async function ServicePageLayout({ service, children }: ServicePageLayoutProps) {
   const articles = await getRecentArticles(100);
 
   return (
@@ -62,6 +65,7 @@ export default async function ServicePageLayout({ service }: ServicePageLayoutPr
           heading={service.useCases.heading}
           items={service.useCases.items}
         />
+        {children}
         <ServiceFAQ faqs={service.faqs} />
         <ServiceRelatedLinks
           currentSlug={service.slug}

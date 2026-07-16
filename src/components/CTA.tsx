@@ -3,13 +3,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from './Button';
-import WorkshopModal from './WorkshopModal';
 
 export default function CTA() {
 
   return (
-    <>
-      <section className="w-full">
+    <section className="w-full">
         <div className="max-w-7xl mx-auto">
           <div className="bg-teal-400 flex flex-col sm:flex-row sm:items-center sm:justify-between px-6 sm:px-9 py-6 sm:py-8 rounded-lg w-full gap-4 sm:gap-0">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
@@ -43,9 +41,6 @@ export default function CTA() {
             </div>
           </div>
         </div>
-      </section>
-
-      <WorkshopModal />
-    </>
+    </section>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { OG_IMAGE } from '@/lib/metadata';
 import ServicePageLayout from '@/components/services/ServicePageLayout';
+import WorkshopApplicationForm from '@/components/services/WorkshopApplicationForm';
 import { getServiceBySlug } from '@/lib/services-data';
 
 const service = getServiceBySlug('ai-roadmap-workshop')!;
@@ -83,7 +84,7 @@ const workshopEntitySchema = {
       offers: {
         '@type': 'Offer',
         '@id': `${PAGE_URL}#offer`,
-        url: 'https://syfre.ai/contact',
+        url: `${PAGE_URL}#apply`,
         priceCurrency: 'AUD',
         availability: 'https://schema.org/InStock',
         category: 'AI Strategy Workshop',
@@ -139,7 +140,9 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(workshopEntitySchema) }}
       />
-      <ServicePageLayout service={service} />
+      <ServicePageLayout service={service}>
+        <WorkshopApplicationForm />
+      </ServicePageLayout>
     </>
   );
 }

@@ -15,8 +15,8 @@ export const services: Record<string, ServicePageData> = {
       heading: 'What is the AI Roadmap Workshop?',
       body: 'The AI Roadmap Workshop is a fixed-scope engagement built around a single half-day, facilitated session. Ahead of it we send a short intake questionnaire to understand your business, systems, and goals — no drawn-out discovery phase and no string of stakeholder interviews. The session itself brings a cross-section of your organisation into one room: leadership, operations, IT, and the frontline people who will live with the changes. Working together, we map current-state workflows, identify and prioritise AI opportunities, and pressure-test them against your data maturity, risk appetite, and governance obligations. Shortly after, you receive a delivered AI roadmap and supporting artefacts: an AI Opportunity Register (every use case scored on value, feasibility, risk, and data readiness), a 12-month phased delivery roadmap, a governance scaffold mapped to the 8 Australian AI Ethics Principles, and an executive-ready business case for priority initiatives. Because the people who own the work helped shape the plan, you get something rarer than a strategy document — genuine buy-in to actually execute it.',
     },
-    ctaText: 'Book an AI Roadmap Workshop',
-    ctaHref: '/contact',
+    ctaText: 'Apply for a Workshop',
+    ctaHref: '#apply',
     differentiator: {
       heading: 'Why most AI roadmaps fail before they start',
       intro: 'The roadmap deliverable is the easy part. The reason most AI roadmaps never get executed is in how they were built.',
