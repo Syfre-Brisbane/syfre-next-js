@@ -40,6 +40,7 @@ export default function Hero({ homepage }: HeroProps) {
                 alt="Syfre AI hero image"
                 fill
                 priority
+                fetchPriority="high"
                 sizes="(max-width: 768px) 100vw, 1280px"
                 className="object-cover"
               />
