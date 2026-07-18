@@ -1,0 +1,24 @@
+# Amplify serves public/ assets from the CDN edge, bypassing the Next server,
+# so next.config headers() does not apply to them. These rules set long cache
+# lifetimes for un-hashed static assets (logo.svg was max-age=5).
+customHeaders:
+  - pattern: '**/*.svg'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=2592000, stale-while-revalidate=86400'
+  - pattern: '**/*.png'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=2592000, stale-while-revalidate=86400'
+  - pattern: '**/*.jpg'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=2592000, stale-while-revalidate=86400'
+  - pattern: '**/*.ico'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=2592000, stale-while-revalidate=86400'
+  - pattern: '**/*.webp'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=2592000, stale-while-revalidate=86400'
