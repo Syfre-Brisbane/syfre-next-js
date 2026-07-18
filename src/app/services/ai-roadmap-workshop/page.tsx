@@ -102,34 +102,6 @@ const workshopEntitySchema = {
         { '@type': 'Thing', name: 'Australian AI Ethics Principles' },
       ],
     },
-    {
-      '@type': 'Event',
-      '@id': `${PAGE_URL}#event`,
-      name: 'Syfre AI Roadmap Workshop',
-      description:
-        'A half-day, expert-led AI Roadmap Workshop for Brisbane and Queensland organisations that brings a cross-section of staff together to produce a prioritised AI roadmap, governance scaffold, and executive business cases.',
-      eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
-      eventStatus: 'https://schema.org/EventScheduled',
-      location: [
-        {
-          '@type': 'Place',
-          name: 'Brisbane (on-site)',
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Brisbane',
-            addressRegion: 'QLD',
-            addressCountry: 'AU',
-          },
-        },
-        {
-          '@type': 'VirtualLocation',
-          url: 'https://syfre.ai/contact',
-        },
-      ],
-      organizer: { '@id': 'https://syfre.ai/#organization' },
-      offers: { '@id': `${PAGE_URL}#offer` },
-      url: PAGE_URL,
-    },
   ],
 };
 

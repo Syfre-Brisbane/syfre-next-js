@@ -11,11 +11,27 @@ export default function ServiceJsonLd({ serviceName, serviceDescription, service
     '@context': 'https://schema.org',
     '@graph': [
       {
+        '@type': 'Service',
+        '@id': `${url}#service`,
+        name: serviceName,
+        description: serviceDescription,
+        serviceType: serviceType,
+        url: url,
+        provider: { '@id': 'https://syfre.ai/#organization' },
+        areaServed: [
+          { '@type': 'City', name: 'Brisbane' },
+          { '@type': 'State', name: 'Queensland' },
+          { '@type': 'Country', name: 'Australia' },
+        ],
+        mainEntityOfPage: { '@id': `${url}#webpage` },
+      },
+      {
+        // Extends the sitewide #organization entity declared in the root
+        // layout; same @id so the nodes merge rather than duplicating.
         '@type': 'ProfessionalService',
+        '@id': 'https://syfre.ai/#organization',
         name: 'Syfre AI Solutions',
         url: 'https://syfre.ai',
-        logo: 'https://syfre.ai/logo.svg',
-        description: 'Brisbane-based AI consulting and automation specialists.',
         founder: {
           '@type': 'Person',
           name: 'Steve Macfarlane',
@@ -25,56 +41,13 @@ export default function ServiceJsonLd({ serviceName, serviceDescription, service
             'https://www.linkedin.com/in/stevemacfarlaneaibrisbane',
           ],
         },
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Brisbane',
-          addressRegion: 'QLD',
-          addressCountry: 'AU',
-        },
-        areaServed: [
-          { '@type': 'City', name: 'Brisbane' },
-          { '@type': 'State', name: 'Queensland' },
-          { '@type': 'Country', name: 'Australia' },
-        ],
-        hasOfferCatalog: {
-          '@type': 'OfferCatalog',
-          name: serviceName,
-          itemListElement: [
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: serviceName,
-                description: serviceDescription,
-                serviceType: serviceType,
-                provider: {
-                  '@type': 'Organization',
-                  name: 'Syfre AI Solutions',
-                  url: 'https://syfre.ai',
-                },
-                areaServed: {
-                  '@type': 'City',
-                  name: 'Brisbane',
-                },
-              },
-            },
-          ],
-        },
-        contactPoint: {
-          '@type': 'ContactPoint',
-          email: 'hello@syfre.com.au',
-          contactType: 'sales',
-          url: 'https://syfre.ai/contact',
-        },
-        sameAs: [
-          'https://www.linkedin.com/company/syfreai',
-          'https://x.com/syfre_ai',
-        ],
-        mainEntityOfPage: url,
       },
       {
         '@type': 'WebPage',
+        '@id': `${url}#webpage`,
         url: url,
+        isPartOf: { '@id': 'https://syfre.ai/#website' },
+        mainEntity: { '@id': `${url}#service` },
         author: {
           '@type': 'Person',
           name: 'Steve Macfarlane',
@@ -83,11 +56,7 @@ export default function ServiceJsonLd({ serviceName, serviceDescription, service
           sameAs: [
             'https://www.linkedin.com/in/stevemacfarlaneaibrisbane',
           ],
-          worksFor: {
-            '@type': 'Organization',
-            name: 'Syfre AI Solutions',
-            url: 'https://syfre.ai',
-          },
+          worksFor: { '@id': 'https://syfre.ai/#organization' },
         },
       },
       {

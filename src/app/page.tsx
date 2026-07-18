@@ -43,7 +43,7 @@ const homepageJsonLd = {
   about: { '@id': 'https://syfre.ai/#organization' },
   mainEntity: {
     '@type': 'ProfessionalService',
-    '@id': 'https://syfre.ai/#localbusiness',
+    '@id': 'https://syfre.ai/#organization',
     name: 'Syfre AI Solutions',
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -55,6 +55,7 @@ const homepageJsonLd = {
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Agentic AI Solutions', url: 'https://syfre.ai/services/agentic-ai-solutions' } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Business Intelligence & Data Analytics', url: 'https://syfre.ai/services/business-intelligence-data-analytics' } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Generative Engine Optimisation (GEO)', url: 'https://syfre.ai/services/generative-engine-optimisation' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Roadmap Workshop', url: 'https://syfre.ai/services/ai-roadmap-workshop' } },
       ],
     },
   },
