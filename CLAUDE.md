@@ -16,8 +16,8 @@ This is a Next.js 15 application using the App Router architecture with TypeScri
 ### Key Structure
 - **App Router**: Located in `src/app/` - uses file-based routing with layout.tsx and page.tsx conventions
 - **TypeScript**: Strict configuration with path aliases (`@/*` maps to `./src/*`)
-- **Styling**: Tailwind CSS v4 with custom CSS variables for theming and Geist fonts
-- **Font Loading**: Uses next/font with Geist Sans and Geist Mono for optimal performance
+- **Styling**: Tailwind CSS v4 with custom CSS variables for theming
+- **Font Loading**: Uses next/font with Source Sans 3 (variable `--font-source-sans-3`); no mono font is loaded, so `font-mono` falls back to the system stack
 
 ### Styling System
 - Uses CSS custom properties for theme variables (--background, --foreground)
