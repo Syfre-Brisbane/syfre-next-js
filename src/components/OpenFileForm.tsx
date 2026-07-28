@@ -24,7 +24,7 @@ export default function OpenFileForm() {
       Last_Name: rest.join(' '),
       Email: formData.get('email') as string,
       Company: formData.get('company') as string,
-      Description: question !== '' ? `Would ask the archive: ${question}` : '',
+      Description: question !== '' ? `Wants it to find: ${question}` : '',
       Lead_Source: 'OpenFile Landing Page',
     };
 
@@ -125,13 +125,13 @@ export default function OpenFileForm() {
 
         <div className="flex flex-col gap-1.5">
           <label htmlFor={`${uid}-question`} className="text-zinc-400 text-sm">
-            What would you ask the archive? <span className="text-zinc-600">(optional)</span>
+            What would you want it to find? <span className="text-zinc-600">(optional)</span>
           </label>
           <textarea
             id={`${uid}-question`}
             name="question"
             rows={3}
-            placeholder="e.g. Which holes on our ground were never assayed for gold?"
+            placeholder="e.g. Intercepts on our ground that were never followed up"
             className={`${inputClasses} placeholder:text-zinc-600 resize-none`}
           />
         </div>
