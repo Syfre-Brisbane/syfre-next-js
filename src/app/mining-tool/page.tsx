@@ -4,7 +4,7 @@ import Link from 'next/link';
 import MiningToolForm from '@/components/MiningToolForm';
 
 export const metadata: Metadata = {
-  title: 'AI for Mining Operations — Register Your Interest | Syfre',
+  title: 'AI for Mining Operations — Register Your Interest',
   description:
     'Syfre is building an AI tool for mining operations. Register your interest for early access and updates.',
 };
