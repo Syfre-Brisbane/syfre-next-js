@@ -57,9 +57,6 @@ export default function OpenFilePage() {
                     the source, and uses AI to flag what deserves a second look: intercepts
                     never followed up, assay gaps, new ground worth exploring.
                   </p>
-                  <p className={`font-mono text-sm ${GOLD}`}>
-                    Government archives call them open-file reports. OpenFile opens the files.
-                  </p>
                 </div>
 
                 {/* Proof points */}
