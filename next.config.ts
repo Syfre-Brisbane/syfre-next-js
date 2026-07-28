@@ -8,12 +8,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        // Vanity URL for the OpenFile landing page. Temporary on purpose:
-        // a cached permanent redirect would fight us if /openfile ever
-        // becomes the canonical page.
-        source: '/openfile',
-        destination: '/mining-tool',
-        permanent: false,
+        // /openfile is the canonical OpenFile landing page; this catches
+        // anyone holding the original /mining-tool link.
+        source: '/mining-tool',
+        destination: '/openfile',
+        permanent: true,
       },
       {
         source: '/insights/when-kids-outsmart-algorithms-and-algorithms-start-learning-back',
