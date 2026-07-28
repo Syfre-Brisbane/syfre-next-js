@@ -112,8 +112,8 @@ export default function OpenFilePage() {
             <div className="flex flex-col gap-4 text-zinc-300 text-lg font-light leading-relaxed">
               <p>
                 Every exploration campaign ends in a report. They pile up on your own
-                server and in the government archives. Intercepts get drilled, logged,
-                filed, and forgotten. Assays get run for one metal and not another.
+                server and in the government&apos;s open-file archives. Intercepts get
+                drilled, logged, filed, and forgotten. Assays get run for one metal and not another.
                 Ground changes hands and its history doesn&apos;t follow.
               </p>
               <p className="text-white">
