@@ -1,11 +1,10 @@
 interface SolutionJsonLdProps {
   name: string;
   description: string;
-  audienceType: string;
   slug: string;
 }
 
-export default function SolutionJsonLd({ name, description, audienceType, slug }: SolutionJsonLdProps) {
+export default function SolutionJsonLd({ name, description, slug }: SolutionJsonLdProps) {
   const url = `https://syfre.ai/solutions/${slug}`;
 
   const schema = {
@@ -28,10 +27,6 @@ export default function SolutionJsonLd({ name, description, audienceType, slug }
             '@type': 'Country',
             name: 'Australia',
           },
-        },
-        audience: {
-          '@type': 'GovernmentOrganization',
-          name: audienceType,
         },
         serviceType: 'AI Governance and Consulting',
         url: url,

@@ -48,6 +48,5 @@ export interface SolutionPageData {
   jsonLd: {
     name: string;
     description: string;
-    audienceType: string;
   };
 }

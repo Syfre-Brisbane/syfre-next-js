@@ -192,10 +192,6 @@ const contactJsonLd = {
         'A 45-minute briefing for Queensland Government agencies and councils on how Syfre aligns to the QGEA AI Governance Policy, FAIRA risk assessments, and the 8 Australian AI Ethics Principles, with a walkthrough of artefacts produced for PAF Gate 3 evidence.',
       serviceType: 'AI Governance Briefing',
       provider: { '@id': 'https://syfre.ai/#organization' },
-      audience: {
-        '@type': 'GovernmentOrganization',
-        name: 'Queensland Government Agencies and Councils',
-      },
       offers: {
         '@type': 'Offer',
         name: 'Book a FAIRA-mapped briefing',

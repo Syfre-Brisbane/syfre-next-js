@@ -122,7 +122,6 @@ export const solutions: Record<string, SolutionPageData> = {
     jsonLd: {
       name: 'AI Solutions for Queensland State Government',
       description: 'FAIRA-ready AI governance and compliance for Queensland state agencies, aligned to the QGEA AI Governance Policy.',
-      audienceType: 'Queensland State Government Agency',
     },
   },
 
@@ -247,7 +246,6 @@ export const solutions: Record<string, SolutionPageData> = {
     jsonLd: {
       name: 'AI Solutions for Queensland Local Councils',
       description: 'AI solutions for Queensland local councils with governance built in — infrastructure monitoring, community services, and data democratisation.',
-      audienceType: 'Queensland Local Council',
     },
   },
 };

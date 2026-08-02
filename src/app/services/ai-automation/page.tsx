@@ -103,6 +103,12 @@ const consultationBookingSchema = {
         name: 'Book an AI automation consultation',
         target: 'https://calendly.com/steve-macfarlane-syfre',
       },
+    },
+    {
+      // Merges with the #webpage node emitted by ServiceJsonLd; `about` is
+      // only valid on CreativeWork types, not Service.
+      '@type': 'WebPage',
+      '@id': `${PAGE_URL}#webpage`,
       about: [
         { '@type': 'Thing', name: 'AI Automation' },
         { '@type': 'Thing', name: 'Intelligent Document Processing' },

@@ -21,7 +21,6 @@ export default function SolutionPageLayout({ solution }: SolutionPageLayoutProps
       <SolutionJsonLd
         name={solution.jsonLd.name}
         description={solution.jsonLd.description}
-        audienceType={solution.jsonLd.audienceType}
         slug={solution.slug}
       />
       <Header />
