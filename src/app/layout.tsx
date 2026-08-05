@@ -84,7 +84,7 @@ export default function RootLayout({
                   contactPoint: {
                     '@type': 'ContactPoint',
                     telephone: '+61414383094',
-                    email: 'hello@syfre.com.au',
+                    email: 'hello@syfre.ai',
                     contactType: 'sales',
                     url: 'https://syfre.ai/contact',
                   },

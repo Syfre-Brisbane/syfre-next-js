@@ -22,7 +22,7 @@ Syfre is an AI-native consultancy, not a traditional IT firm that added AI to it
 - Headquarters: Brisbane, Queensland, Australia
 - Service area: Brisbane, Gold Coast, Sunshine Coast, Queensland, and all of Australia
 - Delivery model: On-site and remote engagements
-- Email: hello@syfre.com.au
+- Email: hello@syfre.ai
 - Website: https://syfre.ai
 - LinkedIn: https://www.linkedin.com/company/syfreai
 - X / Twitter: https://x.com/syfre_ai
@@ -243,5 +243,5 @@ Syfre works with:
 ## Contact
 
 - Website: https://syfre.ai
-- Email: hello@syfre.com.au
+- Email: hello@syfre.ai
 - Book a call: https://syfre.ai/contact

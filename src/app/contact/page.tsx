@@ -104,7 +104,7 @@ const contactJsonLd = {
       isPartOf: { '@id': 'https://syfre.ai/#website' },
       mainEntity: {
         '@type': 'ContactPoint',
-        email: 'hello@syfre.com.au',
+        email: 'hello@syfre.ai',
         telephone: '+61414383094',
         contactType: 'sales',
         url: 'https://syfre.ai/contact',
@@ -258,8 +258,8 @@ export default function ContactPage() {
 
               <div className="flex flex-col gap-2">
                 <div className="flex gap-4">
-                  <a href="mailto:hello@syfre.com.au" className="text-green-400 text-base font-normal">
-                    hello@syfre.com.au
+                  <a href="mailto:hello@syfre.ai" className="text-green-400 text-base font-normal">
+                    hello@syfre.ai
                   </a>
                 </div>
               </div>
@@ -297,8 +297,8 @@ export default function ContactPage() {
 
               <div className="flex flex-col gap-2">
                 <div className="flex gap-4">
-                  <a href="mailto:hello@syfre.com.au" className="text-green-400 text-base font-normal">
-                    hello@syfre.com.au
+                  <a href="mailto:hello@syfre.ai" className="text-green-400 text-base font-normal">
+                    hello@syfre.ai
                   </a>
                 </div>
               </div>

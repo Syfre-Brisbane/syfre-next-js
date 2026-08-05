@@ -119,7 +119,7 @@ export default function PrivacyPolicy() {
                   <li><strong>Anonymity</strong> — where practicable, interact with us without identifying yourself (APP 2)</li>
                 </ul>
                 <p className="text-zinc-300 mt-4 leading-relaxed">
-                  To exercise any of these rights, contact us at hello@syfre.com.au. We will respond within 30 days. If you are not satisfied with our response, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) or the Office of the Information Commissioner Queensland (OIC).
+                  To exercise any of these rights, contact us at hello@syfre.ai. We will respond within 30 days. If you are not satisfied with our response, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) or the Office of the Information Commissioner Queensland (OIC).
                 </p>
               </section>
 
@@ -167,7 +167,7 @@ export default function PrivacyPolicy() {
                   If you have any questions about this privacy policy or our privacy practices, please contact us at:
                 </p>
                 <div className="mt-4 text-zinc-300 space-y-2">
-                  <p>Email: hello@syfre.com.au</p>
+                  <p>Email: hello@syfre.ai</p>
                 </div>
               </section>
             </div>
