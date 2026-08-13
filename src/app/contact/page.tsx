@@ -324,7 +324,11 @@ export default function ContactPage() {
               What you can book
             </h2>
             <p className="text-lg font-light leading-relaxed text-zinc-300">
-              Every initial consultation is run by Steve Macfarlane, Syfre&apos;s founder and lead AI consultant. All initial calls are free, delivered by video conference or in person in Brisbane, and have no obligation to engage further.
+              Every initial consultation is run by Steve Macfarlane, Syfre&apos;s founder and lead AI consultant. All initial calls are free, delivered by video conference or in person in Brisbane, and have no obligation to engage further. Comparing options? See the full range of{' '}
+              <Link href="/services" className="text-green-400 hover:text-green-300 transition-colors">
+                AI consulting in Brisbane
+              </Link>{' '}
+              we offer — strategy, automation, machine learning, agentic AI, and data.
             </p>
           </div>
 

@@ -95,6 +95,11 @@ export default function RootLayout({
                     postalCode: '4006',
                     addressCountry: 'AU',
                   },
+                  geo: {
+                    '@type': 'GeoCoordinates',
+                    latitude: -27.4416,
+                    longitude: 153.0356,
+                  },
                   areaServed: [
                     { '@type': 'City', name: 'Brisbane' },
                     { '@type': 'State', name: 'Queensland' },

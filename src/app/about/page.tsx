@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { OG_IMAGE } from '@/lib/metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -59,7 +60,11 @@ export default function AboutPage() {
                 <span className="text-white font-normal">human values</span>
               </h1>
               <p className="text-lg sm:text-xl font-light leading-relaxed text-zinc-300 mb-6">
-                Syfre is a Brisbane-based AI consultancy built on a straightforward belief: artificial intelligence should augment human capability, not replace human judgement. Every system we build, every governance framework we deliver, and every strategy we recommend is grounded in this principle.
+                Syfre is a{' '}
+                <Link href="/services" className="text-white underline decoration-zinc-600 hover:decoration-white transition-colors">
+                  Brisbane-based AI consultancy
+                </Link>{' '}
+                built on a straightforward belief: artificial intelligence should augment human capability, not replace human judgement. Every system we build, every governance framework we deliver, and every strategy we recommend is grounded in this principle.
               </p>
               <p className="text-lg sm:text-xl font-light leading-relaxed text-zinc-300">
                 We work with ambitious organisations across Queensland — from state government agencies navigating QGEA compliance to private sector teams building their first AI systems. The common thread is a commitment to doing AI responsibly, with governance and ethics built in from day one.

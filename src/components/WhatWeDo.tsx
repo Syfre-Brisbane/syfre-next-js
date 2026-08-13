@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { getImageUrl } from '@/lib/image-utils';
 import { HomepageData } from '@/types/wordpress';
@@ -76,7 +77,7 @@ export default function WhatWeDo({ homepage }: WhatWeDoProps) {
         {/* Mobile: Single column layout */}
         <div className="flex flex-col gap-8 sm:hidden">
           <p className="text-lg sm:text-2xl font-light leading-7 sm:leading-8 text-zinc-100 tracking-tight sm:tracking-tight">
-            We partner with CEOs, product teams and technical leaders who need clarity, capability and a high standard of delivery. Working within complex sectors, moving fast, and solving real problems.
+            As an <Link href="/services" className="text-white underline decoration-zinc-600 hover:decoration-white transition-colors">AI consultant in Brisbane</Link>, we partner with CEOs, product teams and technical leaders who need clarity, capability and a high standard of delivery. Working within complex sectors, moving fast, and solving real problems.
           </p>
 
           <p className="text-lg sm:text-xl font-normal leading-7 sm:leading-8 text-zinc-100">
@@ -116,7 +117,7 @@ export default function WhatWeDo({ homepage }: WhatWeDoProps) {
           {/* Left side content - sticky within section */}
           <div className="flex flex-col gap-10 w-1/2 max-w-lg shrink-0 sticky top-20 self-start">
             <p className="text-2xl font-light leading-8 text-zinc-100 tracking-tight">
-              We partner with CEOs, product teams and technical leaders who need clarity, capability and a high standard of delivery. Working within complex sectors, moving fast, and solving real problems.
+              As an <Link href="/services" className="text-white underline decoration-zinc-600 hover:decoration-white transition-colors">AI consultant in Brisbane</Link>, we partner with CEOs, product teams and technical leaders who need clarity, capability and a high standard of delivery. Working within complex sectors, moving fast, and solving real problems.
             </p>
 
             <p className="text-xl font-normal leading-8 text-zinc-100">

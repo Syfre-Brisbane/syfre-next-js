@@ -13,7 +13,13 @@ export default function ServiceLinks() {
         Explore our AI services
       </h2>
       <p className="text-zinc-400 font-light mb-8">
-        Brisbane-based AI consulting across strategy, automation, agents, and data.
+        <Link
+          href="/services"
+          className="text-green-400 underline decoration-green-400 hover:text-green-300 transition-colors"
+        >
+          Brisbane-based AI consulting
+        </Link>{' '}
+        across strategy, automation, agents, and data.
       </p>
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
         {servicesList.map((service) => (
