@@ -75,6 +75,12 @@ export default function RootLayout({
                   name: 'Syfre AI Solutions',
                   url: 'https://syfre.ai',
                   description: 'Brisbane-based AI consulting and automation specialists.',
+                  legalName: 'Syfre AI Solutions Pty Ltd',
+                  identifier: {
+                    '@type': 'PropertyValue',
+                    propertyID: 'ABN',
+                    value: '94 675 021 351',
+                  },
                   telephone: '+61414383094',
                   logo: {
                     '@type': 'ImageObject',

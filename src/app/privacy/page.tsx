@@ -42,7 +42,7 @@ export default function PrivacyPolicy() {
                   This privacy policy is aligned to the Australian Privacy Principles (APPs) under the Privacy Act 1988 (Cth) and the Queensland Information Privacy Act 2009 (Qld). Where Syfre handles personal information on behalf of Queensland Government agencies, we comply with the Information Privacy Principles (IPPs) under Queensland legislation.
                 </p>
                 <p className="text-zinc-300 leading-relaxed">
-                  Syfre AI Solutions Pty Ltd (ABN to be confirmed) is the entity responsible for the personal information described in this policy. Our registered address is Brisbane, Queensland, Australia.
+                  Syfre AI Solutions Pty Ltd (ABN 94 675 021 351) is the entity responsible for the personal information described in this policy. Our registered address is Brisbane, Queensland, Australia.
                 </p>
               </section>
 
