@@ -113,6 +113,15 @@ export default function ServicesGrid({ homepage }: ServicesGridProps) {
             </div>
           ))}
         </div>
+
+        <div className="mt-10 sm:mt-14 text-center">
+          <Link
+            href="/services"
+            className="text-green-400 underline decoration-green-400 hover:text-green-300 transition-colors font-light text-lg"
+          >
+            See all AI consulting services in Brisbane
+          </Link>
+        </div>
       </div>
     </section>
   );

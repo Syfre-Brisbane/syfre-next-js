@@ -159,6 +159,16 @@ export default function GovernancePage() {
                 </span>
               </Link>
             </div>
+            <p className="text-zinc-400 font-light mt-8">
+              Governance is one part of the picture — see the full range of{' '}
+              <Link
+                href="/services"
+                className="text-green-400 underline decoration-green-400 hover:text-green-300 transition-colors"
+              >
+                AI consulting services
+              </Link>{' '}
+              Syfre delivers across Brisbane and Queensland.
+            </p>
           </div>
         </section>
 

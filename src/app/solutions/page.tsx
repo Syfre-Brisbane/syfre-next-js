@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { OG_IMAGE } from '@/lib/metadata';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SecondCTA from '@/components/SecondCTA';
@@ -76,6 +77,16 @@ export default function SolutionsPage() {
                 <SolutionCard key={solution.slug} solution={solution} />
               ))}
             </div>
+            <p className="text-zinc-400 font-light mt-10 max-w-3xl">
+              Not sure where to start? Every solution is delivered by Syfre&apos;s{' '}
+              <Link
+                href="/services"
+                className="text-green-400 underline decoration-green-400 hover:text-green-300 transition-colors"
+              >
+                Brisbane AI consulting team
+              </Link>
+              {' '}— book a free scoping call.
+            </p>
           </div>
         </section>
       </main>

@@ -32,6 +32,16 @@ export default function SolutionRelatedLinks({ currentSlug, relatedSlugs }: Solu
             </Link>
           ))}
         </div>
+        <p className="text-zinc-400 font-light mt-10">
+          Or explore Syfre&apos;s full range of{' '}
+          <Link
+            href="/services"
+            className="text-green-400 underline decoration-green-400 hover:text-green-300 transition-colors"
+          >
+            AI consulting services in Brisbane
+          </Link>
+          .
+        </p>
       </div>
     </section>
   );
