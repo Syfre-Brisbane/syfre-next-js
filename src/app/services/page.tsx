@@ -13,14 +13,14 @@ import GovernanceCredentials from '@/components/shared/GovernanceCredentials';
 import { servicesList } from '@/lib/services-data';
 
 export const metadata: Metadata = {
-  title: 'AI Consultant Brisbane',
+  title: 'AI Consulting Services Brisbane',
   description:
-    'Syfre is a Brisbane-based AI consultancy led by Steve Macfarlane — AI strategy, automation, machine learning, and agentic AI for Queensland businesses and government. Free 30-minute scoping call.',
+    'AI consulting services in Brisbane from Syfre — strategy, automation, machine learning, agentic AI, and business intelligence for Queensland businesses and government. Free 30-minute scoping call.',
   alternates: {
     canonical: '/services',
   },
   openGraph: {
-    title: 'AI Consultant Brisbane | Syfre AI Consultancy',
+    title: 'AI Consulting Services Brisbane | Syfre',
     description:
       'Founder-led, governance-first AI consulting in Brisbane. Strategy, automation, machine learning, agentic AI, and business intelligence for Queensland businesses and government.',
     url: 'https://syfre.ai/services',
@@ -117,7 +117,7 @@ const servicesJsonLd = {
       '@type': 'WebPage',
       '@id': 'https://syfre.ai/services#webpage',
       url: 'https://syfre.ai/services',
-      name: 'AI Consultant Brisbane',
+      name: 'AI Consulting Services Brisbane',
       description:
         'Founder-led AI consulting in Brisbane — strategy, automation, machine learning, agentic AI, and business intelligence for Queensland businesses and government.',
       isPartOf: { '@id': 'https://syfre.ai/#website' },
@@ -207,14 +207,14 @@ export default function ServicesPage() {
       <main>
         <ServiceHero
           badge="Brisbane AI Consultancy"
-          h1={{ muted: 'AI Consultant', highlight: 'Brisbane' }}
+          h1={{ muted: 'AI Consulting Services', highlight: 'Brisbane' }}
           valueProposition="Syfre is a Brisbane-based AI consultancy led by Steve Macfarlane, an AI consultant who has built production AI systems across property, aviation, professional services, financial services, and Queensland Government. We help ambitious Queensland businesses and public-sector teams move from AI ideas to systems that deliver measurable commercial impact."
           ctaText="Book a free scoping call"
           ctaHref="/contact"
         />
 
         <ServiceExplainer
-          heading="What does an AI consultant in Brisbane do?"
+          heading="What does AI consulting in Brisbane involve?"
           body="An AI consultant helps an organisation decide where artificial intelligence can create real value, then designs and builds the systems to deliver it. A good AI consultant starts with your business objectives — not the technology — and works backwards to the right capability, whether that is automation, machine learning, agentic AI, or business intelligence. Syfre works as a founder-led AI consultancy in Brisbane: we assess your AI readiness, prioritise the highest-ROI opportunities, build production-ready systems, and embed governance mapped to the 8 Australian AI Ethics Principles so every solution is safe, auditable, and actually adopted."
         />
 

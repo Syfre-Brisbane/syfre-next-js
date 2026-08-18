@@ -18,13 +18,13 @@ import { HomepageData } from '@/types/wordpress';
 export const revalidate = 300; // revalidate every 5 minutes
 
 export const metadata: Metadata = {
-  title: 'Syfre AI Solutions | Brisbane AI Consulting & Automation',
+  title: { absolute: 'AI Consultant Brisbane | Syfre AI Solutions' },
   description: 'Brisbane-based AI consulting specialists. We build AI strategy, automation, machine learning, and agentic AI solutions for ambitious businesses.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Syfre AI Solutions | Brisbane AI Consulting & Automation',
+    title: 'AI Consultant Brisbane | Syfre AI Solutions',
     description: 'Brisbane-based AI consulting specialists. We build AI strategy, automation, machine learning, and agentic AI solutions for ambitious businesses.',
     url: 'https://syfre.ai',
     type: 'website',
@@ -37,7 +37,7 @@ const homepageJsonLd = {
   '@type': 'WebPage',
   '@id': 'https://syfre.ai/#webpage',
   url: 'https://syfre.ai',
-  name: 'Syfre AI Solutions | Brisbane AI Consulting & Automation',
+  name: 'AI Consultant Brisbane | Syfre AI Solutions',
   description: 'Brisbane-based AI consulting specialists. We build AI strategy, automation, machine learning, and agentic AI solutions for ambitious businesses.',
   isPartOf: { '@id': 'https://syfre.ai/#website' },
   about: { '@id': 'https://syfre.ai/#organization' },

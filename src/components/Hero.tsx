@@ -19,8 +19,13 @@ export default function Hero({ homepage }: HeroProps) {
   return (
     <section className="px-4 sm:px-6 py-8 sm:py-16 w-full">
       <div className="max-w-7xl mx-auto flex flex-col gap-8 sm:gap-16">
-        <div className="max-w-4xl">
-        <h1 className="text-left text-4xl sm:text-9xl leading-tight sm:leading-none tracking-tight sm:tracking-tighter">
+        <div className="max-w-4xl flex flex-col">
+        {/* Keyword H1 is first in the DOM (semantics) but order-2 renders it below
+            the brand line. Brand line stays WordPress-driven, demoted to h2. */}
+        <h1 className="order-2 mt-4 sm:mt-8 text-xl sm:text-3xl font-light tracking-tight text-zinc-400">
+          AI consultant in Brisbane, from strategy to production
+        </h1>
+        <h2 className="order-1 text-left text-4xl sm:text-9xl leading-tight sm:leading-none tracking-tight sm:tracking-tighter">
           <span className="text-zinc-300 font-light">
             {heroTitle.part_1}{" "}
           </span>
@@ -29,7 +34,7 @@ export default function Hero({ homepage }: HeroProps) {
             <span className="text-white font-normal">{heroTitle.highlight} </span>
             <span className="text-zinc-300 font-light">{heroTitle.part_3}</span>
           </span>
-        </h1>
+        </h2>
         </div>
 
         <div className="w-full">
