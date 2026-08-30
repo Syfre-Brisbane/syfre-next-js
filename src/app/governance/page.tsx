@@ -19,7 +19,7 @@ import {
 export const metadata: Metadata = {
   title: 'AI Governance & Compliance Hub | QGEA & FAIRA Alignment',
   description:
-    'How Syfre aligns to the QGEA AI Governance Policy, supports FAIRA risk assessments, and maps to the 8 Australian AI Ethics Principles. Governance evidence for Queensland Government agencies.',
+    'How Syfre aligns to the QGEA AI Governance Policy, supports FAIRA risk assessments, and maps to the 8 Australian AI Ethics Principles.',
   alternates: {
     canonical: '/governance',
   },

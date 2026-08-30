@@ -8,7 +8,7 @@ import ContactForm from '@/components/ContactForm';
 export const metadata: Metadata = {
   title: 'Contact Syfre | Book an AI Automation Consultation in Brisbane',
   description:
-    'Book an AI automation consultation, an AI roadmap workshop, or a FAIRA-mapped governance briefing with Syfre, a Brisbane-based AI consultancy. Free 30-minute scoping call available.',
+    'Book an AI automation consultation, AI roadmap workshop, or FAIRA-mapped governance briefing with Syfre, a Brisbane AI consultancy. Free 30-min call.',
   keywords: [
     'book AI automation consultation',
     'book an AI automation consultation',

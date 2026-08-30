@@ -4,7 +4,7 @@ export const services: Record<string, ServicePageData> = {
   'ai-roadmap-workshop': {
     slug: 'ai-roadmap-workshop',
     title: 'AI Roadmap Workshop Brisbane',
-    description: 'A half-day AI Roadmap Workshop for Brisbane and Queensland teams. An expert-led session that brings a cross-section of your staff together to build a prioritised, governance-ready AI roadmap — delivered shortly after, ready to execute.',
+    description: 'A half-day, expert-led AI Roadmap Workshop for Brisbane and Queensland teams — build a prioritised, governance-ready AI roadmap you can execute.',
     badge: 'AI Roadmap Workshop',
     h1: {
       muted: 'AI Roadmap',
@@ -827,8 +827,8 @@ export const services: Record<string, ServicePageData> = {
 
   'ai-automation': {
     slug: 'ai-automation',
-    title: 'AI Automation Services Brisbane | Book an AI Automation Consultation',
-    description: 'AI-powered business automation in Brisbane. Book an AI automation consultation with a Brisbane AI consultant to scope intelligent workflow automation that adapts and handles exceptions — beyond basic RPA.',
+    title: 'AI Automation Services Brisbane',
+    description: 'AI-powered business automation in Brisbane. Scope intelligent workflow automation that adapts and handles exceptions — beyond basic RPA. Book a consultation.',
     badge: 'AI Automation',
     h1: {
       muted: 'AI Automation',

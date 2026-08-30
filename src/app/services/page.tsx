@@ -15,7 +15,7 @@ import { servicesList } from '@/lib/services-data';
 export const metadata: Metadata = {
   title: 'AI Consulting Services Brisbane',
   description:
-    'AI consulting services in Brisbane from Syfre — strategy, automation, machine learning, agentic AI, and business intelligence for Queensland businesses and government. Free 30-minute scoping call.',
+    'AI consulting in Brisbane — strategy, automation, machine learning, agentic AI and BI for Queensland business and government. Free 30-min scoping call.',
   alternates: {
     canonical: '/services',
   },
@@ -122,7 +122,10 @@ const servicesJsonLd = {
         'Founder-led AI consulting in Brisbane — strategy, automation, machine learning, agentic AI, and business intelligence for Queensland businesses and government.',
       isPartOf: { '@id': 'https://syfre.ai/#website' },
       about: { '@id': 'https://syfre.ai/#organization' },
-      primaryImageOfPage: 'https://syfre.ai/og-default.png',
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: 'https://syfre.ai/og-default.png',
+      },
       breadcrumb: { '@id': 'https://syfre.ai/services#breadcrumb' },
     },
     {

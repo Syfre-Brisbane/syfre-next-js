@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Australian Privacy Principles',
-  description: 'Syfre AI Solutions privacy policy aligned to the Australian Privacy Principles (APPs) and Queensland Information Privacy Act 2009. How we collect, use, and protect your personal information.',
+  description: 'Syfre AI Solutions privacy policy, aligned to the Australian Privacy Principles (APPs) and Queensland Information Privacy Act 2009.',
   alternates: {
     canonical: '/privacy',
   },

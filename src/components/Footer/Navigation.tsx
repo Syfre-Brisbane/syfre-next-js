@@ -49,6 +49,9 @@ export function NavigationCol2() {
         GEO
       </Link>
       <h3 className="font-semibold text-white mb-1 mt-3">Public Sector</h3>
+      <Link href="/solutions" className="font-light text-white hover:text-green-400 transition-colors">
+        AI for Government
+      </Link>
       <Link href="/solutions/state-government" className="font-light text-white hover:text-green-400 transition-colors">
         State Government
       </Link>

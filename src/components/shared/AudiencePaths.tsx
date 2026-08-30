@@ -14,7 +14,7 @@ const paths = [
   {
     sector: 'Queensland Health',
     description: 'Clinically-aware AI governance aligned to the QH AI Framework.',
-    href: '/solutions/queensland-health',
+    href: '/governance',
   },
 ];
 
