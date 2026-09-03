@@ -9,7 +9,7 @@ export const revalidate = 300;
 // those pages' content meaningfully changes — NOT on every deploy. Previously
 // every URL reported `new Date()` on every regeneration, which made the
 // lastModified signal worthless to Google and hurt crawl scheduling.
-const STATIC_LAST_MODIFIED = new Date('2026-06-17');
+const STATIC_LAST_MODIFIED = new Date('2026-08-30');
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // throwOnError: a failed WordPress fetch must NOT silently produce a sitemap
