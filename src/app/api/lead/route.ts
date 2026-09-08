@@ -17,6 +17,24 @@ const sesClient = new SESv2Client({
       : undefined,
 });
 
+// Matches http(s):// and www. links, plus bare domains on TLDs that backlink
+// spam favours. Genuine prospects almost never paste a URL into a first-contact
+// message, whereas backlink/SEO spam ALWAYS carries a link — so a link in the
+// body is our strongest single spam signal.
+const URL_REGEX =
+  /(?:https?:\/\/|www\.)[^\s]+|\b[a-z0-9][a-z0-9-]*\.(?:com|net|org|io|co|ai|shop|xyz|info|biz|ru|top|online|site|store|click|link|space|fun|live|vip|cn|in|pk)\b/i;
+
+// Returns a reason string if the submission looks like spam, otherwise null.
+// Blocked submissions are dropped silently (see POST) rather than 400'd, so the
+// bot gets no signal to adapt to.
+function spamReason(fields: { honeypot: string; blob: string }): string | null {
+  // Honeypot: a hidden field no human sees. Any value means a bot filled it.
+  if (fields.honeypot) return 'honeypot filled';
+  // Link in the message/name/company — the backlink-spam tell.
+  if (URL_REGEX.test(fields.blob)) return 'contains url';
+  return null;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const lead = await request.json();
@@ -28,6 +46,22 @@ export async function POST(request: NextRequest) {
     const company = String(lead.Company || '').trim();
     const description = String(lead.Description || '').trim();
     const leadSource = String(lead.Lead_Source || 'Website').trim();
+    // Decoy field, hidden from real users; only bots populate it.
+    const honeypot = String(lead.Website || '').trim();
+
+    // Drop spam silently: return success so the bot sees no error and doesn't
+    // retry/adapt, but never send the email. Logged to CloudWatch so a genuine
+    // lead caught by a heuristic is still recoverable.
+    const reason = spamReason({
+      honeypot,
+      blob: [description, firstName, lastName, company].join(' '),
+    });
+    if (reason) {
+      console.warn(
+        `Lead blocked (${reason}): ${JSON.stringify({ firstName, lastName, email, phone, company, leadSource, description })}`
+      );
+      return NextResponse.json({ success: true, message: 'Lead submitted successfully' });
+    }
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json(

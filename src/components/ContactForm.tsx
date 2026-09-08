@@ -23,6 +23,7 @@ export default function ContactForm() {
       Description: formData.get('message') as string,
       Lead_Source: 'Website Contact Form',
       Company: 'Prospect', // Default value
+      Website: formData.get('website') as string, // Honeypot; real users leave this empty
     };
 
     try {
@@ -72,6 +73,14 @@ export default function ContactForm() {
       )}
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+        {/* Honeypot: positioned off-screen and hidden from assistive tech, so no
+            real user ever fills it. Spam bots fill every field and get dropped. */}
+        <div aria-hidden="true" className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden">
+          <label>
+            Website
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+          </label>
+        </div>
         <div className="flex flex-col gap-6">
           {/* First row - First name and Last name */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
