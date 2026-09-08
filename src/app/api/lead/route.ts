@@ -17,12 +17,12 @@ const sesClient = new SESv2Client({
       : undefined,
 });
 
-// Matches http(s):// and www. links, plus bare domains on TLDs that backlink
-// spam favours. Genuine prospects almost never paste a URL into a first-contact
-// message, whereas backlink/SEO spam ALWAYS carries a link — so a link in the
-// body is our strongest single spam signal.
-const URL_REGEX =
-  /(?:https?:\/\/|www\.)[^\s]+|\b[a-z0-9][a-z0-9-]*\.(?:com|net|org|io|co|ai|shop|xyz|info|biz|ru|top|online|site|store|click|link|space|fun|live|vip|cn|in|pk)\b/i;
+// Google Sheets share links only — the tell of the current backlink-spam wave
+// ("I put my list into a spreadsheet"). Deliberately narrow: real prospects may
+// legitimately paste their own website or a link, so we do NOT block links in
+// general — only shared Google spreadsheets, which have no place in a genuine
+// first-contact enquiry.
+const GOOGLE_SHEET_REGEX = /(?:docs\.google\.com\/spreadsheets|sheets\.google\.com)/i;
 
 // Returns a reason string if the submission looks like spam, otherwise null.
 // Blocked submissions are dropped silently (see POST) rather than 400'd, so the
@@ -30,8 +30,8 @@ const URL_REGEX =
 function spamReason(fields: { honeypot: string; blob: string }): string | null {
   // Honeypot: a hidden field no human sees. Any value means a bot filled it.
   if (fields.honeypot) return 'honeypot filled';
-  // Link in the message/name/company — the backlink-spam tell.
-  if (URL_REGEX.test(fields.blob)) return 'contains url';
+  // Shared Google spreadsheet in the message/name/company — backlink-spam tell.
+  if (GOOGLE_SHEET_REGEX.test(fields.blob)) return 'google sheet link';
   return null;
 }
 
