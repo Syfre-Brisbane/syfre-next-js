@@ -17,12 +17,19 @@ const sesClient = new SESv2Client({
       : undefined,
 });
 
-// Google Sheets share links only — the tell of the current backlink-spam wave
-// ("I put my list into a spreadsheet"). Deliberately narrow: real prospects may
-// legitimately paste their own website or a link, so we do NOT block links in
-// general — only shared Google spreadsheets, which have no place in a genuine
-// first-contact enquiry.
+// Shared Google spreadsheet — the tell of one backlink-spam wave ("I put my
+// list into a spreadsheet"). Blocked even as a single link; it has no place in
+// a genuine first-contact enquiry.
 const GOOGLE_SHEET_REGEX = /(?:docs\.google\.com\/spreadsheets|sheets\.google\.com)/i;
+
+// Counts whole links (the https:// branch also swallows a leading www., so a
+// URL is never double-counted). Used only for the multi-link threshold below.
+const LINK_REGEX = /https?:\/\/\S+|\bwww\.\S+/gi;
+
+// We deliberately DON'T block links in general — a real prospect may paste their
+// own site (and maybe a LinkedIn). But a message carrying THREE OR MORE links is
+// a site list (guest-post / backlink spam), not an enquiry.
+const MAX_LINKS = 2;
 
 // Returns a reason string if the submission looks like spam, otherwise null.
 // Blocked submissions are dropped silently (see POST) rather than 400'd, so the
@@ -32,6 +39,9 @@ function spamReason(fields: { honeypot: string; blob: string }): string | null {
   if (fields.honeypot) return 'honeypot filled';
   // Shared Google spreadsheet in the message/name/company — backlink-spam tell.
   if (GOOGLE_SHEET_REGEX.test(fields.blob)) return 'google sheet link';
+  // A list of links — guest-post / link-selling spam.
+  const linkCount = (fields.blob.match(LINK_REGEX) || []).length;
+  if (linkCount > MAX_LINKS) return `${linkCount} links`;
   return null;
 }
 
