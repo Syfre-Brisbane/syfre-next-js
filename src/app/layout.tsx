@@ -96,15 +96,16 @@ export default function RootLayout({
                   },
                   address: {
                     '@type': 'PostalAddress',
-                    addressLocality: 'Brisbane',
+                    streetAddress: '52 Prospect Street',
+                    addressLocality: 'Fortitude Valley',
                     addressRegion: 'QLD',
                     postalCode: '4006',
                     addressCountry: 'AU',
                   },
                   geo: {
                     '@type': 'GeoCoordinates',
-                    latitude: -27.4416,
-                    longitude: 153.0356,
+                    latitude: -27.4502,
+                    longitude: 153.039,
                   },
                   areaServed: [
                     { '@type': 'City', name: 'Brisbane' },
