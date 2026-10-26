@@ -2,7 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidateTag, revalidatePath } from 'next/cache';
 import { AmplifyClient, StartJobCommand } from '@aws-sdk/client-amplify';
 
-const REVALIDATION_SECRET = process.env.REVALIDATION_SECRET || 'syfre-revalidate-2026';
+// No fallback: a guessable default in the repo lets anyone purge caches and
+// queue Amplify rebuilds. Unset env var means the route refuses all requests.
+const REVALIDATION_SECRET = process.env.REVALIDATION_SECRET;
 // syfre-next-js app (serves syfre.ai). The previous default (d1058331pi6lxg)
 // was a different app entirely — webhook rebuilds never touched this site.
 const AMPLIFY_APP_ID = process.env.AMPLIFY_APP_ID || 'd1as6cm94gf3nw';
@@ -20,6 +22,10 @@ async function triggerAmplifyRebuild() {
 
 async function handleRevalidate(request: NextRequest) {
   const secret = request.nextUrl.searchParams.get('secret');
+
+  if (!REVALIDATION_SECRET) {
+    return NextResponse.json({ message: 'Revalidation not configured' }, { status: 503 });
+  }
 
   if (secret !== REVALIDATION_SECRET) {
     return NextResponse.json({ message: 'Invalid secret' }, { status: 401 });
