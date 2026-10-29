@@ -150,6 +150,7 @@ export async function getPostBySlug(slug: string): Promise<WordPressPost | null>
           month: 'long',
           year: 'numeric'
         }),
+        datePublished: post.date,
         dateModified: post.modified,
         slug: post.slug,
         categories: post._embedded?.['wp:term']?.[0] || [],
@@ -256,5 +257,6 @@ export interface WordPressArticle {
 
 export interface WordPressPost extends WordPressArticle {
   content: string;
+  datePublished: string; // raw ISO date for JSON-LD; `date` is display-formatted
   dateModified: string;
 }

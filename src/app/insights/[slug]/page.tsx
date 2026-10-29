@@ -80,7 +80,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           ? article.excerpt.substring(0, 157) + '...'
           : article.excerpt,
         image: article.featured_media || 'https://syfre.ai/og-default.png',
-        datePublished: article.date,
+        datePublished: article.datePublished,
         dateModified: article.dateModified,
         author: {
           '@type': 'Person',
