@@ -266,6 +266,7 @@ export const services: Record<string, ServicePageData> = {
     ],
     relatedServices: ['ai-strategy-consulting', 'ai-automation', 'agentic-ai-solutions'],
     relatedInsights: [
+      'what-is-generative-engine-optimisation-and-does-it-actually-work',
       'is-your-competitive-edge-disappearing-into-the-ai-blur',
       'ai-isnt-just-being-built-its-being-negotiated',
       'a-quiet-rise-a-booming-alarm',
