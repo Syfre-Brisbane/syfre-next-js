@@ -60,7 +60,7 @@ export default function OpenFileForm() {
           </svg>
         </div>
         <h3 className="text-2xl font-semibold text-white mb-3">You&apos;re in the queue</h3>
-        <p className="text-zinc-400 text-base leading-relaxed max-w-sm mx-auto">
+        <p className="text-zinc-300 text-base leading-relaxed max-w-sm mx-auto">
           Thanks for registering. We&apos;ll be in touch as early access opens up. If you&apos;d
           like a private demo for your exploration team, just say so when we email.
         </p>
@@ -82,7 +82,7 @@ export default function OpenFileForm() {
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor={`${uid}-name`} className="text-zinc-400 text-sm">
+          <label htmlFor={`${uid}-name`} className="text-zinc-300 text-sm">
             Name <span className="text-red-400">*</span>
           </label>
           <input
@@ -96,7 +96,7 @@ export default function OpenFileForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor={`${uid}-email`} className="text-zinc-400 text-sm">
+          <label htmlFor={`${uid}-email`} className="text-zinc-300 text-sm">
             Work email <span className="text-red-400">*</span>
           </label>
           <input
@@ -110,7 +110,7 @@ export default function OpenFileForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor={`${uid}-company`} className="text-zinc-400 text-sm">
+          <label htmlFor={`${uid}-company`} className="text-zinc-300 text-sm">
             Company <span className="text-red-400">*</span>
           </label>
           <input
@@ -124,8 +124,8 @@ export default function OpenFileForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor={`${uid}-question`} className="text-zinc-400 text-sm">
-            What would you want it to find? <span className="text-zinc-400">(optional)</span>
+          <label htmlFor={`${uid}-question`} className="text-zinc-300 text-sm">
+            What would you want it to find? <span className="text-zinc-300">(optional)</span>
           </label>
           <textarea
             id={`${uid}-question`}
@@ -141,14 +141,14 @@ export default function OpenFileForm() {
           disabled={isSubmitting}
           className={`font-semibold text-base py-3.5 rounded-lg w-full transition-colors mt-1 ${
             isSubmitting
-              ? 'bg-zinc-700 text-zinc-400 cursor-not-allowed'
+              ? 'bg-zinc-700 text-zinc-300 cursor-not-allowed'
               : 'bg-[#E8B84B] text-black hover:bg-[#F0C65F]'
           }`}
         >
           {isSubmitting ? 'One moment...' : 'Get early access'}
         </button>
 
-        <p className="text-zinc-400 text-xs text-center">
+        <p className="text-zinc-300 text-xs text-center">
           No spam — occasional OpenFile updates only. Private demo available for exploration
           teams. Just ask.
         </p>

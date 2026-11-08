@@ -9,10 +9,10 @@ export default function SolutionFrameworkAlignment({ alignments }: SolutionFrame
     <section className="px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4">
-          <span className="text-zinc-400">How does this align to </span>
+          <span className="text-zinc-300">How does this align to </span>
           <span className="text-white font-normal">Queensland Government frameworks?</span>
         </h2>
-        <p className="text-lg font-light text-zinc-400 mb-12 max-w-3xl">
+        <p className="text-lg font-normal text-zinc-300 mb-12 max-w-3xl">
           Every Syfre engagement maps to the governance frameworks Queensland agencies are required to follow.
         </p>
         <div className="flex flex-col gap-6">
@@ -23,8 +23,8 @@ export default function SolutionFrameworkAlignment({ alignments }: SolutionFrame
                   {alignment.framework}
                 </span>
                 <div>
-                  <p className="text-zinc-300 text-sm font-light mb-2">{alignment.requirement}</p>
-                  <p className="text-zinc-400 text-sm font-light">
+                  <p className="text-zinc-300 text-sm font-normal mb-2">{alignment.requirement}</p>
+                  <p className="text-zinc-300 text-sm font-normal">
                     <span className="text-green-400 font-medium">Syfre&apos;s approach: </span>
                     {alignment.syfreApproach}
                   </p>

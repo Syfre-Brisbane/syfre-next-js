@@ -12,7 +12,7 @@ export default function ServiceLinks() {
       <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-white mb-3">
         Explore our AI services
       </h2>
-      <p className="text-zinc-400 font-light mb-8">
+      <p className="text-zinc-300 font-normal mb-8">
         <Link
           href="/services"
           className="text-green-400 underline decoration-green-400 hover:text-green-300 transition-colors"

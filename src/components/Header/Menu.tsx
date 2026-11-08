@@ -29,7 +29,7 @@ export default function Menu() {
                   className={`text-base font-light transition-colors px-2 py-1 rounded-full inline-flex items-center gap-1 ${
                     isActive
                       ? 'text-white bg-zinc-700'
-                      : 'text-zinc-400 hover:text-zinc-200'
+                      : 'text-zinc-300 hover:text-zinc-200'
                   }`}
                 >
                   {item.label}
@@ -50,7 +50,7 @@ export default function Menu() {
                             className={`block px-4 py-2 text-sm font-light transition-colors ${
                               isChildActive
                                 ? 'text-white bg-zinc-700'
-                                : 'text-zinc-400 hover:text-white hover:bg-zinc-700/50'
+                                : 'text-zinc-300 hover:text-white hover:bg-zinc-700/50'
                             }`}
                           >
                             {child.label}
@@ -71,7 +71,7 @@ export default function Menu() {
                 className={`text-base font-light transition-colors px-2 py-1 rounded-full ${
                   isActive
                     ? 'text-white bg-zinc-700'
-                    : 'text-zinc-400 hover:text-zinc-200'
+                    : 'text-zinc-300 hover:text-zinc-200'
                 }`}
               >
                 {item.label}

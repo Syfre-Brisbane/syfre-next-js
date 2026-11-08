@@ -59,7 +59,7 @@ export default function LuandaPresentationForm() {
           </svg>
         </div>
         <h3 className="text-2xl font-semibold text-white mb-3">Your presentation is ready</h3>
-        <p className="text-zinc-400 text-base leading-relaxed max-w-sm mx-auto mb-7">
+        <p className="text-zinc-300 text-base leading-relaxed max-w-sm mx-auto mb-7">
           Click below to open the full PDF. It covers everything from the ACI Africa session in Luanda.
         </p>
         <a
@@ -73,7 +73,7 @@ export default function LuandaPresentationForm() {
           </svg>
           Download the PDF
         </a>
-        <p className="text-zinc-400 text-xs mt-5">
+        <p className="text-zinc-300 text-xs mt-5">
           Tim will also be in touch if you&apos;d like to continue the conversation.
         </p>
       </div>
@@ -92,7 +92,7 @@ export default function LuandaPresentationForm() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
           <div className="flex-1 flex flex-col gap-1.5">
-            <label className="text-zinc-400 text-sm">
+            <label className="text-zinc-300 text-sm">
               First name <span className="text-red-400">*</span>
             </label>
             <input
@@ -104,7 +104,7 @@ export default function LuandaPresentationForm() {
             />
           </div>
           <div className="flex-1 flex flex-col gap-1.5">
-            <label className="text-zinc-400 text-sm">
+            <label className="text-zinc-300 text-sm">
               Last name <span className="text-red-400">*</span>
             </label>
             <input
@@ -118,7 +118,7 @@ export default function LuandaPresentationForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-zinc-400 text-sm">
+          <label className="text-zinc-300 text-sm">
             Work email <span className="text-red-400">*</span>
           </label>
           <input
@@ -131,7 +131,7 @@ export default function LuandaPresentationForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-zinc-400 text-sm">
+          <label className="text-zinc-300 text-sm">
             Airport / Organisation <span className="text-red-400">*</span>
           </label>
           <input
@@ -144,7 +144,7 @@ export default function LuandaPresentationForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-zinc-400 text-sm">
+          <label className="text-zinc-300 text-sm">
             Biggest training challenge
           </label>
           <select
@@ -152,7 +152,7 @@ export default function LuandaPresentationForm() {
             defaultValue=""
             className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white text-base focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent appearance-none"
           >
-            <option value="" className="text-zinc-400">Select one...</option>
+            <option value="" className="text-zinc-300">Select one...</option>
             <option value="Knowledge decay between assessments">Knowledge decay between assessments</option>
             <option value="Proving competency for compliance">Proving competency for compliance</option>
             <option value="Staff time away from operations">Staff time away from operations</option>
@@ -175,7 +175,7 @@ export default function LuandaPresentationForm() {
           {isSubmitting ? 'One moment...' : 'Send me the PDF'}
         </button>
 
-        <p className="text-zinc-400 text-xs text-center">
+        <p className="text-zinc-300 text-xs text-center">
           Free. No obligation. Instant access.
         </p>
       </form>

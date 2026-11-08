@@ -21,10 +21,10 @@ export default function GovernanceCredentials() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-10">
           <h2 className="text-2xl sm:text-3xl font-light leading-tight tracking-tight mb-3">
-            <span className="text-zinc-400">Responsible AI, </span>
+            <span className="text-zinc-300">Responsible AI, </span>
             <span className="text-white font-normal">governed and evidenced</span>
           </h2>
-          <p className="text-base sm:text-lg font-light text-zinc-400 max-w-2xl">
+          <p className="text-base sm:text-lg font-normal text-zinc-300 max-w-2xl">
             We believe AI should augment human capability — and that belief requires governance to back it up.
           </p>
         </div>
@@ -32,7 +32,7 @@ export default function GovernanceCredentials() {
           {credentials.map((cred) => (
             <div key={cred.label} className="border border-zinc-800 rounded-lg p-6 hover:border-zinc-700 transition-colors">
               <div className="text-green-400 font-semibold text-sm mb-2">{cred.label}</div>
-              <p className="text-zinc-400 text-sm font-light">{cred.description}</p>
+              <p className="text-zinc-300 text-sm font-normal">{cred.description}</p>
             </div>
           ))}
         </div>

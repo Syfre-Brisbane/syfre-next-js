@@ -15,7 +15,7 @@ export default function SolutionCard({ solution }: SolutionCardProps) {
       <h2 className="text-white font-medium text-xl group-hover:text-green-400 transition-colors">
         {solution.jsonLd.name}
       </h2>
-      <p className="text-zinc-400 font-light leading-relaxed text-base">
+      <p className="text-zinc-300 font-normal leading-relaxed text-base">
         {solution.description}
       </p>
       <span className="text-green-400 text-sm font-medium mt-auto inline-flex items-center gap-1 group-hover:gap-2 transition-all">

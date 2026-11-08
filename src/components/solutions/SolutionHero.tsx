@@ -20,11 +20,11 @@ export default function SolutionHero({ badge, h1, valueProposition, ctaText, cta
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-light leading-[1.1] tracking-tight">
-            <span className="text-zinc-400">{h1.muted} </span>
+            <span className="text-zinc-300">{h1.muted} </span>
             <span className="text-white font-normal">{h1.highlight}</span>
           </h1>
 
-          <p className="text-lg sm:text-xl font-light leading-relaxed text-zinc-300">
+          <p className="text-lg sm:text-xl font-normal leading-relaxed text-zinc-300">
             {valueProposition}
           </p>
 

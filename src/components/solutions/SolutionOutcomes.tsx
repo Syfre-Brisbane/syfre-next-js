@@ -16,7 +16,7 @@ export default function SolutionOutcomes({ heading, items }: SolutionOutcomesPro
           {items.map((item) => (
             <div key={item.metric} className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
               <div className="text-green-400 font-semibold text-sm mb-2">{item.metric}</div>
-              <p className="text-zinc-400 font-light leading-relaxed">{item.description}</p>
+              <p className="text-zinc-300 font-normal leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>

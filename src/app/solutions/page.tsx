@@ -65,10 +65,10 @@ export default function SolutionsPage() {
           <div className="max-w-5xl mx-auto">
             <div className="max-w-3xl mb-16">
               <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-light leading-[1.1] tracking-tight mb-6">
-                <span className="text-zinc-400">AI Solutions for </span>
+                <span className="text-zinc-300">AI Solutions for </span>
                 <span className="text-white font-normal">Queensland Government</span>
               </h1>
-              <p className="text-lg sm:text-xl font-light leading-relaxed text-zinc-300">
+              <p className="text-lg sm:text-xl font-normal leading-relaxed text-zinc-300">
                 Governance-first AI for state agencies, local councils, and Queensland Health. Every solution is aligned to the QGEA AI Governance Policy and FAIRA requirements — with audit-ready evidence produced as standard.
               </p>
             </div>
@@ -77,7 +77,7 @@ export default function SolutionsPage() {
                 <SolutionCard key={solution.slug} solution={solution} />
               ))}
             </div>
-            <p className="text-zinc-400 font-light mt-10 max-w-3xl">
+            <p className="text-zinc-300 font-normal mt-10 max-w-3xl">
               Not sure where to start? Every solution is delivered by Syfre&apos;s{' '}
               <Link
                 href="/services"

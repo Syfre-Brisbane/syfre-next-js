@@ -72,7 +72,7 @@ export default function WorkshopApplicationForm() {
         <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-white mb-3">
           Apply for an AI Roadmap Workshop
         </h2>
-        <p className="text-zinc-400 font-light leading-relaxed mb-10 max-w-3xl">
+        <p className="text-zinc-300 font-normal leading-relaxed mb-10 max-w-3xl">
           This hands-on workshop is designed for forward-thinking companies with $1M+ in annual
           revenue and 15+ employees who are ready to move beyond curiosity and start building a
           practical, tailored roadmap for AI and automation. Register your interest below and
@@ -88,7 +88,7 @@ export default function WorkshopApplicationForm() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">Application Submitted!</h3>
-              <p className="text-zinc-400">
+              <p className="text-zinc-300">
                 Thank you for your interest in our AI Roadmap Workshop. We&apos;ll be in touch soon to discuss the next steps.
               </p>
             </div>

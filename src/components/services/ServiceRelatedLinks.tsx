@@ -29,14 +29,14 @@ export default function ServiceRelatedLinks({ currentSlug, relatedSlugs }: Servi
                 <h3 className="text-white font-medium text-lg group-hover:text-green-400 transition-colors">
                   {service.jsonLd.serviceName}
                 </h3>
-                <p className="text-zinc-400 font-light text-sm leading-relaxed line-clamp-3">
+                <p className="text-zinc-300 font-normal text-sm leading-relaxed line-clamp-3">
                   {service.description}
                 </p>
               </div>
             </Link>
           ))}
         </div>
-        <p className="text-zinc-400 font-light mt-10">
+        <p className="text-zinc-300 font-normal mt-10">
           Or explore all our{' '}
           <Link
             href="/services"

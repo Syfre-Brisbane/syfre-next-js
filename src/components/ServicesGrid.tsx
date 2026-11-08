@@ -60,7 +60,7 @@ export default function ServicesGrid({ homepage }: ServicesGridProps) {
                     className="object-contain"
                   />
                 </div>
-                <div className="font-light text-2xl text-center tracking-tight leading-8 text-zinc-300">
+                <div className="font-normal text-2xl text-center tracking-tight leading-8 text-zinc-300">
                   <p>{serviceData.service_label}</p>
                 </div>
               </div>
@@ -95,7 +95,7 @@ export default function ServicesGrid({ homepage }: ServicesGridProps) {
                         className="object-contain"
                       />
                     </div>
-                    <div className="font-light text-3xl text-center tracking-tight leading-10 text-zinc-300">
+                    <div className="font-normal text-3xl text-center tracking-tight leading-10 text-zinc-300">
                       <p>{serviceData.service_label}</p>
                     </div>
                   </div>

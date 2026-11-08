@@ -22,7 +22,7 @@ export default function ServiceFeatures({ heading, items }: ServiceFeaturesProps
               </div>
               <div>
                 <span className="text-white font-medium">{item.title}. </span>
-                <span className="text-zinc-300 font-light leading-relaxed">{item.description}</span>
+                <span className="text-zinc-300 font-normal leading-relaxed">{item.description}</span>
               </div>
             </div>
           ))}

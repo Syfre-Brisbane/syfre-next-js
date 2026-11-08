@@ -26,13 +26,13 @@ export default function ServiceComparison({
           {heading}
         </h2>
         {intro && (
-          <p className="text-zinc-400 font-light mb-10 max-w-3xl leading-relaxed">{intro}</p>
+          <p className="text-zinc-300 font-normal mb-10 max-w-3xl leading-relaxed">{intro}</p>
         )}
         <div className="overflow-x-auto mt-10">
           <table className="w-full border-collapse text-left">
             <thead>
               <tr className="border-b border-zinc-700">
-                <th className="py-4 pr-4 text-sm font-medium text-zinc-400 uppercase tracking-wide">
+                <th className="py-4 pr-4 text-sm font-medium text-zinc-300 uppercase tracking-wide">
                   &nbsp;
                 </th>
                 <th className="py-4 px-4 text-base font-medium text-zinc-300">{leftLabel}</th>
@@ -45,8 +45,8 @@ export default function ServiceComparison({
                   <td className="py-5 pr-4 text-sm font-medium text-white whitespace-nowrap">
                     {row.dimension}
                   </td>
-                  <td className="py-5 px-4 text-zinc-400 font-light leading-relaxed">{row.left}</td>
-                  <td className="py-5 pl-4 text-zinc-300 font-light leading-relaxed">{row.right}</td>
+                  <td className="py-5 px-4 text-zinc-300 font-normal leading-relaxed">{row.left}</td>
+                  <td className="py-5 pl-4 text-zinc-300 font-normal leading-relaxed">{row.right}</td>
                 </tr>
               ))}
             </tbody>

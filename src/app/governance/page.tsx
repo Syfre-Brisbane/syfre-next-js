@@ -102,10 +102,10 @@ export default function GovernancePage() {
         <section className="px-4 sm:px-6 py-16 sm:py-20">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-light leading-tight tracking-tight mb-4">
-              <span className="text-zinc-400">How does Syfre address the </span>
+              <span className="text-zinc-300">How does Syfre address the </span>
               <span className="text-white font-normal">8 Australian AI Ethics Principles?</span>
             </h2>
-            <p className="text-lg font-light text-zinc-400 mb-12 max-w-3xl">
+            <p className="text-lg font-normal text-zinc-300 mb-12 max-w-3xl">
               The 8 Australian AI Ethics Principles are the foundation of responsible AI in Australia. Queensland Government agencies must demonstrate alignment to these principles for all AI deployments. Here is how Syfre addresses each one.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -120,7 +120,7 @@ export default function GovernancePage() {
         <section className="px-4 sm:px-6 py-16 sm:py-20">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-light leading-tight tracking-tight mb-8">
-              <span className="text-zinc-400">How we work with </span>
+              <span className="text-zinc-300">How we work with </span>
               <span className="text-white font-normal">Queensland&apos;s public sector</span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -131,7 +131,7 @@ export default function GovernancePage() {
                 <h3 className="text-white font-medium text-lg mb-2 group-hover:text-green-400 transition-colors">
                   State Government
                 </h3>
-                <p className="text-zinc-400 text-sm font-light mb-4">
+                <p className="text-zinc-300 text-sm font-normal mb-4">
                   FAIRA-ready AI governance for Queensland state agencies, with audit-ready evidence for PAF gate reviews.
                 </p>
                 <span className="text-green-400 text-sm font-medium inline-flex items-center gap-1">
@@ -148,7 +148,7 @@ export default function GovernancePage() {
                 <h3 className="text-white font-medium text-lg mb-2 group-hover:text-green-400 transition-colors">
                   Local Councils
                 </h3>
-                <p className="text-zinc-400 text-sm font-light mb-4">
+                <p className="text-zinc-300 text-sm font-normal mb-4">
                   AI solutions for municipal operations with governance scaled for council resources and community transparency.
                 </p>
                 <span className="text-green-400 text-sm font-medium inline-flex items-center gap-1">
@@ -159,7 +159,7 @@ export default function GovernancePage() {
                 </span>
               </Link>
             </div>
-            <p className="text-zinc-400 font-light mt-8">
+            <p className="text-zinc-300 font-normal mt-8">
               Governance is one part of the picture — see the full range of{' '}
               <Link
                 href="/services"

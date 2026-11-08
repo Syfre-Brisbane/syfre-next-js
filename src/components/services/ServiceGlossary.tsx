@@ -34,13 +34,13 @@ export default function ServiceGlossary({ heading, intro, terms }: ServiceGlossa
           {heading}
         </h2>
         {intro && (
-          <p className="text-zinc-400 font-light mb-10 max-w-3xl leading-relaxed">{intro}</p>
+          <p className="text-zinc-300 font-normal mb-10 max-w-3xl leading-relaxed">{intro}</p>
         )}
         <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8 mt-10">
           {terms.map((t, index) => (
             <div key={index}>
               <dt className="text-white font-medium text-lg mb-2">{t.term}</dt>
-              <dd className="text-zinc-400 font-light leading-relaxed">{t.definition}</dd>
+              <dd className="text-zinc-300 font-normal leading-relaxed">{t.definition}</dd>
             </div>
           ))}
         </dl>

@@ -58,7 +58,7 @@ export default function InsightLinks({
         <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-white mb-3">
           From our insights
         </h2>
-        <p className="text-zinc-400 font-light mb-10">
+        <p className="text-zinc-300 font-normal mb-10">
           Practical thinking on AI strategy, automation, and delivery.
         </p>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
@@ -66,7 +66,7 @@ export default function InsightLinks({
             <li key={article.id}>
               <Link
                 href={`/insights/${article.slug}`}
-                className="text-zinc-300 hover:text-green-400 transition-colors font-light leading-relaxed"
+                className="text-zinc-300 hover:text-green-400 transition-colors font-normal leading-relaxed"
               >
                 {article.title}
               </Link>

@@ -11,7 +11,7 @@ export default function ServiceExplainer({ heading, body }: ServiceExplainerProp
           <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-white mb-6">
             {heading}
           </h2>
-          <p className="text-lg font-light leading-relaxed text-zinc-300">
+          <p className="text-lg font-normal leading-relaxed text-zinc-300">
             {body}
           </p>
         </div>

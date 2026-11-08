@@ -35,7 +35,7 @@ export default function ServiceFAQ({ faqs }: ServiceFAQProps) {
           {faqs.map((faq, index) => (
             <div key={index} className="py-8 first:pt-0 last:pb-0">
               <h3 className="text-white font-medium text-lg mb-3">{faq.question}</h3>
-              <p className="text-zinc-400 font-light leading-relaxed">{faq.answer}</p>
+              <p className="text-zinc-300 font-normal leading-relaxed">{faq.answer}</p>
             </div>
           ))}
         </div>

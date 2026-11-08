@@ -11,14 +11,14 @@ export default function SolutionChallenges({ heading, intro, items }: SolutionCh
         <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-white mb-4">
           {heading}
         </h2>
-        <p className="text-lg font-light text-zinc-400 mb-12 max-w-3xl">
+        <p className="text-lg font-normal text-zinc-300 mb-12 max-w-3xl">
           {intro}
         </p>
         <div className="flex flex-col gap-8">
           {items.map((item) => (
             <div key={item.title} className="border-l-2 border-green-400 pl-6">
               <h3 className="text-white font-medium text-lg mb-2">{item.title}</h3>
-              <p className="text-zinc-400 font-light leading-relaxed">{item.description}</p>
+              <p className="text-zinc-300 font-normal leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>

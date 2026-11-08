@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
               <span className="text-white font-normal">Policy</span>
             </h1>
             
-            <p className="text-zinc-400 mb-12 text-lg">
+            <p className="text-zinc-300 mb-12 text-lg">
               Last updated: {new Date().toLocaleDateString()}
             </p>
 

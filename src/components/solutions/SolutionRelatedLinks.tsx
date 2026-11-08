@@ -28,11 +28,11 @@ export default function SolutionRelatedLinks({ currentSlug, relatedSlugs }: Solu
               <h3 className="text-white font-medium text-lg mt-2 mb-2 group-hover:text-green-400 transition-colors">
                 {solution.jsonLd.name}
               </h3>
-              <p className="text-zinc-400 text-sm font-light">{solution.description}</p>
+              <p className="text-zinc-300 text-sm font-normal">{solution.description}</p>
             </Link>
           ))}
         </div>
-        <p className="text-zinc-400 font-light mt-10">
+        <p className="text-zinc-300 font-normal mt-10">
           Or explore Syfre&apos;s full range of{' '}
           <Link
             href="/services"

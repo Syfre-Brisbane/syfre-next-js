@@ -15,7 +15,7 @@ export default function ServiceDifferentiator({ heading, intro, painPoints }: Se
           <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-white mb-4">
             {heading}
           </h2>
-          <p className="text-lg font-light leading-relaxed text-zinc-400 mb-12">
+          <p className="text-lg font-normal leading-relaxed text-zinc-300 mb-12">
             {intro}
           </p>
         </div>
@@ -26,7 +26,7 @@ export default function ServiceDifferentiator({ heading, intro, painPoints }: Se
               className="bg-zinc-900/50 border border-zinc-800 rounded-xl px-5 py-5"
             >
               <h3 className="text-white font-medium text-base mb-3">{point.title}</h3>
-              <p className="text-zinc-400 text-sm leading-relaxed">{point.description}</p>
+              <p className="text-zinc-300 text-sm leading-relaxed">{point.description}</p>
             </div>
           ))}
         </div>

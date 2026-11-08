@@ -58,10 +58,10 @@ export default function AciAfricaForm() {
           </svg>
         </div>
         <h3 className="text-2xl font-semibold text-white mb-3">Your session is reserved</h3>
-        <p className="text-zinc-400 text-lg leading-relaxed max-w-md mx-auto mb-4">
+        <p className="text-zinc-300 text-lg leading-relaxed max-w-md mx-auto mb-4">
           Tim will be in touch within 48 hours to schedule your session and understand your training setup ahead of time.
         </p>
-        <p className="text-zinc-400 text-sm">
+        <p className="text-zinc-300 text-sm">
           Find us at the conference if you want to talk sooner.
         </p>
       </div>
@@ -80,7 +80,7 @@ export default function AciAfricaForm() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
           <div className="flex-1 flex flex-col gap-1.5">
-            <label className="text-zinc-400 text-sm">
+            <label className="text-zinc-300 text-sm">
               First name <span className="text-red-400">*</span>
             </label>
             <input
@@ -92,7 +92,7 @@ export default function AciAfricaForm() {
             />
           </div>
           <div className="flex-1 flex flex-col gap-1.5">
-            <label className="text-zinc-400 text-sm">
+            <label className="text-zinc-300 text-sm">
               Last name <span className="text-red-400">*</span>
             </label>
             <input
@@ -106,7 +106,7 @@ export default function AciAfricaForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-zinc-400 text-sm">
+          <label className="text-zinc-300 text-sm">
             Work email <span className="text-red-400">*</span>
           </label>
           <input
@@ -119,7 +119,7 @@ export default function AciAfricaForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-zinc-400 text-sm">
+          <label className="text-zinc-300 text-sm">
             Airport / Organisation <span className="text-red-400">*</span>
           </label>
           <input
@@ -132,7 +132,7 @@ export default function AciAfricaForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-zinc-400 text-sm">
+          <label className="text-zinc-300 text-sm">
             Biggest training challenge
           </label>
           <select
@@ -140,7 +140,7 @@ export default function AciAfricaForm() {
             defaultValue=""
             className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white text-base focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent appearance-none"
           >
-            <option value="" className="text-zinc-400">Select one...</option>
+            <option value="" className="text-zinc-300">Select one...</option>
             <option value="Knowledge decay between assessments">Knowledge decay between assessments</option>
             <option value="Proving competency for compliance">Proving competency for compliance</option>
             <option value="Staff time away from operations">Staff time away from operations</option>
@@ -162,7 +162,7 @@ export default function AciAfricaForm() {
           {isSubmitting ? 'Sending...' : 'Reserve my strategy session'}
         </button>
 
-        <p className="text-zinc-400 text-xs text-center">
+        <p className="text-zinc-300 text-xs text-center">
           Limited spots available. No obligation.
         </p>
       </form>

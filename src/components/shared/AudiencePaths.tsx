@@ -24,10 +24,10 @@ export default function AudiencePaths() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-10">
           <h2 className="text-2xl sm:text-3xl font-light leading-tight tracking-tight mb-3">
-            <span className="text-zinc-400">AI solutions for </span>
+            <span className="text-zinc-300">AI solutions for </span>
             <span className="text-white font-normal">Queensland&apos;s public sector</span>
           </h2>
-          <p className="text-base sm:text-lg font-light text-zinc-400 max-w-2xl">
+          <p className="text-base sm:text-lg font-normal text-zinc-300 max-w-2xl">
             Governance-first AI for state agencies, local councils, and Queensland Health — built to meet your compliance obligations from day one.
           </p>
         </div>
@@ -41,7 +41,7 @@ export default function AudiencePaths() {
               <h3 className="text-white font-medium text-lg mb-2 group-hover:text-green-400 transition-colors">
                 {path.sector}
               </h3>
-              <p className="text-zinc-400 text-sm font-light mb-4">{path.description}</p>
+              <p className="text-zinc-300 text-sm font-normal mb-4">{path.description}</p>
               <span className="text-green-400 text-sm font-medium inline-flex items-center gap-1">
                 Learn more
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

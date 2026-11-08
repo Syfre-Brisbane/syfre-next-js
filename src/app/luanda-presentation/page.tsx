@@ -40,17 +40,17 @@ export default function LuandaPresentationPage() {
             <div className="flex-1 flex flex-col gap-8 lg:max-w-lg">
               <div className="flex flex-col gap-5">
                 <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-light leading-[1.1] tracking-tight">
-                  <span className="text-zinc-400">What AI means for aviation fire safety training — </span>
+                  <span className="text-zinc-300">What AI means for aviation fire safety training — </span>
                   <span className="text-white font-normal">and what to do about it</span>
                 </h1>
-                <p className="text-lg sm:text-xl font-light leading-relaxed text-zinc-300">
+                <p className="text-lg sm:text-xl font-normal leading-relaxed text-zinc-300">
                   The full presentation from Tim Dean&apos;s ACI Africa session in Luanda. Practical frameworks, a real-world case study, and a clear picture of where aviation training is heading.
                 </p>
               </div>
 
               {/* What's inside */}
               <div className="flex flex-col gap-4">
-                <p className="text-zinc-400 text-sm font-medium uppercase tracking-wider">What&apos;s inside the presentation</p>
+                <p className="text-zinc-300 text-sm font-medium uppercase tracking-wider">What&apos;s inside the presentation</p>
                 <div className="flex gap-3 items-start">
                   <div className="w-6 h-6 rounded-full bg-green-400/10 flex items-center justify-center mt-0.5 shrink-0">
                     <svg className="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,23 +97,23 @@ export default function LuandaPresentationPage() {
               <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl px-5 py-5">
                 <p className="text-white font-medium text-base mb-3">This talk is for you if...</p>
                 <div className="flex flex-col gap-2.5">
-                  <p className="text-zinc-400 text-sm leading-relaxed">You&apos;re responsible for people being competent — not just compliant.</p>
-                  <p className="text-zinc-400 text-sm leading-relaxed">You want better learning outcomes without adding to your training budget or pulling crew off the floor.</p>
-                  <p className="text-zinc-400 text-sm leading-relaxed">You want to understand where AI actually fits in aviation fire safety training — not hype, but practical application.</p>
+                  <p className="text-zinc-300 text-sm leading-relaxed">You&apos;re responsible for people being competent — not just compliant.</p>
+                  <p className="text-zinc-300 text-sm leading-relaxed">You want better learning outcomes without adding to your training budget or pulling crew off the floor.</p>
+                  <p className="text-zinc-300 text-sm leading-relaxed">You want to understand where AI actually fits in aviation fire safety training — not hype, but practical application.</p>
                 </div>
               </div>
 
               {/* Presented by */}
               <div className="border-t border-zinc-800 pt-6">
-                <p className="text-zinc-400 text-sm mb-3">Presented by</p>
+                <p className="text-zinc-300 text-sm mb-3">Presented by</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-sm font-semibold text-green-400">
                     TD
                   </div>
                   <div>
                     <p className="text-white text-sm font-medium">Tim Dean</p>
-                    <p className="text-zinc-400 text-sm">CEO, Qual-eFire</p>
-                    <p className="text-zinc-400 text-xs mt-0.5">Serving aviation organisations across the Middle East, Africa, Asia-Pacific, and the Americas</p>
+                    <p className="text-zinc-300 text-sm">CEO, Qual-eFire</p>
+                    <p className="text-zinc-300 text-xs mt-0.5">Serving aviation organisations across the Middle East, Africa, Asia-Pacific, and the Americas</p>
                   </div>
                 </div>
               </div>
@@ -127,7 +127,7 @@ export default function LuandaPresentationPage() {
               <h2 className="text-xl font-semibold text-white mb-2">
                 Get the full presentation
               </h2>
-              <p className="text-zinc-400 text-base mb-1">
+              <p className="text-zinc-300 text-base mb-1">
                 The complete slide deck from the ACI Africa 2026 session in Luanda — yours instantly.
               </p>
               <p className="text-green-400 text-sm font-medium mb-5">
@@ -151,7 +151,7 @@ export default function LuandaPresentationPage() {
               className="h-6 w-auto opacity-50"
             />
           </Link>
-          <p className="text-zinc-400 text-sm">
+          <p className="text-zinc-300 text-sm">
             &copy; {new Date().getFullYear()} Syfre AI Solutions
           </p>
         </div>

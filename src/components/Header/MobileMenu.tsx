@@ -50,7 +50,7 @@ export default function MobileMenu() {
                           className={`w-full flex items-center justify-between text-lg font-light py-3 px-4 rounded-lg transition-colors ${
                             isActive
                               ? 'text-white bg-zinc-800'
-                              : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+                              : 'text-zinc-300 hover:text-white hover:bg-zinc-800/50'
                           }`}
                         >
                           {item.label}
@@ -76,7 +76,7 @@ export default function MobileMenu() {
                                     className={`block text-base font-light py-2.5 px-4 rounded-lg transition-colors ${
                                       isChildActive
                                         ? 'text-white bg-zinc-800'
-                                        : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+                                        : 'text-zinc-300 hover:text-white hover:bg-zinc-800/50'
                                     }`}
                                   >
                                     {child.label}
@@ -94,7 +94,7 @@ export default function MobileMenu() {
                         className={`block text-lg font-light py-3 px-4 rounded-lg transition-colors ${
                           isActive
                             ? 'text-white bg-zinc-800'
-                            : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+                            : 'text-zinc-300 hover:text-white hover:bg-zinc-800/50'
                         }`}
                       >
                         {item.label}

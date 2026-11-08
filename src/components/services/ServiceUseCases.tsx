@@ -16,7 +16,7 @@ export default function ServiceUseCases({ heading, items }: ServiceUseCasesProps
           {items.map((item, index) => (
             <div key={index} className="bg-zinc-900 rounded-xl p-6 sm:p-8">
               <h3 className="text-white font-medium text-lg mb-3">{item.title}</h3>
-              <p className="text-zinc-400 font-light leading-relaxed">{item.description}</p>
+              <p className="text-zinc-300 font-normal leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>

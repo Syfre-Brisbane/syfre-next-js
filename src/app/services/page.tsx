@@ -230,7 +230,7 @@ export default function ServicesPage() {
               <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-white mb-6">
                 Why work with Syfre
               </h2>
-              <p className="text-lg font-light leading-relaxed text-zinc-300">
+              <p className="text-lg font-normal leading-relaxed text-zinc-300">
                 Most AI consulting firms in Brisbane are IT companies that added AI to the brochure.
                 Syfre is AI-native: the person who sets your strategy is the person who builds the systems.
               </p>
@@ -242,7 +242,7 @@ export default function ServicesPage() {
                   className="border border-zinc-800 rounded-lg p-6 hover:border-zinc-700 transition-colors"
                 >
                   <div className="text-green-400 font-semibold text-sm mb-2">{item.label}</div>
-                  <p className="text-zinc-400 text-base font-light leading-relaxed">{item.description}</p>
+                  <p className="text-zinc-300 text-base font-normal leading-relaxed">{item.description}</p>
                 </div>
               ))}
             </div>
@@ -256,7 +256,7 @@ export default function ServicesPage() {
               <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-white mb-6">
                 AI consulting services in Brisbane
               </h2>
-              <p className="text-lg font-light leading-relaxed text-zinc-300">
+              <p className="text-lg font-normal leading-relaxed text-zinc-300">
                 From strategy through to production. Start with the capability you need, or begin with a
                 roadmap and let the priorities emerge.
               </p>
@@ -276,7 +276,7 @@ export default function ServicesPage() {
               <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-white mb-6">
                 How to work with a Syfre AI consultant
               </h2>
-              <p className="text-lg font-light leading-relaxed text-zinc-300">
+              <p className="text-lg font-normal leading-relaxed text-zinc-300">
                 Engagements are fixed-scope and quoted after the free scoping call. Whether you need a
                 half-day AI Roadmap Workshop or a multi-month build, you will know the cost before you commit.
               </p>
@@ -288,7 +288,7 @@ export default function ServicesPage() {
                     {String(index + 1).padStart(2, '0')}
                   </div>
                   <h3 className="text-white font-medium text-lg mb-2">{step.title}</h3>
-                  <p className="text-zinc-400 text-base font-light leading-relaxed">{step.description}</p>
+                  <p className="text-zinc-300 text-base font-normal leading-relaxed">{step.description}</p>
                 </div>
               ))}
             </div>

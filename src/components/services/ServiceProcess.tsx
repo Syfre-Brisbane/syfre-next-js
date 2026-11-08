@@ -20,7 +20,7 @@ export default function ServiceProcess({ heading, steps }: ServiceProcessProps) 
               </span>
               <div>
                 <h3 className="text-white font-medium text-lg mb-1">{step.title}</h3>
-                <p className="text-zinc-400 font-light leading-relaxed">{step.description}</p>
+                <p className="text-zinc-300 font-normal leading-relaxed">{step.description}</p>
               </div>
             </div>
           ))}

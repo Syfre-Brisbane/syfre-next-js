@@ -8,14 +8,14 @@ export default function GovernanceHero() {
             <span className="text-sm text-zinc-300">AI Governance</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-light leading-[1.1] tracking-tight">
-            <span className="text-zinc-400">Governance & </span>
+            <span className="text-zinc-300">Governance & </span>
             <span className="text-white font-normal">Compliance Hub</span>
           </h1>
           <div className="flex flex-col gap-4">
-            <p className="text-lg sm:text-xl font-light leading-relaxed text-zinc-300">
+            <p className="text-lg sm:text-xl font-normal leading-relaxed text-zinc-300">
               Syfre&apos;s AI governance approach is built on a simple principle: AI should augment human capability, not replace human judgement. Every governance framework, risk assessment, and compliance artefact we produce is grounded in this commitment.
             </p>
-            <p className="text-lg sm:text-xl font-light leading-relaxed text-zinc-300">
+            <p className="text-lg sm:text-xl font-normal leading-relaxed text-zinc-300">
               This page documents how Syfre aligns to the QGEA AI Governance Policy, supports agencies through the FAIRA process, and maps every engagement to the 8 Australian AI Ethics Principles.
             </p>
           </div>

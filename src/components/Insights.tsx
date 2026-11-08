@@ -56,7 +56,7 @@ export default async function Insights() {
                     <h3 className="text-xl font-normal text-white leading-8">
                       {article.title}
                     </h3>
-                    <p className="text-base font-light text-zinc-300 leading-normal">
+                    <p className="text-base font-normal text-zinc-300 leading-normal">
                       {article.excerpt}
                     </p>
                   </div>

@@ -219,7 +219,7 @@ export default function ContactPage() {
             <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-white mb-4">
               What we can help with
             </h2>
-            <p className="text-lg font-light leading-relaxed text-zinc-300">
+            <p className="text-lg font-normal leading-relaxed text-zinc-300">
               Mention any of these in your message, or browse the full range of{' '}
               <Link href="/services" className="text-green-400 hover:text-green-300 transition-colors">
                 AI consulting in Brisbane
@@ -236,7 +236,7 @@ export default function ContactPage() {
                 className="group bg-zinc-950 border border-zinc-800 rounded-lg p-6 flex flex-col gap-3 hover:border-zinc-700 transition-colors"
               >
                 <h3 className="text-white font-medium text-lg">{topic.name}</h3>
-                <p className="text-zinc-400 font-light text-sm leading-relaxed">
+                <p className="text-zinc-300 font-normal text-sm leading-relaxed">
                   {topic.description}
                 </p>
                 <span className="text-green-400 group-hover:text-green-300 text-sm font-light mt-auto pt-2">
@@ -258,7 +258,7 @@ export default function ContactPage() {
             {contactFaqs.map((faq, index) => (
               <div key={index} className="py-8 first:pt-0 last:pb-0">
                 <h3 className="text-white font-medium text-lg mb-3">{faq.question}</h3>
-                <p className="text-zinc-400 font-light leading-relaxed">{faq.answer}</p>
+                <p className="text-zinc-300 font-normal leading-relaxed">{faq.answer}</p>
               </div>
             ))}
           </div>

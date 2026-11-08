@@ -40,10 +40,10 @@ export default function AciAfricaPage() {
             <div className="flex-1 flex flex-col gap-8 lg:max-w-lg">
               <div className="flex flex-col gap-5">
                 <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-light leading-[1.1] tracking-tight">
-                  <span className="text-zinc-400">Don&apos;t discover a competency gap </span>
+                  <span className="text-zinc-300">Don&apos;t discover a competency gap </span>
                   <span className="text-white font-normal">after an incident</span>
                 </h1>
-                <p className="text-lg sm:text-xl font-light leading-relaxed text-zinc-300">
+                <p className="text-lg sm:text-xl font-normal leading-relaxed text-zinc-300">
                   Annual assessments check the box. They don&apos;t guarantee your fire crews are competent today. Qual-eFire catches knowledge decay before it reaches the apron.
                 </p>
               </div>
@@ -52,15 +52,15 @@ export default function AciAfricaPage() {
               <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl px-5 py-5">
                 <p className="text-white font-medium text-base mb-3">Sound familiar?</p>
                 <div className="flex flex-col gap-2.5">
-                  <p className="text-zinc-400 text-sm leading-relaxed">Your team passed their last assessment, but you can&apos;t be sure they&apos;d pass one today.</p>
-                  <p className="text-zinc-400 text-sm leading-relaxed">Training pulls crew off the floor for days when you&apos;re already short-staffed.</p>
-                  <p className="text-zinc-400 text-sm leading-relaxed">You have shelves of training material, but no way to know if any of it stuck.</p>
+                  <p className="text-zinc-300 text-sm leading-relaxed">Your team passed their last assessment, but you can&apos;t be sure they&apos;d pass one today.</p>
+                  <p className="text-zinc-300 text-sm leading-relaxed">Training pulls crew off the floor for days when you&apos;re already short-staffed.</p>
+                  <p className="text-zinc-300 text-sm leading-relaxed">You have shelves of training material, but no way to know if any of it stuck.</p>
                 </div>
               </div>
 
               {/* Why bespoke */}
               <div className="flex flex-col gap-4">
-                <p className="text-zinc-400 text-sm font-medium uppercase tracking-wider">Every airport is different. So is every install.</p>
+                <p className="text-zinc-300 text-sm font-medium uppercase tracking-wider">Every airport is different. So is every install.</p>
                 <div className="flex gap-3 items-start">
                   <div className="w-6 h-6 rounded-full bg-green-400/10 flex items-center justify-center mt-0.5 shrink-0">
                     <svg className="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,7 +95,7 @@ export default function AciAfricaPage() {
 
               {/* What you get in the workshop */}
               <div className="border-t border-zinc-800 pt-6">
-                <p className="text-zinc-400 text-sm font-medium uppercase tracking-wider mb-4">What you get in the workshop</p>
+                <p className="text-zinc-300 text-sm font-medium uppercase tracking-wider mb-4">What you get in the workshop</p>
                 <div className="flex flex-col gap-3">
                   <div className="flex gap-3 items-start">
                     <span className="text-green-400 font-semibold text-sm mt-0.5 w-5 shrink-0">1.</span>
@@ -114,14 +114,14 @@ export default function AciAfricaPage() {
 
               {/* Presented by */}
               <div className="border-t border-zinc-800 pt-6">
-                <p className="text-zinc-400 text-sm mb-3">Presented by</p>
+                <p className="text-zinc-300 text-sm mb-3">Presented by</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-sm font-semibold text-green-400">
                     TD
                   </div>
                   <div>
                     <p className="text-white text-sm font-medium">Tim Dean</p>
-                    <p className="text-zinc-400 text-sm">Qual-eFire</p>
+                    <p className="text-zinc-300 text-sm">Qual-eFire</p>
                   </div>
                 </div>
               </div>
@@ -135,7 +135,7 @@ export default function AciAfricaPage() {
               <h2 className="text-xl font-semibold text-white mb-2">
                 Reserve your AI Training Strategy Session
               </h2>
-              <p className="text-zinc-400 text-base mb-1">
+              <p className="text-zinc-300 text-base mb-1">
                 A one-on-one session where we assess your current training and build a strategy around your airport&apos;s specific requirements.
               </p>
               <p className="text-green-400 text-sm font-medium mb-5">
@@ -159,7 +159,7 @@ export default function AciAfricaPage() {
               className="h-6 w-auto opacity-50"
             />
           </Link>
-          <p className="text-zinc-400 text-sm">
+          <p className="text-zinc-300 text-sm">
             &copy; {new Date().getFullYear()} Syfre AI Solutions
           </p>
         </div>

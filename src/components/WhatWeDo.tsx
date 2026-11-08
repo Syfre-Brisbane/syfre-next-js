@@ -69,7 +69,7 @@ export default function WhatWeDo({ homepage }: WhatWeDoProps) {
       <div className="max-w-7xl mx-auto">
         {/* Main heading - spans full width above everything */}
         <div className="flex flex-col gap-8 mb-8">
-          <h2 className="text-3xl sm:text-6xl font-light leading-tight sm:leading-tight text-zinc-300 tracking-tight sm:tracking-tight max-w-5xl">
+          <h2 className="text-3xl sm:text-6xl font-normal leading-tight sm:leading-tight text-zinc-300 tracking-tight sm:tracking-tight max-w-5xl">
             We work with <span className="text-white font-normal">ambitious</span> teams to build systems that generate real commercial impact.
           </h2>
         </div>
@@ -103,7 +103,7 @@ export default function WhatWeDo({ homepage }: WhatWeDoProps) {
                   <h3 className="text-2xl font-light leading-8 text-white tracking-tight">
                     {item.title}
                   </h3>
-                  <p className="text-sm font-light text-zinc-400 leading-6">
+                  <p className="text-sm font-normal text-zinc-300 leading-6">
                     {item.description}
                   </p>
                 </div>
@@ -136,12 +136,12 @@ export default function WhatWeDo({ homepage }: WhatWeDoProps) {
                       className="flex items-center justify-between w-full text-left hover:opacity-80 transition-all duration-300 cursor-pointer"
                     >
                       <span className={`text-lg font-light transition-colors duration-300 ${
-                        isActive ? 'text-zinc-100' : 'text-zinc-400'
+                        isActive ? 'text-zinc-100' : 'text-zinc-300'
                       }`}>
                         {item.title}
                       </span>
                       <ArrowRightIcon className={`w-6 h-6 transition-colors duration-300 ${
-                        isActive ? 'text-green-400' : 'text-zinc-400'
+                        isActive ? 'text-green-400' : 'text-zinc-300'
                       }`} />
                     </button>
                     {index < wwdData.length - 1 && (
@@ -174,7 +174,7 @@ export default function WhatWeDo({ homepage }: WhatWeDoProps) {
                     <h3 className="text-3xl font-light leading-tight text-white tracking-tight">
                       {item.title}
                     </h3>
-                    <p className="text-base font-light text-zinc-400">
+                    <p className="text-base font-normal text-zinc-300">
                       {item.description}
                     </p>
                   </div>

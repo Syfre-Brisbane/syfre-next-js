@@ -14,8 +14,8 @@ export default function FrameworkCard({ principle, index }: FrameworkCardProps) 
         </span>
         <div>
           <h3 className="text-white font-medium text-lg mb-2">{principle.name}</h3>
-          <p className="text-zinc-400 text-sm font-light mb-3">{principle.description}</p>
-          <p className="text-zinc-300 text-sm font-light">
+          <p className="text-zinc-300 text-sm font-normal mb-3">{principle.description}</p>
+          <p className="text-zinc-300 text-sm font-normal">
             <span className="text-green-400 font-medium">Syfre&apos;s commitment: </span>
             {principle.syfreCommitment}
           </p>

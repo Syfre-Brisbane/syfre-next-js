@@ -31,7 +31,7 @@ export default function OpenFilePage() {
             className="h-8 w-auto"
           />
         </Link>
-        <span className="font-mono text-xs text-zinc-400 tracking-wider hidden sm:block">
+        <span className="font-mono text-xs text-zinc-300 tracking-wider hidden sm:block">
           OPENFILE / EARLY ACCESS
         </span>
       </header>
@@ -46,12 +46,12 @@ export default function OpenFilePage() {
                 <div className="flex flex-col gap-5">
                   <p className={`font-mono text-2xl sm:text-3xl font-semibold tracking-tight ${GOLD}`}>
                     OpenFile
-                    <span className="text-zinc-400 font-normal text-base sm:text-lg ml-3">by Syfre</span>
+                    <span className="text-zinc-300 font-normal text-base sm:text-lg ml-3">by Syfre</span>
                   </p>
                   <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-light leading-[1.08] tracking-tight">
                     Find what&apos;s been <span className="font-normal">overlooked.</span>
                   </h1>
-                  <p className="text-lg sm:text-xl font-light leading-relaxed text-zinc-300">
+                  <p className="text-lg sm:text-xl font-normal leading-relaxed text-zinc-300">
                     OpenFile loads your exploration data, the public archives, or both —
                     extracts every drill intercept, has a human verify each number against
                     the source, and uses AI to flag what deserves a second look: intercepts
@@ -90,10 +90,10 @@ export default function OpenFilePage() {
                   <span className="bg-[#E8B84B]/10 text-[#E8B84B] text-xs font-mono font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
                     Early access
                   </span>
-                  <span className="text-zinc-400 text-xs">Takes 30 seconds</span>
+                  <span className="text-zinc-300 text-xs">Takes 30 seconds</span>
                 </div>
                 <h2 className="text-xl font-semibold text-white mb-2">Get early access</h2>
-                <p className="text-zinc-400 text-base mb-5">
+                <p className="text-zinc-300 text-base mb-5">
                   Built with mining operators — help shape it.
                 </p>
                 <OpenFileForm />
@@ -109,7 +109,7 @@ export default function OpenFilePage() {
             <h2 className="text-3xl sm:text-4xl font-light leading-tight tracking-tight mb-6">
               Nobody has read all of it.
             </h2>
-            <div className="flex flex-col gap-4 text-zinc-300 text-lg font-light leading-relaxed">
+            <div className="flex flex-col gap-4 text-zinc-300 text-lg font-normal leading-relaxed">
               <p>
                 Every exploration campaign ends in a report. They pile up on your own
                 server and in the government&apos;s open-file archives. Intercepts get
@@ -166,7 +166,7 @@ export default function OpenFilePage() {
             <h2 className="text-3xl sm:text-4xl font-light leading-tight tracking-tight mb-6">
               Questions a team of geos would take weeks to answer.
             </h2>
-            <p className="text-zinc-300 text-lg font-light leading-relaxed max-w-2xl mb-10">
+            <p className="text-zinc-300 text-lg font-normal leading-relaxed max-w-2xl mb-10">
               Ask in plain English, across everything you&apos;ve loaded. Every answer
               cites the documents it came from, and you can click straight through to the
               source.
@@ -196,33 +196,33 @@ export default function OpenFilePage() {
             <div className="grid sm:grid-cols-2 gap-x-12 gap-y-8 mt-14">
               <div className="flex flex-col gap-2">
                 <h3 className="text-white text-lg font-medium">Every hole on one map</h3>
-                <p className="text-zinc-400 text-base leading-relaxed">
+                <p className="text-zinc-300 text-base leading-relaxed">
                   Drill collars from everything you&apos;ve loaded, with the
                   government&apos;s official deposit register overlaid.
                 </p>
               </div>
               <div className="flex flex-col gap-2">
                 <h3 className="text-white text-lg font-medium">Decades fused in 3D</h3>
-                <p className="text-zinc-400 text-base leading-relaxed">
+                <p className="text-zinc-300 text-base leading-relaxed">
                   Drilling from different companies and different decades over the same
                   ground, in one 3D scene.
                 </p>
               </div>
               <div className="flex flex-col gap-2">
                 <h3 className="text-white text-lg font-medium">Answers with citations</h3>
-                <p className="text-zinc-400 text-base leading-relaxed">
+                <p className="text-zinc-300 text-base leading-relaxed">
                   No black box — every answer names the reports it came from.
                 </p>
               </div>
               <div className="flex flex-col gap-2">
                 <h3 className="text-white text-lg font-medium">Straight to the source</h3>
-                <p className="text-zinc-400 text-base leading-relaxed">
+                <p className="text-zinc-300 text-base leading-relaxed">
                   Click from any answer or any hole to the original document.
                 </p>
               </div>
             </div>
 
-            <p className="text-zinc-400 text-base leading-relaxed border-l-2 border-[#E8B84B]/40 pl-5 mt-12 max-w-2xl">
+            <p className="text-zinc-300 text-base leading-relaxed border-l-2 border-[#E8B84B]/40 pl-5 mt-12 max-w-2xl">
               Other tools visualise the data you already have. OpenFile also creates data
               nobody has — extracted from reports no one has read in decades, verified
               against the source, and searched with your own data in one place.
@@ -239,7 +239,7 @@ export default function OpenFilePage() {
                 <h2 className="text-3xl sm:text-4xl font-light leading-tight tracking-tight mb-6">
                   Your next target may already be on file.
                 </h2>
-                <p className="text-zinc-300 text-lg font-light leading-relaxed max-w-xl">
+                <p className="text-zinc-300 text-lg font-normal leading-relaxed max-w-xl">
                   OpenFile is in early access, built with exploration teams. Register your
                   interest, tell us what you&apos;d ask it, and help shape what it becomes.
                 </p>
@@ -264,7 +264,7 @@ export default function OpenFilePage() {
               className="h-6 w-auto opacity-50"
             />
           </Link>
-          <p className="text-zinc-400 text-sm">
+          <p className="text-zinc-300 text-sm">
             &copy; {new Date().getFullYear()} Syfre AI Solutions
           </p>
         </div>
