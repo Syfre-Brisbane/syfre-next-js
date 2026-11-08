@@ -8,6 +8,9 @@ import ServiceDifferentiator from './ServiceDifferentiator';
 import ServiceFeatures from './ServiceFeatures';
 import ServiceProcess from './ServiceProcess';
 import ServiceUseCases from './ServiceUseCases';
+import ServiceKeyStats from './ServiceKeyStats';
+import ServiceComparison from './ServiceComparison';
+import ServiceGlossary from './ServiceGlossary';
 import ServiceRelatedLinks from './ServiceRelatedLinks';
 import ServiceFAQ from './ServiceFAQ';
 import ServiceJsonLd from './ServiceJsonLd';
@@ -47,6 +50,22 @@ export default async function ServicePageLayout({ service, children }: ServicePa
           heading={service.explainer.heading}
           body={service.explainer.body}
         />
+        {service.keyStats && (
+          <ServiceKeyStats
+            heading={service.keyStats.heading}
+            intro={service.keyStats.intro}
+            stats={service.keyStats.stats}
+          />
+        )}
+        {service.comparison && (
+          <ServiceComparison
+            heading={service.comparison.heading}
+            intro={service.comparison.intro}
+            leftLabel={service.comparison.leftLabel}
+            rightLabel={service.comparison.rightLabel}
+            rows={service.comparison.rows}
+          />
+        )}
         <ServiceClients />
         <ServiceDifferentiator
           heading={service.differentiator.heading}
@@ -66,6 +85,13 @@ export default async function ServicePageLayout({ service, children }: ServicePa
           items={service.useCases.items}
         />
         {children}
+        {service.glossary && (
+          <ServiceGlossary
+            heading={service.glossary.heading}
+            intro={service.glossary.intro}
+            terms={service.glossary.terms}
+          />
+        )}
         <ServiceFAQ faqs={service.faqs} />
         <ServiceRelatedLinks
           currentSlug={service.slug}

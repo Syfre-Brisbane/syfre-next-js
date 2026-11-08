@@ -263,6 +263,22 @@ export const services: Record<string, ServicePageData> = {
         question: 'Do I still need SEO if I invest in GEO?',
         answer: 'Yes. GEO and SEO work together. 73% of ChatGPT Search results overlap with Bing rankings, and 61% of AI Overviews draw from Google page one results. A strong SEO foundation makes your GEO efforts more effective, and vice versa.',
       },
+      {
+        question: 'Which AI platforms does GEO target?',
+        answer: 'Our GEO work targets the AI platforms your customers actually use: ChatGPT, Google Gemini, Google AI Overviews and AI Mode, Perplexity, and Microsoft Copilot. We track your brand\'s visibility across all of them, because each retrieves and cites sources differently and your customers do not stay on just one.',
+      },
+      {
+        question: 'How is GEO measured?',
+        answer: 'GEO is measured by how often AI models mention and cite your brand, not by keyword rankings. We track citation frequency (how often your pages are used as a source), mention share of voice (how often you appear versus competitors in AI answers), sentiment, and which prompts you appear for. You get a monthly baseline and trend across every major AI platform.',
+      },
+      {
+        question: 'Does GEO work for B2B professional services?',
+        answer: 'Yes. B2B professional services are among the strongest fits for GEO, because buyers increasingly research firms by asking AI assistants for shortlists and comparisons before making contact. When an AI answer names three recommended firms and yours is not one of them, you never enter the buying process. GEO makes sure your firm is in that answer.',
+      },
+      {
+        question: 'How much does GEO cost in Australia?',
+        answer: 'GEO in Australia is typically delivered as a monthly programme rather than a one-off project, because AI visibility has to be built and maintained as models update. Cost depends on the size of your website, the competitiveness of your category, and whether you need audit and strategy only or full implementation. We scope each engagement after an initial AI visibility audit so you only pay for the work that will move your citations.',
+      },
     ],
     relatedServices: ['ai-strategy-consulting', 'ai-automation', 'agentic-ai-solutions'],
     relatedInsights: [
@@ -271,6 +287,106 @@ export const services: Record<string, ServicePageData> = {
       'ai-isnt-just-being-built-its-being-negotiated',
       'a-quiet-rise-a-booming-alarm',
     ],
+    keyStats: {
+      heading: 'Why GEO matters now',
+      intro: 'Search behaviour is shifting from browsing results to reading one AI-generated answer. If your brand is not in that answer, the opportunity passes you by.',
+      stats: [
+        {
+          value: '~60%',
+          label: 'of Google searches now end without a click — the answer happens on the results page, not on your website.',
+          source: 'SparkToro',
+          sourceUrl: 'https://sparktoro.com/blog/2024-zero-click-search-study/',
+        },
+        {
+          value: '25%',
+          label: 'projected fall in traditional search engine volume by 2026 as users move to AI assistants and chatbots.',
+          source: 'Gartner',
+          sourceUrl: 'https://www.gartner.com/en/newsroom/press-releases/2024-02-19-gartner-predicts-search-engine-volume-will-drop-25-percent-by-2026-due-to-ai-chatbots-and-other-virtual-agents',
+        },
+        {
+          value: 'Up to 40%',
+          label: 'increase in a source\'s visibility in AI-generated answers using proven generative engine optimisation techniques.',
+          source: 'Princeton GEO study (arXiv)',
+          sourceUrl: 'https://arxiv.org/abs/2311.09735',
+        },
+      ],
+    },
+    comparison: {
+      heading: 'GEO vs SEO: what\'s the difference?',
+      intro: 'GEO does not replace SEO — it extends it. SEO earns rankings on a results page; GEO earns citations inside an AI-generated answer. The strongest strategies do both.',
+      leftLabel: 'Traditional SEO',
+      rightLabel: 'Generative Engine Optimisation (GEO)',
+      rows: [
+        {
+          dimension: 'Goal',
+          left: 'Rank your web pages higher in search results.',
+          right: 'Get your brand cited and recommended inside AI-generated answers.',
+        },
+        {
+          dimension: 'Optimises for',
+          left: 'Keywords, backlinks and page rankings.',
+          right: 'Entities, authority signals, structured data and brand mentions.',
+        },
+        {
+          dimension: 'Surfaces on',
+          left: 'Google and Bing results pages.',
+          right: 'ChatGPT, Gemini, Perplexity, Copilot and Google AI Overviews.',
+        },
+        {
+          dimension: 'How content is used',
+          left: 'Indexed and ranked against competing pages.',
+          right: 'Retrieved, synthesised and attributed as a source.',
+        },
+        {
+          dimension: 'Success metric',
+          left: 'Rankings and organic clicks.',
+          right: 'Citation frequency, brand mentions and share of voice.',
+        },
+        {
+          dimension: 'User action',
+          left: 'Clicks through to your website.',
+          right: 'Reads the answer — and may never visit a website at all.',
+        },
+      ],
+    },
+    glossary: {
+      heading: 'GEO and AI search terms',
+      intro: 'The vocabulary of generative engine optimisation, in plain English.',
+      terms: [
+        {
+          term: 'Generative Engine Optimisation (GEO)',
+          definition: 'The practice of optimising your digital presence so AI models cite, recommend and accurately represent your brand in their generated answers.',
+        },
+        {
+          term: 'Answer Engine Optimisation (AEO)',
+          definition: 'Closely related to GEO; optimising content to be the direct answer an AI assistant or answer engine returns to a question.',
+        },
+        {
+          term: 'Large Language Model (LLM)',
+          definition: 'The AI system behind tools like ChatGPT, Gemini and Claude that generates answers by predicting text from patterns learned across the web.',
+        },
+        {
+          term: 'Retrieval-Augmented Generation (RAG)',
+          definition: 'The technique where an AI model retrieves live sources from the web and uses them to ground and cite its answer — the moment your brand can be included.',
+        },
+        {
+          term: 'AI Overview',
+          definition: 'The AI-written summary Google shows above its classic results, with links to the pages the answer draws on.',
+        },
+        {
+          term: 'Citation',
+          definition: 'When an AI answer uses your page as a source and links to or names it — the primary measure of GEO success.',
+        },
+        {
+          term: 'Entity',
+          definition: 'A distinct person, brand, product or concept an AI model recognises and reasons about. Strong entity signals make a model associate your brand with your expertise.',
+        },
+        {
+          term: 'Share of voice',
+          definition: 'How often your brand appears in AI answers for a topic, relative to competitors — the AI-search equivalent of market share.',
+        },
+      ],
+    },
     jsonLd: {
       serviceName: 'Generative Engine Optimisation (GEO)',
       serviceDescription: 'AI search optimisation services to improve brand visibility in ChatGPT, Gemini, Perplexity, and Google AI Overviews.',

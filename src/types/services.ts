@@ -24,6 +24,24 @@ export interface ServiceExplainer {
   body: string;
 }
 
+export interface ServiceStat {
+  value: string;
+  label: string;
+  source: string;
+  sourceUrl?: string;
+}
+
+export interface ServiceComparisonRow {
+  dimension: string;
+  left: string;
+  right: string;
+}
+
+export interface ServiceGlossaryTerm {
+  term: string;
+  definition: string;
+}
+
 export interface ServicePageData {
   slug: string;
   title: string;
@@ -62,6 +80,26 @@ export interface ServicePageData {
   // WordPress post slugs most relevant to this service, shown first in the
   // "From our insights" block. Slugs that no longer exist are skipped.
   relatedInsights?: string[];
+  // Optional, citation-oriented sections. Rendered only when present, so other
+  // service pages are unaffected. Built for GEO: LLMs preferentially extract
+  // sourced stats, comparison tables, and defined-term glossaries.
+  keyStats?: {
+    heading: string;
+    intro?: string;
+    stats: ServiceStat[];
+  };
+  comparison?: {
+    heading: string;
+    intro?: string;
+    leftLabel: string;
+    rightLabel: string;
+    rows: ServiceComparisonRow[];
+  };
+  glossary?: {
+    heading: string;
+    intro?: string;
+    terms: ServiceGlossaryTerm[];
+  };
   jsonLd: {
     serviceName: string;
     serviceDescription: string;
