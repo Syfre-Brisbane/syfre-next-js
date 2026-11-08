@@ -25,7 +25,7 @@ export default function ServiceKeyStats({ heading, intro, stats }: ServiceKeySta
             <div key={index} className="bg-zinc-900 rounded-xl p-6 sm:p-8">
               <p className="text-4xl sm:text-5xl font-light text-green-400 mb-4">{stat.value}</p>
               <p className="text-zinc-300 font-light leading-relaxed mb-4">{stat.label}</p>
-              <p className="text-sm text-zinc-500 font-light">
+              <p className="text-sm text-zinc-400 font-light">
                 {stat.sourceUrl ? (
                   <a
                     href={stat.sourceUrl}

@@ -125,14 +125,14 @@ export default function OpenFileForm() {
 
         <div className="flex flex-col gap-1.5">
           <label htmlFor={`${uid}-question`} className="text-zinc-400 text-sm">
-            What would you want it to find? <span className="text-zinc-600">(optional)</span>
+            What would you want it to find? <span className="text-zinc-400">(optional)</span>
           </label>
           <textarea
             id={`${uid}-question`}
             name="question"
             rows={3}
             placeholder="e.g. Intercepts on our ground that were never followed up"
-            className={`${inputClasses} placeholder:text-zinc-600 resize-none`}
+            className={`${inputClasses} placeholder:text-zinc-500 resize-none`}
           />
         </div>
 
@@ -148,7 +148,7 @@ export default function OpenFileForm() {
           {isSubmitting ? 'One moment...' : 'Get early access'}
         </button>
 
-        <p className="text-zinc-600 text-xs text-center">
+        <p className="text-zinc-400 text-xs text-center">
           No spam — occasional OpenFile updates only. Private demo available for exploration
           teams. Just ask.
         </p>

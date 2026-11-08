@@ -153,7 +153,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <span className="text-sm text-zinc-300">
                   {article.date}
                 </span>
-                <span className="text-sm text-zinc-500">
+                <span className="text-sm text-zinc-400">
                   Steve Macfarlane
                 </span>
                 {showBadge && (
@@ -171,14 +171,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </h1>
               {/* Share Section */}
               <div className="flex items-center gap-3">
-                <span className="text-sm text-zinc-500">Share this insight</span>
+                <span className="text-sm text-zinc-400">Share this insight</span>
                 <ShareButtons title={article.title} />
               </div>
             </div>
             {/* Article Content */}
             <div className="flex flex-col gap-12">
               {/* Breadcrumb */}
-              <div className="flex items-center gap-2 text-sm text-zinc-500">
+              <div className="flex items-center gap-2 text-sm text-zinc-400">
                 <Link href="/" className="hover:text-zinc-300 transition-colors">Home</Link>
                 <Image src="/arrow-right.png" alt="arrow" width={12} height={12} />
                 <Link href="/insights" className="hover:text-zinc-300 transition-colors">Insights</Link>

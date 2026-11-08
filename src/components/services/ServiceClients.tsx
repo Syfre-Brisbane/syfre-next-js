@@ -14,7 +14,7 @@ export default function ServiceClients() {
   return (
     <section className="px-4 sm:px-6 py-12 sm:py-16">
       <div className="max-w-5xl mx-auto">
-        <p className="text-sm text-zinc-500 mb-8 text-center">Trusted by</p>
+        <p className="text-sm text-zinc-400 mb-8 text-center">Trusted by</p>
         <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
           {clients.map((client) => (
             <a

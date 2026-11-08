@@ -61,7 +61,7 @@ export default function AciAfricaForm() {
         <p className="text-zinc-400 text-lg leading-relaxed max-w-md mx-auto mb-4">
           Tim will be in touch within 48 hours to schedule your session and understand your training setup ahead of time.
         </p>
-        <p className="text-zinc-500 text-sm">
+        <p className="text-zinc-400 text-sm">
           Find us at the conference if you want to talk sooner.
         </p>
       </div>
@@ -140,7 +140,7 @@ export default function AciAfricaForm() {
             defaultValue=""
             className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white text-base focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent appearance-none"
           >
-            <option value="" className="text-zinc-500">Select one...</option>
+            <option value="" className="text-zinc-400">Select one...</option>
             <option value="Knowledge decay between assessments">Knowledge decay between assessments</option>
             <option value="Proving competency for compliance">Proving competency for compliance</option>
             <option value="Staff time away from operations">Staff time away from operations</option>
@@ -162,7 +162,7 @@ export default function AciAfricaForm() {
           {isSubmitting ? 'Sending...' : 'Reserve my strategy session'}
         </button>
 
-        <p className="text-zinc-600 text-xs text-center">
+        <p className="text-zinc-400 text-xs text-center">
           Limited spots available. No obligation.
         </p>
       </form>

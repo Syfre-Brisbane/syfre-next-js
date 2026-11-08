@@ -32,7 +32,7 @@ export default function ServiceComparison({
           <table className="w-full border-collapse text-left">
             <thead>
               <tr className="border-b border-zinc-700">
-                <th className="py-4 pr-4 text-sm font-medium text-zinc-500 uppercase tracking-wide">
+                <th className="py-4 pr-4 text-sm font-medium text-zinc-400 uppercase tracking-wide">
                   &nbsp;
                 </th>
                 <th className="py-4 px-4 text-base font-medium text-zinc-300">{leftLabel}</th>

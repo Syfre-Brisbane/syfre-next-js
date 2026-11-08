@@ -73,7 +73,7 @@ export default function LuandaPresentationForm() {
           </svg>
           Download the PDF
         </a>
-        <p className="text-zinc-600 text-xs mt-5">
+        <p className="text-zinc-400 text-xs mt-5">
           Tim will also be in touch if you&apos;d like to continue the conversation.
         </p>
       </div>
@@ -152,7 +152,7 @@ export default function LuandaPresentationForm() {
             defaultValue=""
             className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white text-base focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent appearance-none"
           >
-            <option value="" className="text-zinc-500">Select one...</option>
+            <option value="" className="text-zinc-400">Select one...</option>
             <option value="Knowledge decay between assessments">Knowledge decay between assessments</option>
             <option value="Proving competency for compliance">Proving competency for compliance</option>
             <option value="Staff time away from operations">Staff time away from operations</option>
@@ -175,7 +175,7 @@ export default function LuandaPresentationForm() {
           {isSubmitting ? 'One moment...' : 'Send me the PDF'}
         </button>
 
-        <p className="text-zinc-600 text-xs text-center">
+        <p className="text-zinc-400 text-xs text-center">
           Free. No obligation. Instant access.
         </p>
       </form>

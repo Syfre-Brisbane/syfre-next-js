@@ -60,7 +60,7 @@ export default function AciAfricaPage() {
 
               {/* Why bespoke */}
               <div className="flex flex-col gap-4">
-                <p className="text-zinc-500 text-sm font-medium uppercase tracking-wider">Every airport is different. So is every install.</p>
+                <p className="text-zinc-400 text-sm font-medium uppercase tracking-wider">Every airport is different. So is every install.</p>
                 <div className="flex gap-3 items-start">
                   <div className="w-6 h-6 rounded-full bg-green-400/10 flex items-center justify-center mt-0.5 shrink-0">
                     <svg className="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,7 +95,7 @@ export default function AciAfricaPage() {
 
               {/* What you get in the workshop */}
               <div className="border-t border-zinc-800 pt-6">
-                <p className="text-zinc-500 text-sm font-medium uppercase tracking-wider mb-4">What you get in the workshop</p>
+                <p className="text-zinc-400 text-sm font-medium uppercase tracking-wider mb-4">What you get in the workshop</p>
                 <div className="flex flex-col gap-3">
                   <div className="flex gap-3 items-start">
                     <span className="text-green-400 font-semibold text-sm mt-0.5 w-5 shrink-0">1.</span>
@@ -114,14 +114,14 @@ export default function AciAfricaPage() {
 
               {/* Presented by */}
               <div className="border-t border-zinc-800 pt-6">
-                <p className="text-zinc-500 text-sm mb-3">Presented by</p>
+                <p className="text-zinc-400 text-sm mb-3">Presented by</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-sm font-semibold text-green-400">
                     TD
                   </div>
                   <div>
                     <p className="text-white text-sm font-medium">Tim Dean</p>
-                    <p className="text-zinc-500 text-sm">Qual-eFire</p>
+                    <p className="text-zinc-400 text-sm">Qual-eFire</p>
                   </div>
                 </div>
               </div>
@@ -159,7 +159,7 @@ export default function AciAfricaPage() {
               className="h-6 w-auto opacity-50"
             />
           </Link>
-          <p className="text-zinc-600 text-sm">
+          <p className="text-zinc-400 text-sm">
             &copy; {new Date().getFullYear()} Syfre AI Solutions
           </p>
         </div>

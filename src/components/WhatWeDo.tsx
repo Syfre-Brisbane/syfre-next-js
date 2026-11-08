@@ -136,12 +136,12 @@ export default function WhatWeDo({ homepage }: WhatWeDoProps) {
                       className="flex items-center justify-between w-full text-left hover:opacity-80 transition-all duration-300 cursor-pointer"
                     >
                       <span className={`text-lg font-light transition-colors duration-300 ${
-                        isActive ? 'text-zinc-100' : 'text-zinc-500'
+                        isActive ? 'text-zinc-100' : 'text-zinc-400'
                       }`}>
                         {item.title}
                       </span>
                       <ArrowRightIcon className={`w-6 h-6 transition-colors duration-300 ${
-                        isActive ? 'text-green-400' : 'text-zinc-500'
+                        isActive ? 'text-green-400' : 'text-zinc-400'
                       }`} />
                     </button>
                     {index < wwdData.length - 1 && (

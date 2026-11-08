@@ -50,7 +50,7 @@ export default function LuandaPresentationPage() {
 
               {/* What's inside */}
               <div className="flex flex-col gap-4">
-                <p className="text-zinc-500 text-sm font-medium uppercase tracking-wider">What&apos;s inside the presentation</p>
+                <p className="text-zinc-400 text-sm font-medium uppercase tracking-wider">What&apos;s inside the presentation</p>
                 <div className="flex gap-3 items-start">
                   <div className="w-6 h-6 rounded-full bg-green-400/10 flex items-center justify-center mt-0.5 shrink-0">
                     <svg className="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,15 +105,15 @@ export default function LuandaPresentationPage() {
 
               {/* Presented by */}
               <div className="border-t border-zinc-800 pt-6">
-                <p className="text-zinc-500 text-sm mb-3">Presented by</p>
+                <p className="text-zinc-400 text-sm mb-3">Presented by</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-sm font-semibold text-green-400">
                     TD
                   </div>
                   <div>
                     <p className="text-white text-sm font-medium">Tim Dean</p>
-                    <p className="text-zinc-500 text-sm">CEO, Qual-eFire</p>
-                    <p className="text-zinc-600 text-xs mt-0.5">Serving aviation organisations across the Middle East, Africa, Asia-Pacific, and the Americas</p>
+                    <p className="text-zinc-400 text-sm">CEO, Qual-eFire</p>
+                    <p className="text-zinc-400 text-xs mt-0.5">Serving aviation organisations across the Middle East, Africa, Asia-Pacific, and the Americas</p>
                   </div>
                 </div>
               </div>
@@ -151,7 +151,7 @@ export default function LuandaPresentationPage() {
               className="h-6 w-auto opacity-50"
             />
           </Link>
-          <p className="text-zinc-600 text-sm">
+          <p className="text-zinc-400 text-sm">
             &copy; {new Date().getFullYear()} Syfre AI Solutions
           </p>
         </div>

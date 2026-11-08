@@ -31,7 +31,7 @@ export default function OpenFilePage() {
             className="h-8 w-auto"
           />
         </Link>
-        <span className="font-mono text-xs text-zinc-500 tracking-wider hidden sm:block">
+        <span className="font-mono text-xs text-zinc-400 tracking-wider hidden sm:block">
           OPENFILE / EARLY ACCESS
         </span>
       </header>
@@ -46,7 +46,7 @@ export default function OpenFilePage() {
                 <div className="flex flex-col gap-5">
                   <p className={`font-mono text-2xl sm:text-3xl font-semibold tracking-tight ${GOLD}`}>
                     OpenFile
-                    <span className="text-zinc-500 font-normal text-base sm:text-lg ml-3">by Syfre</span>
+                    <span className="text-zinc-400 font-normal text-base sm:text-lg ml-3">by Syfre</span>
                   </p>
                   <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-light leading-[1.08] tracking-tight">
                     Find what&apos;s been <span className="font-normal">overlooked.</span>
@@ -90,7 +90,7 @@ export default function OpenFilePage() {
                   <span className="bg-[#E8B84B]/10 text-[#E8B84B] text-xs font-mono font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
                     Early access
                   </span>
-                  <span className="text-zinc-500 text-xs">Takes 30 seconds</span>
+                  <span className="text-zinc-400 text-xs">Takes 30 seconds</span>
                 </div>
                 <h2 className="text-xl font-semibold text-white mb-2">Get early access</h2>
                 <p className="text-zinc-400 text-base mb-5">
@@ -264,7 +264,7 @@ export default function OpenFilePage() {
               className="h-6 w-auto opacity-50"
             />
           </Link>
-          <p className="text-zinc-600 text-sm">
+          <p className="text-zinc-400 text-sm">
             &copy; {new Date().getFullYear()} Syfre AI Solutions
           </p>
         </div>
