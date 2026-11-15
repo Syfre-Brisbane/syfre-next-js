@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 
 // ─── Paste the YouTube video ID here once the explainer is live ───────────────
 // e.g. for https://youtu.be/AbC123xyz  →  const YOUTUBE_ID = 'AbC123xyz';
-const YOUTUBE_ID = '';
+const YOUTUBE_ID = 'BwnNV9lGtVs';
 // ──────────────────────────────────────────────────────────────────────────────
 
 type Faq = { q: string; a: string };
