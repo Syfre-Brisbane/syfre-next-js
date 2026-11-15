@@ -182,15 +182,25 @@ export type AnswerResult = { named: boolean; competitors: string[] } | null;
 export async function checkAiAnswer(query: string, brandName: string, domainLabel: string): Promise<AnswerResult> {
   const key = process.env.PERPLEXITY_API_KEY;
   if (!key) return null; // not configured yet → caller degrades to "dig deeper"
-  const res = await fetch('https://api.perplexity.ai/chat/completions', {
-    method: 'POST',
-    headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
-    body: JSON.stringify({ model: 'sonar', messages: [{ role: 'user', content: query }] }),
-    signal: AbortSignal.timeout(9000),
-  });
-  if (!res.ok) throw new Error(`perplexity ${res.status}`);
+  // Perplexity intermittently 403s requests from datacenter IPs; retry transient
+  // failures a couple of times before giving up (then the caller degrades + alerts).
+  const RETRYABLE = new Set([403, 408, 429, 500, 502, 503, 504]);
+  let res: Response | undefined;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    res = await fetch('https://api.perplexity.ai/chat/completions', {
+      method: 'POST',
+      headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ model: 'sonar', messages: [{ role: 'user', content: query }] }),
+      signal: AbortSignal.timeout(9000),
+    });
+    if (res.ok) break;
+    if (attempt === 2 || !RETRYABLE.has(res.status)) throw new Error(`perplexity ${res.status}`);
+    await new Promise((r) => setTimeout(r, 350 * (attempt + 1)));
+  }
+  if (!res || !res.ok) throw new Error('perplexity no response');
   const data = await res.json();
-  const text: string = data?.choices?.[0]?.message?.content ?? '';
+  const text: string =
+    data?.choices?.[0]?.message?.content ?? data?.choices?.[0]?.delta?.content ?? '';
 
   // Detect by normalised match so "Fallon Solutions" matches "fallonsolutions"
   // regardless of spacing/punctuation.
