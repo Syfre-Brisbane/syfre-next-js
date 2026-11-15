@@ -192,11 +192,35 @@ function VideoBlock() {
 }
 
 function LeadForm() {
+  const [step, setStep] = useState<'site' | 'email'>('site');
   const [site, setSite] = useState('');
   const [email, setEmail] = useState('');
   const [hp, setHp] = useState(''); // honeypot → mapped to the API's `Website` bot-trap
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const [error, setError] = useState('');
+  const [teaser, setTeaser] = useState<{ headline: string; body: string } | null>(null);
+  const [checking, setChecking] = useState(false);
+
+  // Step 1 → reveal the email field immediately, then fill in the live teaser when it lands.
+  async function onCheckSite(e: React.FormEvent) {
+    e.preventDefault();
+    if (!site.trim()) return;
+    setStep('email');
+    setChecking(true);
+    try {
+      const res = await fetch('/api/geo-teaser', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ domain: site }),
+      });
+      const data = await res.json();
+      setTeaser(data?.teaser ?? null);
+    } catch {
+      setTeaser(null);
+    } finally {
+      setChecking(false);
+    }
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -238,55 +262,81 @@ function LeadForm() {
     );
   }
 
+  const inputCls =
+    'w-full rounded-md border border-white/15 bg-black px-4 py-3 text-base text-white placeholder:text-zinc-400 focus:border-green-400 focus:outline-none disabled:opacity-60';
+
   return (
-    <form onSubmit={onSubmit} className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6 sm:p-8">
-      <div className="grid gap-4">
-        <label className="block">
-          <span className="sr-only">Your website</span>
-          <input
-            type="text"
-            required
-            value={site}
-            onChange={(e) => setSite(e.target.value)}
-            placeholder="yourbusiness.com.au"
-            inputMode="url"
-            autoComplete="url"
-            className="w-full rounded-md border border-white/15 bg-black px-4 py-3 text-base text-white placeholder:text-zinc-400 focus:border-green-400 focus:outline-none"
-          />
-        </label>
-        <label className="block">
-          <span className="sr-only">Email</span>
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email address"
-            autoComplete="email"
-            className="w-full rounded-md border border-white/15 bg-black px-4 py-3 text-base text-white placeholder:text-zinc-400 focus:border-green-400 focus:outline-none"
-          />
-        </label>
-        {/* Honeypot: hidden from people, catches bots. Maps to the API's `Website` trap. */}
+    <form
+      onSubmit={step === 'site' ? onCheckSite : onSubmit}
+      className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6 sm:p-8"
+    >
+      <label className="block">
+        <span className="sr-only">Your website</span>
         <input
           type="text"
-          tabIndex={-1}
-          autoComplete="off"
-          aria-hidden="true"
-          value={hp}
-          onChange={(e) => setHp(e.target.value)}
-          className="hidden"
+          required
+          value={site}
+          onChange={(e) => setSite(e.target.value)}
+          placeholder="yourbusiness.com.au"
+          inputMode="url"
+          autoComplete="url"
+          disabled={step === 'email'}
+          className={inputCls}
         />
-      </div>
+      </label>
 
-      <button type="submit" disabled={status === 'submitting'} className={`${BTN} mt-5 w-full disabled:opacity-60`}>
-        {status === 'submitting' ? 'Sending…' : 'Get my free Snapshot'}
-      </button>
-
-      {status === 'error' && (
-        <p role="alert" className="mt-3 text-sm text-amber-300">
-          {error}
-        </p>
+      {step === 'site' && (
+        <button type="submit" className={`${BTN} mt-4 w-full`}>
+          Check my site →
+        </button>
       )}
+
+      {step === 'email' && (
+        <div className="mt-4">
+          {checking && (
+            <p className="mb-4 text-sm text-zinc-400" aria-live="polite">
+              Checking how AI sees {cleanDomain(site)}…
+            </p>
+          )}
+          {teaser && (
+            <div className="mb-4 rounded-xl border border-green-400/25 bg-green-400/5 p-4" aria-live="polite">
+              <p className="text-base font-semibold text-white">{teaser.headline}</p>
+              <p className="mt-1 text-sm leading-relaxed text-zinc-300">{teaser.body}</p>
+            </div>
+          )}
+          <label className="block">
+            <span className="sr-only">Email</span>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email address"
+              autoComplete="email"
+              className={inputCls}
+            />
+          </label>
+          {/* Honeypot: hidden from people, catches bots. Maps to the API's `Website` trap. */}
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            value={hp}
+            onChange={(e) => setHp(e.target.value)}
+            className="hidden"
+          />
+          <button type="submit" disabled={status === 'submitting'} className={`${BTN} mt-4 w-full disabled:opacity-60`}>
+            {status === 'submitting' ? 'Sending…' : 'Get my free Snapshot'}
+          </button>
+          {status === 'error' && (
+            <p role="alert" className="mt-3 text-sm text-amber-300">
+              {error}
+            </p>
+          )}
+        </div>
+      )}
+
       <p className="mt-4 text-[13px] text-zinc-400">
         Free. No obligation. Sent to your inbox. See our{' '}
         <a
