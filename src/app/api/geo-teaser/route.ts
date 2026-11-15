@@ -3,6 +3,8 @@ import { SESv2Client, SendEmailCommand } from '@aws-sdk/client-sesv2';
 import {
   normaliseDomain,
   checkAiAccess,
+  inferBusiness,
+  buildAnswerQuery,
   checkAiAnswer,
   decideTeaser,
   type AnswerResult,
@@ -107,10 +109,17 @@ export async function POST(request: NextRequest) {
   }
 
   // Signal B — only if a crawler isn't already blocked (short-circuit) and a key exists.
+  // Infer the business's category + city from its homepage so the buyer question is
+  // sharp ("best personal injury lawyers in Brisbane"), not generic.
   let answer: AnswerResult = null;
   if (access.status !== 'blocked') {
     try {
-      answer = await checkAiAnswer(domain, `Who are the best businesses to hire for what ${domain} does, in their city? Name a few.`);
+      const info = await inferBusiness(domain);
+      const query = info.category.length >= 4 ? buildAnswerQuery(info) : '';
+      log('info', 'signal.infer.ok', { domain, brand: info.brandName, category: info.category, location: info.location, query });
+      if (query) {
+        answer = await checkAiAnswer(query, info.brandName, domain.split('.')[0]);
+      }
     } catch (e) {
       log('error', 'signal.answer.fail', { domain, err: String(e) });
       await alert('provider_answer', 'Signal B (answer engine) failing', `checkAiAnswer errored for ${domain}: ${String(e)}`);
