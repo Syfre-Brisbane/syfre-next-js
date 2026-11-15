@@ -116,6 +116,7 @@ export default function RootLayout({
                   sameAs: [
                     'https://www.linkedin.com/company/syfreai',
                     'https://x.com/syfre_ai',
+                    'https://clutch.co/profile/syfre',
                   ],
                   knowsAbout: [
                     'Artificial Intelligence',
