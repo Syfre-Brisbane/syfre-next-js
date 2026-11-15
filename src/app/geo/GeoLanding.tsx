@@ -329,7 +329,7 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
       <main>
         {/* Hero */}
         <section className="mx-auto max-w-6xl px-6 pb-20 pt-14 sm:pt-20">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
               <p className="mb-5 flex items-center gap-2 text-sm text-zinc-300">
                 <span className="h-1.5 w-1.5 rounded-full bg-green-400" aria-hidden="true" />
@@ -344,11 +344,8 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
                 See exactly how ChatGPT, Gemini, Perplexity and Google AI answer for your business —
                 your free AI Visibility Snapshot.
               </p>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <button type="button" onClick={scrollToForm} className={BTN}>
-                  Get my free Snapshot
-                </button>
-                <span className="text-sm text-zinc-400">Free. No obligation.</span>
+              <div className="mt-8 max-w-md">
+                <LeadForm />
               </div>
             </div>
             <AnswerPreview />
