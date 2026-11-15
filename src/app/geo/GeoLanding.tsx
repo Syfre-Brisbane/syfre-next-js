@@ -521,6 +521,45 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
           </div>
         </section>
 
+        {/* Proof — real client outcomes + testimonial */}
+        <section className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-6 py-20">
+            <h2 className="max-w-2xl text-3xl font-normal leading-tight tracking-tight sm:text-4xl">
+              Proof it works
+            </h2>
+            <div className="mt-12 grid gap-6 sm:grid-cols-3">
+              <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6">
+                <div className="text-4xl tracking-tight text-green-400">#1–2</div>
+                <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
+                  <span className="text-white">Checkmate</span> is one of the most-named background-check
+                  platforms in AI answers — named in up to 43% of responses in its category, ahead of
+                  competitors like Checkr.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6">
+                <div className="text-4xl tracking-tight text-green-400">~60%</div>
+                <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
+                  An Australian 3D-printing company is named in roughly 6 of 10 AI answers in its
+                  field — the clear #1 over every tracked competitor.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6">
+                <div className="text-4xl tracking-tight text-green-400">3.6×</div>
+                <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
+                  Our own search impressions, up 3.6× in 90 days. We practise what we sell.
+                </p>
+              </div>
+            </div>
+            <figure className="mt-8 rounded-2xl border border-green-400/20 bg-green-400/5 p-6 sm:p-8">
+              <blockquote className="text-lg leading-relaxed text-zinc-100 sm:text-xl">
+                “A US client found us through Claude — she said Claude was ‘a massive fan of Checkmate’
+                and one of its most-recommended options. Clearly, what you’re doing on AEO is working.”
+              </blockquote>
+              <figcaption className="mt-4 text-sm text-zinc-400">— Checkmate, Syfre client</figcaption>
+            </figure>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section className="border-t border-white/10">
           <div className="mx-auto max-w-3xl px-6 py-20">
