@@ -191,35 +191,42 @@ function VideoBlock() {
   );
 }
 
+const TEASER_FALLBACK = {
+  headline: 'Let’s look properly',
+  body: 'We’ll check how AI answers for your business across ChatGPT, Gemini, Perplexity and Google AI — your free Snapshot has the detail.',
+};
+
 function LeadForm() {
-  const [step, setStep] = useState<'site' | 'email'>('site');
+  const [step, setStep] = useState<'site' | 'checking' | 'result'>('site');
   const [site, setSite] = useState('');
   const [email, setEmail] = useState('');
   const [hp, setHp] = useState(''); // honeypot → mapped to the API's `Website` bot-trap
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const [error, setError] = useState('');
-  const [teaser, setTeaser] = useState<{ headline: string; body: string } | null>(null);
-  const [checking, setChecking] = useState(false);
+  const [teaser, setTeaser] = useState<{ headline: string; body: string }>(TEASER_FALLBACK);
 
-  // Step 1 → reveal the email field immediately, then fill in the live teaser when it lands.
+  // Step 1 → run the live check, SHOW the result, then reveal email. The result
+  // gates the email so the visitor always sees it. 15s client cap + fallback.
   async function onCheckSite(e: React.FormEvent) {
     e.preventDefault();
     if (!site.trim()) return;
-    setStep('email');
-    setChecking(true);
+    setStep('checking');
     try {
+      const ctrl = new AbortController();
+      const to = window.setTimeout(() => ctrl.abort(), 15000);
       const res = await fetch('/api/geo-teaser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ domain: site }),
+        signal: ctrl.signal,
       });
+      window.clearTimeout(to);
       const data = await res.json();
-      setTeaser(data?.teaser ?? null);
+      setTeaser(data?.teaser ?? TEASER_FALLBACK);
     } catch {
-      setTeaser(null);
-    } finally {
-      setChecking(false);
+      setTeaser(TEASER_FALLBACK);
     }
+    setStep('result');
   }
 
   async function onSubmit(e: React.FormEvent) {
@@ -251,6 +258,12 @@ function LeadForm() {
     }
   }
 
+  function handleSubmit(e: React.FormEvent) {
+    if (step === 'site') return onCheckSite(e);
+    if (step === 'result') return onSubmit(e);
+    e.preventDefault();
+  }
+
   if (status === 'done') {
     return (
       <div className="rounded-2xl border border-green-400/30 bg-green-400/5 p-6 sm:p-8">
@@ -266,10 +279,7 @@ function LeadForm() {
     'w-full rounded-md border border-white/15 bg-black px-4 py-3 text-base text-white placeholder:text-zinc-400 focus:border-green-400 focus:outline-none disabled:opacity-60';
 
   return (
-    <form
-      onSubmit={step === 'site' ? onCheckSite : onSubmit}
-      className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6 sm:p-8"
-    >
+    <form onSubmit={handleSubmit} className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6 sm:p-8">
       <label className="block">
         <span className="sr-only">Your website</span>
         <input
@@ -280,7 +290,7 @@ function LeadForm() {
           placeholder="yourbusiness.com.au"
           inputMode="url"
           autoComplete="url"
-          disabled={step === 'email'}
+          disabled={step !== 'site'}
           className={inputCls}
         />
       </label>
@@ -291,24 +301,34 @@ function LeadForm() {
         </button>
       )}
 
-      {step === 'email' && (
+      {step === 'checking' && (
+        <div
+          className="mt-4 flex items-center gap-3 rounded-xl border border-white/12 bg-zinc-900/40 p-4"
+          aria-live="polite"
+        >
+          <span className="h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-white/20 border-t-green-400 motion-reduce:animate-none" />
+          <p className="text-sm text-zinc-300">
+            Checking how AI answers for <span className="text-white">{cleanDomain(site)}</span> across ChatGPT,
+            Gemini, Perplexity &amp; Google AI…
+          </p>
+        </div>
+      )}
+
+      {step === 'result' && (
         <div className="mt-4">
-          {checking && (
-            <p className="mb-4 text-sm text-zinc-400" aria-live="polite">
-              Checking how AI sees {cleanDomain(site)}…
-            </p>
-          )}
-          {teaser && (
-            <div className="mb-4 rounded-xl border border-green-400/25 bg-green-400/5 p-4" aria-live="polite">
-              <p className="text-base font-semibold text-white">{teaser.headline}</p>
-              <p className="mt-1 text-sm leading-relaxed text-zinc-300">{teaser.body}</p>
-            </div>
-          )}
-          <label className="block">
+          <div className="rounded-xl border border-green-400/30 bg-green-400/[0.06] p-5" aria-live="polite">
+            <p className="text-lg font-semibold leading-snug tracking-tight text-white">{teaser.headline}</p>
+            <p className="mt-1.5 text-[15px] leading-relaxed text-zinc-300">{teaser.body}</p>
+          </div>
+          <p className="mt-4 text-sm text-zinc-300">
+            Want the full picture across every engine? Enter your email for your free Snapshot.
+          </p>
+          <label className="mt-3 block">
             <span className="sr-only">Email</span>
             <input
               type="email"
               required
+              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email address"
