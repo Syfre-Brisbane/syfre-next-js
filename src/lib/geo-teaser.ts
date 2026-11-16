@@ -173,7 +173,7 @@ export function buildAnswerQuery(info: BusinessInfo): string {
   const loc = info.location && info.location !== 'Australia' ? info.location : 'Australia';
   const firstLocWord = loc.split(/[\s,]/)[0];
   const where = info.category.toLowerCase().includes(firstLocWord.toLowerCase()) ? '' : ` in ${loc}`;
-  return `Who are the best ${info.category}${where}? List the top providers by name.`;
+  return `Who are the top ${info.category}${where}? Reply with ONLY the business names, one per line — no numbering, no descriptions, no locations, no extra text.`;
 }
 
 // SIGNAL B — "does AI name you vs competitors". Only runs with a Perplexity key.
@@ -214,19 +214,23 @@ export async function checkAiAnswer(query: string, brandName: string, domainLabe
   };
   const named = (nLabel.length >= 4 && nText.includes(nLabel)) || (nBrand.length >= 5 && nText.includes(nBrand));
 
-  // Light competitor extraction: bolded names, then numbered-list leads.
+  // The model returns one business name per line; clean + filter to real firms.
+  const STATE_RE =
+    /(western australia|queensland|new south wales|victoria|tasmania|south australia|northern territory|australian capital territory)|,\s*(WA|QLD|NSW|VIC|SA|NT|ACT)\b/i;
   const competitors: string[] = [];
-  for (const m of text.matchAll(/\*\*([^*]{2,40})\*\*/g)) {
-    const name = m[1].trim().replace(/[:–—-].*$/, '').trim();
-    if (name && !isBrand(name) && !competitors.includes(name)) competitors.push(name);
+  for (const raw of text.split('\n')) {
+    const name = raw
+      .trim()
+      .replace(/^[-*•\d.)\s]+/, '') // leading bullets / numbering
+      .replace(/\*+/g, '') // stray markdown bold
+      .replace(/\s*[–—:].*$/, '') // trailing description after a dash/colon
+      .trim();
+    if (name.length < 2 || name.length > 48) continue;
+    if (isBrand(name)) continue;
+    if (STATE_RE.test(name)) continue;
+    if (AU_CITIES.some((c) => name.toLowerCase() === c.toLowerCase())) continue;
+    if (!competitors.includes(name)) competitors.push(name);
     if (competitors.length >= 3) break;
-  }
-  if (!competitors.length) {
-    for (const m of text.matchAll(/^\s*\d+\.\s*([A-Z][^\n–—:*]{2,40})/gm)) {
-      const name = m[1].trim().replace(/[:–—-].*$/, '').trim();
-      if (name && !isBrand(name) && !competitors.includes(name)) competitors.push(name);
-      if (competitors.length >= 3) break;
-    }
   }
   return { named, competitors };
 }
@@ -256,6 +260,8 @@ export function decideTeaser(access: AccessResult, answer: AnswerResult): Teaser
   return {
     branch: 'punch_not_named',
     headline: 'AI named your competitors, not you',
-    body: 'We asked AI who to hire — it named other firms, not you. Your Snapshot shows exactly who.',
+    body: answer.competitors.length
+      ? `We asked AI who to hire — it named ${answer.competitors.slice(0, 2).join(' and ')}. Not you.`
+      : "We asked AI who to hire — it didn't name you. Your Snapshot shows who it did.",
   };
 }
