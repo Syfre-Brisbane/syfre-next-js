@@ -256,8 +256,6 @@ export function decideTeaser(access: AccessResult, answer: AnswerResult): Teaser
   return {
     branch: 'punch_not_named',
     headline: 'AI named your competitors, not you',
-    body: answer.competitors.length
-      ? `We asked AI who to hire — it named ${answer.competitors.slice(0, 2).join(' and ')}. Not you.`
-      : "We asked AI who to hire — it didn't name you. See who it named instead.",
+    body: 'We asked AI who to hire — it named other firms, not you. Your Snapshot shows exactly who.',
   };
 }

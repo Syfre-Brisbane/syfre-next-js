@@ -587,7 +587,7 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
                   />
                 </div>
                 <p className="mt-4 text-[13px] leading-relaxed text-zinc-400">
-                  Among the most-named background-check platforms in AI answers — ahead of competitors like Checkr.
+                  Among the most-named background-check platforms in AI answers — consistently top of its category.
                 </p>
               </div>
 
@@ -603,7 +603,7 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
                   />
                 </div>
                 <p className="mt-4 text-[13px] leading-relaxed text-zinc-400">
-                  Named in ~6 of 10 AI answers in its field — the clear #1 over every tracked competitor.
+                  Named in ~6 of 10 AI answers in its field — the single most-recommended name in its category.
                 </p>
               </div>
 
