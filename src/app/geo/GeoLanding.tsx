@@ -203,7 +203,7 @@ function LeadForm() {
   const [hp, setHp] = useState(''); // honeypot → mapped to the API's `Website` bot-trap
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const [error, setError] = useState('');
-  const [teaser, setTeaser] = useState<{ headline: string; body: string }>(TEASER_FALLBACK);
+  const [teaser, setTeaser] = useState<{ headline: string; body: string; prompt?: string }>(TEASER_FALLBACK);
 
   // Step 1 → run the live check, SHOW the result, then reveal email. The result
   // gates the email so the visitor always sees it. 15s client cap + fallback.
@@ -319,6 +319,12 @@ function LeadForm() {
           <div className="rounded-xl border border-green-400/30 bg-green-400/[0.06] p-5" aria-live="polite">
             <p className="text-lg font-semibold leading-snug tracking-tight text-white">{teaser.headline}</p>
             <p className="mt-1.5 text-[15px] leading-relaxed text-zinc-300">{teaser.body}</p>
+            {teaser.prompt && (
+              <p className="mt-3 border-t border-white/10 pt-3 text-[13px] text-zinc-400">
+                Prompt tested: <span className="text-zinc-300">“{teaser.prompt}”</span> — one AI engine, right now. Your
+                Snapshot runs this across ChatGPT, Gemini, Perplexity &amp; Google AI, for the questions that win you work.
+              </p>
+            )}
           </div>
           <p className="mt-4 text-sm text-zinc-300">
             Want the full picture across every engine? Enter your email for your free Snapshot.

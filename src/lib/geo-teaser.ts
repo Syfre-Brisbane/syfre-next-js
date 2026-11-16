@@ -8,7 +8,7 @@ export type TeaserBranch =
   | 'there_but_everywhere'
   | 'dig_deeper';
 
-export type Teaser = { branch: TeaserBranch; headline: string; body: string };
+export type Teaser = { branch: TeaserBranch; headline: string; body: string; prompt?: string };
 
 export type AccessResult = {
   status: 'accessible' | 'blocked' | 'unknown';
@@ -176,6 +176,14 @@ export function buildAnswerQuery(info: BusinessInfo): string {
   return `Who are the top ${info.category}${where}? Reply with ONLY the business names, one per line — no numbering, no descriptions, no locations, no extra text.`;
 }
 
+// Human-readable version of the buyer question we ran (no formatting instructions).
+export function displayPrompt(info: BusinessInfo): string {
+  const loc = info.location && info.location !== 'Australia' ? info.location : 'Australia';
+  const firstLocWord = loc.split(/[\s,]/)[0];
+  const where = info.category.toLowerCase().includes(firstLocWord.toLowerCase()) ? '' : ` in ${loc}`;
+  return `best ${info.category.toLowerCase()}${where}`;
+}
+
 // SIGNAL B — "does AI name you vs competitors". Only runs with a Perplexity key.
 export type AnswerResult = { named: boolean; competitors: string[] } | null;
 
@@ -235,7 +243,7 @@ export async function checkAiAnswer(query: string, brandName: string, domainLabe
   return { named, competitors };
 }
 
-export function decideTeaser(access: AccessResult, answer: AnswerResult): Teaser {
+export function decideTeaser(access: AccessResult, answer: AnswerResult, prompt?: string): Teaser {
   if (access.status === 'blocked') {
     return {
       branch: 'punch_blocked',
@@ -255,13 +263,15 @@ export function decideTeaser(access: AccessResult, answer: AnswerResult): Teaser
       branch: 'there_but_everywhere',
       headline: 'AI named you here — but everywhere?',
       body: "That's one question, one engine, one moment. Your Snapshot checks ChatGPT, Gemini, Perplexity and Google AI for the questions that win you work.",
+      prompt,
     };
   }
   return {
     branch: 'punch_not_named',
     headline: 'AI named your competitors, not you',
     body: answer.competitors.length
-      ? `We asked AI who to hire — it named ${answer.competitors.slice(0, 2).join(' and ')}. Not you.`
-      : "We asked AI who to hire — it didn't name you. Your Snapshot shows who it did.",
+      ? `It named ${answer.competitors.slice(0, 2).join(' and ')} — not you.`
+      : "It didn't name you. Your Snapshot shows who it did.",
+    prompt,
   };
 }

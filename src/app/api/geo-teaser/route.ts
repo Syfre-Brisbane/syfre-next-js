@@ -5,6 +5,7 @@ import {
   checkAiAccess,
   inferBusiness,
   buildAnswerQuery,
+  displayPrompt,
   checkAiAnswer,
   decideTeaser,
   type AnswerResult,
@@ -112,10 +113,12 @@ export async function POST(request: NextRequest) {
   // Infer the business's category + city from its homepage so the buyer question is
   // sharp ("best personal injury lawyers in Brisbane"), not generic.
   let answer: AnswerResult = null;
+  let promptText = '';
   if (access.status !== 'blocked') {
     try {
       const info = await inferBusiness(domain);
       const query = info.category.length >= 4 ? buildAnswerQuery(info) : '';
+      promptText = query ? displayPrompt(info) : '';
       log('info', 'signal.infer.ok', { domain, brand: info.brandName, category: info.category, location: info.location, query });
       if (query) {
         answer = await checkAiAnswer(query, info.brandName, domain.split('.')[0]);
@@ -126,7 +129,7 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  const teaser = decideTeaser(access, answer);
+  const teaser = decideTeaser(access, answer, promptText);
   log('info', 'teaser.done', { domain, ms: Date.now() - t0, branch: teaser.branch });
   return NextResponse.json({ teaser });
 }
