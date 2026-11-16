@@ -353,6 +353,53 @@ function LeadForm() {
   );
 }
 
+// Ranked horizontal bars — hero (us/our client) in brand green, the field in
+// neutral zinc. Direct-labelled values so identity isn't colour-alone.
+function HBars({ data, label }: { data: { value: number; hero?: boolean }[]; label: string }) {
+  const max = Math.max(...data.map((d) => d.value));
+  return (
+    <div className="space-y-2" role="img" aria-label={label}>
+      {data.map((d, i) => (
+        <div key={i} className="flex items-center gap-2.5">
+          <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
+            <div
+              className={`h-full rounded-full ${d.hero ? 'bg-green-400' : 'bg-zinc-600'}`}
+              style={{ width: `${Math.round((d.value / max) * 100)}%` }}
+            />
+          </div>
+          <span
+            className={`w-9 shrink-0 text-right text-xs tabular-nums ${d.hero ? 'text-green-300' : 'text-zinc-400'}`}
+          >
+            {d.value}%
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Area sparkline for a value climbing over time.
+function Spark({ points, label }: { points: number[]; label: string }) {
+  const w = 260, h = 70, pad = 5;
+  const max = Math.max(...points), min = Math.min(...points);
+  const x = (i: number) => pad + (i / (points.length - 1)) * (w - 2 * pad);
+  const y = (v: number) => h - pad - ((v - min) / (max - min || 1)) * (h - 2 * pad);
+  const line = points.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p).toFixed(1)}`).join(' ');
+  const area = `${line} L${x(points.length - 1).toFixed(1)},${h - pad} L${x(0).toFixed(1)},${h - pad} Z`;
+  return (
+    <svg viewBox={`0 0 ${w} ${h}`} className="w-full" role="img" aria-label={label} preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#05df72" stopOpacity="0.3" />
+          <stop offset="1" stopColor="#05df72" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path d={area} fill="url(#sparkGrad)" />
+      <path d={line} fill="none" stroke="#05df72" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
   const formRef = useRef<HTMLDivElement>(null);
   const scrollToForm = () =>
@@ -529,24 +576,55 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
             </h2>
             <div className="mt-12 grid gap-6 sm:grid-cols-3">
               <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6">
-                <div className="text-4xl tracking-tight text-green-400">#1–2</div>
-                <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
-                  <span className="text-white">Checkmate</span> is one of the most-named background-check
-                  platforms in AI answers — named in up to 43% of responses in its category, ahead of
-                  competitors like Checkr.
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="text-sm text-white">Checkmate</span>
+                  <span className="text-sm tabular-nums text-green-300">~34% share</span>
+                </div>
+                <div className="mt-4">
+                  <HBars
+                    label="Checkmate leads its background-check category in AI mentions"
+                    data={[{ value: 34, hero: true }, { value: 30 }, { value: 24 }, { value: 18 }]}
+                  />
+                </div>
+                <p className="mt-4 text-[13px] leading-relaxed text-zinc-400">
+                  Among the most-named background-check platforms in AI answers — ahead of competitors like Checkr.
                 </p>
               </div>
+
               <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6">
-                <div className="text-4xl tracking-tight text-green-400">~60%</div>
-                <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
-                  An Australian 3D-printing company is named in roughly 6 of 10 AI answers in its
-                  field — the clear #1 over every tracked competitor.
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="text-sm text-white">An Australian 3D-printing company</span>
+                  <span className="text-sm tabular-nums text-green-300">~60%</span>
+                </div>
+                <div className="mt-4">
+                  <HBars
+                    label="This client is named in about 60% of AI answers in its field, the clear number one"
+                    data={[{ value: 60, hero: true }, { value: 43 }, { value: 16 }, { value: 9 }]}
+                  />
+                </div>
+                <p className="mt-4 text-[13px] leading-relaxed text-zinc-400">
+                  Named in ~6 of 10 AI answers in its field — the clear #1 over every tracked competitor.
                 </p>
               </div>
+
               <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6">
-                <div className="text-4xl tracking-tight text-green-400">3.6×</div>
-                <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
-                  Our own search impressions, up 3.6× in 90 days. We practise what we sell.
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="text-sm text-white">Syfre — search impressions</span>
+                  <span className="text-sm tabular-nums text-green-300">3.6×</span>
+                </div>
+                <div className="mt-4">
+                  <Spark
+                    label="Syfre's weekly search impressions climbed 3.6 times over 90 days"
+                    points={[151, 192, 319, 299, 234, 119, 156, 280, 269, 378, 458, 547, 614]}
+                  />
+                </div>
+                <div className="mt-1 flex justify-between text-[11px] tabular-nums text-zinc-500">
+                  <span>~150/wk</span>
+                  <span>90 days</span>
+                  <span>~550/wk</span>
+                </div>
+                <p className="mt-3 text-[13px] leading-relaxed text-zinc-400">
+                  Our own AI-search impressions. We practise what we sell.
                 </p>
               </div>
             </div>
