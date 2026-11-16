@@ -96,6 +96,25 @@ function decode(s: string): string {
     .replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+const STATE_NAMES: Record<string, string> = {
+  qld: 'Queensland', wa: 'Western Australia', nsw: 'New South Wales', vic: 'Victoria',
+  sa: 'South Australia', nt: 'Northern Territory', act: 'Australian Capital Territory', tas: 'Tasmania',
+};
+function expandState(s: string): string {
+  return STATE_NAMES[s.toLowerCase().replace(/[^a-z]/g, '')] || s;
+}
+
+// Append a location to the buyer query ONLY when the category doesn't already
+// localise it (titles often end in a city). Keeps "best lawyers brisbane" clean
+// and only adds " in Western Australia" when there's no place in the category.
+function locationClause(category: string, location: string): string {
+  const cat = category.toLowerCase();
+  const hasCity = AU_CITIES.some((c) => cat.includes(c.toLowerCase()));
+  if (!location || location === 'Australia') return hasCity ? '' : ' in Australia';
+  const lead = location.toLowerCase().split(',')[0].trim();
+  return hasCity || cat.includes(lead) ? '' : ` in ${location}`;
+}
+
 export async function inferBusiness(domain: string): Promise<BusinessInfo> {
   const label = domain.split('.')[0];
   let brandName = label.charAt(0).toUpperCase() + label.slice(1);
@@ -134,8 +153,15 @@ export async function inferBusiness(domain: string): Promise<BusinessInfo> {
         }
         const addr = n?.address;
         if (addr && !location) {
-          const loc = [addr.addressLocality, addr.addressRegion].filter(Boolean).join(', ');
-          if (loc) location = decode(loc);
+          const locality = decode(addr.addressLocality || '');
+          const region = expandState(decode(addr.addressRegion || ''));
+          if (locality && AU_CITIES.some((c) => c.toLowerCase() === locality.toLowerCase())) {
+            location = region ? `${locality}, ${region}` : locality;
+          } else if (region) {
+            location = region; // suburb-level locality → use the state (natural for a buyer query)
+          } else if (locality) {
+            location = locality;
+          }
         }
       }
     } catch {
@@ -170,18 +196,12 @@ export async function inferBusiness(domain: string): Promise<BusinessInfo> {
 }
 
 export function buildAnswerQuery(info: BusinessInfo): string {
-  const loc = info.location && info.location !== 'Australia' ? info.location : 'Australia';
-  const firstLocWord = loc.split(/[\s,]/)[0];
-  const where = info.category.toLowerCase().includes(firstLocWord.toLowerCase()) ? '' : ` in ${loc}`;
-  return `Who are the top ${info.category}${where}? Reply with ONLY the business names, one per line — no numbering, no descriptions, no locations, no extra text.`;
+  return `Who are the top ${info.category}${locationClause(info.category, info.location)}? Reply with ONLY the business names, one per line — no numbering, no descriptions, no locations, no extra text.`;
 }
 
 // Human-readable version of the buyer question we ran (no formatting instructions).
 export function displayPrompt(info: BusinessInfo): string {
-  const loc = info.location && info.location !== 'Australia' ? info.location : 'Australia';
-  const firstLocWord = loc.split(/[\s,]/)[0];
-  const where = info.category.toLowerCase().includes(firstLocWord.toLowerCase()) ? '' : ` in ${loc}`;
-  return `best ${info.category.toLowerCase()}${where}`;
+  return `best ${info.category.toLowerCase()}${locationClause(info.category, info.location)}`;
 }
 
 // SIGNAL B — "does AI name you vs competitors". Only runs with a Perplexity key.
