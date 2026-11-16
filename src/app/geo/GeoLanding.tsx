@@ -242,6 +242,10 @@ function LeadForm() {
           Email: email,
           Description: `AI Visibility Snapshot request. Website to audit: ${site}`,
           Lead_Source: 'AI Visibility Snapshot (GEO landing)',
+          Audit_Website: site,
+          Teaser_Context: teaser
+            ? `${teaser.headline} — ${teaser.body}${teaser.prompt ? ` (prompt: “${teaser.prompt}”)` : ''}`
+            : '',
           Website: hp,
         }),
       });

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SESv2Client, SendEmailCommand } from '@aws-sdk/client-sesv2';
+import { syncHubspotLead } from '@/lib/hubspot';
 
 const TO_EMAIL = process.env.LEAD_TO_EMAIL || 'steve.macfarlane@syfre.ai';
 const FROM_EMAIL = process.env.LEAD_FROM_EMAIL || 'steve.macfarlane@syfre.ai';
@@ -16,6 +17,18 @@ const sesClient = new SESv2Client({
         }
       : undefined,
 });
+
+// Ops alert over the same SES channel. Best-effort: used to flag a lead that was
+// emailed but failed to reach HubSpot, so a silent CRM gap surfaces immediately.
+async function alertOps(subject: string, body: string): Promise<void> {
+  await sesClient.send(
+    new SendEmailCommand({
+      FromEmailAddress: FROM_EMAIL,
+      Destination: { ToAddresses: [TO_EMAIL] },
+      Content: { Simple: { Subject: { Data: `[Lead ops] ${subject}` }, Body: { Text: { Data: body } } } },
+    })
+  );
+}
 
 // Shared Google spreadsheet — the tell of one backlink-spam wave ("I put my
 // list into a spreadsheet"). Blocked even as a single link; it has no place in
@@ -58,6 +71,10 @@ export async function POST(request: NextRequest) {
     const leadSource = String(lead.Lead_Source || 'Website').trim();
     // Decoy field, hidden from real users; only bots populate it.
     const honeypot = String(lead.Website || '').trim();
+    // The prospect's own domain to audit (GEO landing) — NOT the honeypot above.
+    const auditWebsite = String(lead.Audit_Website || '').trim();
+    // Pre-built context string from the GEO teaser (verdict + prompt), for CRM.
+    const teaserContext = String(lead.Teaser_Context || '').trim();
 
     // Drop spam silently: return success so the bot sees no error and doesn't
     // retry/adapt, but never send the email. Logged to CloudWatch so a genuine
@@ -112,6 +129,36 @@ export async function POST(request: NextRequest) {
         },
       })
     );
+
+    // Mirror the lead into HubSpot (best-effort). No-ops until HUBSPOT_TOKEN is
+    // set. The SES email above already captured the lead, so any failure here is
+    // logged + alerted but never fails the request.
+    const note = [
+      description,
+      `Lead source: ${leadSource}`,
+      auditWebsite && `Website to audit: ${auditWebsite}`,
+      teaserContext && `\nAI visibility teaser shown:\n${teaserContext}`,
+    ]
+      .filter(Boolean)
+      .join('\n');
+    const hs = await syncHubspotLead({
+      email,
+      firstName,
+      lastName,
+      website: auditWebsite || undefined,
+      company: company || undefined,
+      leadSource,
+      note: note || undefined,
+    });
+    if (hs.ok && !hs.skipped) {
+      console.log(JSON.stringify({ level: 'info', event: 'hubspot.synced', email, contactId: hs.contactId, noteCreated: hs.noteCreated }));
+    } else if (!hs.ok) {
+      console.error(JSON.stringify({ level: 'error', event: 'hubspot.sync_failed', email, status: hs.status, err: hs.error }));
+      await alertOps(
+        'HubSpot sync failed',
+        `A lead was emailed OK but did NOT reach HubSpot.\n\nEmail: ${email}\nSource: ${leadSource}\nHubSpot status: ${hs.status ?? 'n/a'}\nError: ${hs.error}\n\nThe lead is safe (it's in this inbox) — add it to HubSpot by hand and check the token/scopes.`
+      ).catch(() => {});
+    }
 
     return NextResponse.json({ success: true, message: 'Lead submitted successfully' });
   } catch (error) {
