@@ -20,6 +20,10 @@ export type HubspotLead = {
   website?: string; // the prospect's own domain
   company?: string;
   leadSource: string;
+  // Internal value of the "Enquiry type" single-select property, e.g.
+  // 'ai_visibility_snapshot'. Set out-of-band on a best-effort basis so a
+  // not-yet-provisioned property never blocks the core sync.
+  enquiryType?: string;
   note?: string; // free-text context for the rep (teaser result, request detail)
 };
 
@@ -43,19 +47,19 @@ function httpError(msg: string, status: number): Error {
 // Try PATCH by the email id-property first; if the contact doesn't exist yet
 // (404), create it.
 async function upsertContact(lead: HubspotLead): Promise<string> {
-  const properties: Record<string, string> = { email: lead.email };
-  if (lead.firstName) properties.firstname = lead.firstName;
-  if (lead.lastName) properties.lastname = lead.lastName;
-  if (lead.phone) properties.phone = lead.phone;
-  if (lead.website) properties.website = lead.website;
-  if (lead.company) properties.company = lead.company;
-  // Nudge new contacts into the funnel. HubSpot ignores a backward move, so an
-  // existing customer won't be dragged back to "lead".
-  properties.lifecyclestage = 'lead';
+  // Properties safe to (re)apply on every submission.
+  const base: Record<string, string> = { email: lead.email };
+  if (lead.firstName) base.firstname = lead.firstName;
+  if (lead.lastName) base.lastname = lead.lastName;
+  if (lead.phone) base.phone = lead.phone;
+  if (lead.website) base.website = lead.website;
+  if (lead.company) base.company = lead.company;
 
+  // Update first. We deliberately DON'T re-apply lifecycle/lead-status here, so a
+  // returning contact already being worked isn't dragged back to a fresh "lead".
   const patch = await fetch(
     `${BASE}/crm/v3/objects/contacts/${encodeURIComponent(lead.email)}?idProperty=email`,
-    { method: 'PATCH', headers: authHeaders(), body: JSON.stringify({ properties }) }
+    { method: 'PATCH', headers: authHeaders(), body: JSON.stringify({ properties: base }) }
   );
   if (patch.ok) {
     const data = await patch.json();
@@ -65,16 +69,37 @@ async function upsertContact(lead: HubspotLead): Promise<string> {
     throw httpError(`contact upsert PATCH failed: ${await patch.text()}`, patch.status);
   }
 
+  // Brand-new contact: set the funnel properties that should only apply on first
+  // contact — lifecycle = Lead and Lead status = New (so it surfaces as actionable).
   const create = await fetch(`${BASE}/crm/v3/objects/contacts`, {
     method: 'POST',
     headers: authHeaders(),
-    body: JSON.stringify({ properties }),
+    body: JSON.stringify({ properties: { ...base, lifecyclestage: 'lead', hs_lead_status: 'NEW' } }),
   });
   if (!create.ok) {
     throw httpError(`contact create failed: ${await create.text()}`, create.status);
   }
   const created = await create.json();
   return String(created.id);
+}
+
+// Best-effort: tag the contact with its enquiry type. Isolated from the core
+// upsert (and never throws) so a property that hasn't been provisioned yet, or an
+// option value that doesn't match, can't stop the contact or note from syncing.
+async function setEnquiryType(contactId: string, value: string): Promise<boolean> {
+  try {
+    const res = await fetch(`${BASE}/crm/v3/objects/contacts/${contactId}`, {
+      method: 'PATCH',
+      headers: authHeaders(),
+      body: JSON.stringify({ properties: { enquiry_type: value } }),
+    });
+    if (!res.ok) {
+      console.warn(JSON.stringify({ level: 'warn', event: 'hubspot.enquiry_type_skipped', contactId, value, status: res.status }));
+    }
+    return res.ok;
+  } catch {
+    return false;
+  }
 }
 
 // Attach the request context as a Note so the rep sees the teaser result and
@@ -101,6 +126,7 @@ export async function syncHubspotLead(lead: HubspotLead): Promise<HubspotResult>
   if (!HUBSPOT_TOKEN) return { ok: true, skipped: true };
   try {
     const contactId = await upsertContact(lead);
+    if (lead.enquiryType) await setEnquiryType(contactId, lead.enquiryType);
     const noteCreated = lead.note ? await createNote(contactId, lead.note) : false;
     return { ok: true, skipped: false, contactId, noteCreated };
   } catch (e) {

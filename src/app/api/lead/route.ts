@@ -76,6 +76,19 @@ export async function POST(request: NextRequest) {
     // Pre-built context string from the GEO teaser (verdict + prompt), for CRM.
     const teaserContext = String(lead.Teaser_Context || '').trim();
 
+    // Classify the enquiry so Snapshot requests (a fulfilment commitment) get
+    // different handling from a general contact-form message. Drives both the
+    // HubSpot "Enquiry type" tag and the action-flagged alert below.
+    const isWorkshop = lead.Workshop_Application === true;
+    const enquiryType = isWorkshop
+      ? 'workshop_application'
+      : /snapshot|geo/i.test(leadSource)
+        ? 'ai_visibility_snapshot'
+        : /contact form/i.test(leadSource)
+          ? 'website_contact_form'
+          : 'other';
+    const isSnapshot = enquiryType === 'ai_visibility_snapshot';
+
     // Drop spam silently: return success so the bot sees no error and doesn't
     // retry/adapt, but never send the email. Logged to CloudWatch so a genuine
     // lead caught by a heuristic is still recoverable.
@@ -107,14 +120,19 @@ export async function POST(request: NextRequest) {
     const name = [firstName, lastName].filter(Boolean).join(' ');
 
     const lines = [
+      isSnapshot && '⚠️ ACTION NEEDED: AI Visibility Snapshot requested — this prospect is expecting a report back.\n',
       `Name: ${name}`,
       `Email: ${email}`,
       phone && `Phone: ${phone}`,
       company && `Company: ${company}`,
       `Source: ${leadSource}`,
-      lead.Workshop_Application === true && 'Workshop application: yes',
+      isWorkshop && 'Workshop application: yes',
       description && `\n${description}`,
     ].filter(Boolean);
+
+    const subject = isSnapshot
+      ? `[ACTION] AI Visibility Snapshot request: ${name} — deliver Snapshot`
+      : `New lead: ${name} — ${leadSource}`;
 
     await sesClient.send(
       new SendEmailCommand({
@@ -123,7 +141,7 @@ export async function POST(request: NextRequest) {
         ReplyToAddresses: [email],
         Content: {
           Simple: {
-            Subject: { Data: `New lead: ${name} — ${leadSource}` },
+            Subject: { Data: subject },
             Body: { Text: { Data: lines.join('\n') } },
           },
         },
@@ -149,6 +167,7 @@ export async function POST(request: NextRequest) {
       website: auditWebsite || undefined,
       company: company || undefined,
       leadSource,
+      enquiryType,
       note: note || undefined,
     });
     if (hs.ok && !hs.skipped) {
