@@ -321,13 +321,14 @@ function LeadForm() {
             <p className="mt-1.5 text-[15px] leading-relaxed text-zinc-300">{teaser.body}</p>
             {teaser.prompt && (
               <p className="mt-3 border-t border-white/10 pt-3 text-[13px] text-zinc-400">
-                Prompt tested: <span className="text-zinc-300">“{teaser.prompt}”</span> — one AI engine, right now. Your
-                Snapshot runs this across ChatGPT, Gemini, Perplexity &amp; Google AI, for the questions that win you work.
+                We asked one AI this one question just now:{' '}
+                <span className="text-zinc-300">“{teaser.prompt}”</span>.
               </p>
             )}
           </div>
           <p className="mt-4 text-sm text-zinc-300">
-            Want the full picture across every engine? Enter your email for your free Snapshot.
+            Your buyers ask dozens of questions, across ChatGPT, Gemini, Perplexity and Google AI. Your free Snapshot
+            checks how you show up for all of them — enter your email to get it.
           </p>
           <label className="mt-3 block">
             <span className="sr-only">Email</span>
