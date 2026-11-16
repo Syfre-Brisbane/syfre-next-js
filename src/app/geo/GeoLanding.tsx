@@ -641,18 +641,18 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
               <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6">
                 <div className="flex items-baseline justify-between gap-2">
                   <span className="text-sm text-white">Syfre — search impressions</span>
-                  <span className="text-sm tabular-nums text-green-300">3.6×</span>
+                  <span className="text-sm tabular-nums text-green-300">5.6×</span>
                 </div>
                 <div className="mt-4">
                   <Spark
-                    label="Syfre's weekly search impressions climbed 3.6 times over 90 days"
-                    points={[151, 192, 319, 299, 234, 119, 156, 280, 269, 378, 458, 547, 614]}
+                    label="Syfre's weekly search impressions climbed 5.6 times over 90 days"
+                    points={[151, 192, 319, 299, 234, 119, 156, 280, 269, 378, 458, 547, 853]}
                   />
                 </div>
                 <div className="mt-1 flex justify-between text-[11px] tabular-nums text-zinc-500">
                   <span>~150/wk</span>
                   <span>90 days</span>
-                  <span>~550/wk</span>
+                  <span>~850/wk</span>
                 </div>
                 <p className="mt-3 text-[13px] leading-relaxed text-zinc-400">
                   Our own AI-search impressions. We practise what we sell.
