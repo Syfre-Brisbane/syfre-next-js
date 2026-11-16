@@ -22,7 +22,6 @@ export default function ContactForm() {
       Phone: formData.get('phone') as string,
       Description: formData.get('message') as string,
       Lead_Source: 'Website Contact Form',
-      Company: 'Prospect', // Default value
       Website: formData.get('website') as string, // Honeypot; real users leave this empty
     };
 

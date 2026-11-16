@@ -16,6 +16,7 @@ export type HubspotLead = {
   email: string;
   firstName?: string;
   lastName?: string;
+  phone?: string;
   website?: string; // the prospect's own domain
   company?: string;
   leadSource: string;
@@ -45,6 +46,7 @@ async function upsertContact(lead: HubspotLead): Promise<string> {
   const properties: Record<string, string> = { email: lead.email };
   if (lead.firstName) properties.firstname = lead.firstName;
   if (lead.lastName) properties.lastname = lead.lastName;
+  if (lead.phone) properties.phone = lead.phone;
   if (lead.website) properties.website = lead.website;
   if (lead.company) properties.company = lead.company;
   // Nudge new contacts into the funnel. HubSpot ignores a backward move, so an

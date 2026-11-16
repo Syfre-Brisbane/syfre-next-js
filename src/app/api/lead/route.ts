@@ -145,6 +145,7 @@ export async function POST(request: NextRequest) {
       email,
       firstName,
       lastName,
+      phone: phone || undefined,
       website: auditWebsite || undefined,
       company: company || undefined,
       leadSource,
