@@ -203,13 +203,33 @@ function LeadForm() {
   const [hp, setHp] = useState(''); // honeypot → mapped to the API's `Website` bot-trap
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const [error, setError] = useState('');
+  const [siteHint, setSiteHint] = useState('');
   const [teaser, setTeaser] = useState<{ headline: string; body: string; prompt?: string }>(TEASER_FALLBACK);
 
   // Step 1 → run the live check, SHOW the result, then reveal email. The result
   // gates the email so the visitor always sees it. 15s client cap + fallback.
   async function onCheckSite(e: React.FormEvent) {
     e.preventDefault();
-    if (!site.trim()) return;
+    const raw = site.trim();
+    if (!raw) return;
+    // Classic trap: people type their email into the first box (it's the thing
+    // forms usually ask for). Keep it — prefill step 2 — and ask for the site,
+    // instead of letting the server reject it silently.
+    if (/^\S+@\S+\.\S+$/.test(raw)) {
+      setEmail(raw);
+      setSite('');
+      setSiteHint(
+        'That looks like your email — we’ve saved it for your Snapshot. Now enter your website, e.g. yourbusiness.com.au'
+      );
+      return;
+    }
+    // Looser version of the server's domain check (no lookbehind — old Safari
+    // throws on it) so a typo gets a helpful nudge, not the fallback teaser.
+    if (!/^[a-z0-9-]{1,63}(\.[a-z0-9-]{1,63})+$/i.test(cleanDomain(raw))) {
+      setSiteHint('Enter your website address, like yourbusiness.com.au');
+      return;
+    }
+    setSiteHint('');
     setStep('checking');
     try {
       const ctrl = new AbortController();
@@ -298,6 +318,12 @@ function LeadForm() {
           className={inputCls}
         />
       </label>
+
+      {siteHint && step === 'site' && (
+        <p role="alert" className="mt-2 text-sm text-amber-300">
+          {siteHint}
+        </p>
+      )}
 
       {step === 'site' && (
         <button type="submit" className={`${BTN} mt-4 w-full`}>

@@ -27,6 +27,24 @@ function log(level: string, event: string, data: Record<string, unknown> = {}) {
   console.log(JSON.stringify({ level, event, at: new Date().toISOString(), ...data }));
 }
 
+// Every tool use is a lead signal — the domain alone identifies the business,
+// so one email fires per check, deliberately with no cooldown and no self-IP
+// filtering. Best-effort: a failed send must never break the visitor's request.
+const SIGNAL_TO = [...new Set([ALERT_TO, 'steve.shaw@syfre.ai'])];
+async function leadSignal(subject: string, body: string) {
+  try {
+    await ses.send(
+      new SendEmailCommand({
+        FromEmailAddress: ALERT_FROM,
+        Destination: { ToAddresses: SIGNAL_TO },
+        Content: { Simple: { Subject: { Data: `[GEO lead signal] ${subject}` }, Body: { Text: { Data: body } } } },
+      })
+    );
+  } catch (e) {
+    log('error', 'signal_email.send_failed', { err: String(e) });
+  }
+}
+
 // Throttle alerts so a flapping provider doesn't send hundreds of emails.
 const lastAlert = new Map<string, number>();
 async function alert(kind: string, subject: string, body: string) {
@@ -93,6 +111,12 @@ export async function POST(request: NextRequest) {
   }
   if (!isPublicDomain(domain)) {
     log('info', 'teaser.bad_domain', { ip, domain });
+    // Still a human hand-raiser — what they typed (often their email) may
+    // identify them even though the check itself can't run.
+    await leadSignal(
+      `Tool used with invalid input: ${domain}`,
+      `Someone used the /geo AI visibility checker but typed something that isn't a domain (often their email address).\n\nThey typed: ${domain}\nIP: ${ip}\n\nNo email was captured via the form — if the input identifies them, it's worth chasing.`
+    );
     return NextResponse.json({ teaser: null });
   }
 
@@ -131,5 +155,18 @@ export async function POST(request: NextRequest) {
 
   const teaser = decideTeaser(access, answer, promptText);
   log('info', 'teaser.done', { domain, ms: Date.now() - t0, branch: teaser.branch });
+  await leadSignal(
+    `Site checked: ${domain}`,
+    [
+      'Someone just ran the /geo AI visibility check.',
+      '',
+      `Website: ${domain}`,
+      `Result shown: ${teaser.branch}`,
+      ...(promptText ? [`Prompt used: ${promptText}`] : []),
+      `IP: ${ip}`,
+      '',
+      'No email captured yet — if no Snapshot request follows, the domain itself is the lead.',
+    ].join('\n')
+  );
   return NextResponse.json({ teaser });
 }
