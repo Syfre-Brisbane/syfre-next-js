@@ -196,6 +196,40 @@ const TEASER_FALLBACK = {
   body: 'We’ll check how AI answers for your business across ChatGPT, Gemini, Perplexity and Google AI — your free Snapshot has the detail.',
 };
 
+// ── Attribution + analytics ──────────────────────────────────────────────────
+// First-touch UTM/referrer for the session, so lead emails and HubSpot can say
+// which ad sent the visitor. GA4 events fire via the gtag loaded in layout.tsx.
+const ATTRIB_KEY = 'syfre_attribution';
+function captureAttribution(): string {
+  try {
+    const existing = sessionStorage.getItem(ATTRIB_KEY);
+    if (existing) return existing;
+    const params = new URLSearchParams(window.location.search);
+    const parts: string[] = [];
+    for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']) {
+      const v = params.get(k);
+      if (v) parts.push(`${k}=${v.slice(0, 60)}`);
+    }
+    if (document.referrer) {
+      const refHost = new URL(document.referrer).hostname;
+      if (refHost && refHost !== window.location.hostname) parts.push(`referrer=${refHost}`);
+    }
+    const attrib = parts.join(', ');
+    if (attrib) sessionStorage.setItem(ATTRIB_KEY, attrib);
+    return attrib;
+  } catch {
+    return '';
+  }
+}
+
+function track(event: string, params?: Record<string, unknown>) {
+  try {
+    (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.('event', event, params);
+  } catch {
+    /* analytics must never break the form */
+  }
+}
+
 function LeadForm() {
   const [step, setStep] = useState<'site' | 'checking' | 'result'>('site');
   const [site, setSite] = useState('');
@@ -205,6 +239,11 @@ function LeadForm() {
   const [error, setError] = useState('');
   const [siteHint, setSiteHint] = useState('');
   const [teaser, setTeaser] = useState<{ headline: string; body: string; prompt?: string }>(TEASER_FALLBACK);
+
+  // Capture UTMs on landing, before any in-site navigation can lose them.
+  useEffect(() => {
+    captureAttribution();
+  }, []);
 
   // Step 1 → run the live check, SHOW the result, then reveal email. The result
   // gates the email so the visitor always sees it. 15s client cap + fallback.
@@ -237,14 +276,17 @@ function LeadForm() {
       const res = await fetch('/api/geo-teaser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ domain: site }),
+        body: JSON.stringify({ domain: site, attribution: captureAttribution() }),
         signal: ctrl.signal,
       });
       window.clearTimeout(to);
       const data = await res.json();
-      setTeaser(data?.teaser ?? TEASER_FALLBACK);
+      const shown = data?.teaser ?? TEASER_FALLBACK;
+      setTeaser(shown);
+      track('geo_check', { check_result: (shown as { branch?: string }).branch || 'fallback' });
     } catch {
       setTeaser(TEASER_FALLBACK);
+      track('geo_check', { check_result: 'client_error' });
     }
     setStep('result');
   }
@@ -266,12 +308,14 @@ function LeadForm() {
           Teaser_Context: teaser
             ? `${teaser.headline} — ${teaser.body}${teaser.prompt ? ` (prompt: “${teaser.prompt}”)` : ''}`
             : '',
+          Attribution: captureAttribution(),
           Website: hp,
         }),
       });
       const data = await res.json();
       if (res.ok && data.success) {
         setStatus('done');
+        track('generate_lead', { method: 'geo_snapshot' });
       } else {
         setStatus('error');
         setError(data.message || 'Something went wrong. Check your details and try again.');

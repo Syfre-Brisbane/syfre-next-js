@@ -75,6 +75,8 @@ export async function POST(request: NextRequest) {
     const auditWebsite = String(lead.Audit_Website || '').trim();
     // Pre-built context string from the GEO teaser (verdict + prompt), for CRM.
     const teaserContext = String(lead.Teaser_Context || '').trim();
+    // Client-captured UTM/referrer summary — free text, so cap + strip newlines.
+    const attribution = String(lead.Attribution || '').replace(/[\r\n]+/g, ' ').trim().slice(0, 300);
 
     // Classify the enquiry so Snapshot requests (a fulfilment commitment) get
     // different handling from a general contact-form message. Drives both the
@@ -126,6 +128,7 @@ export async function POST(request: NextRequest) {
       phone && `Phone: ${phone}`,
       company && `Company: ${company}`,
       `Source: ${leadSource}`,
+      attribution && `Traffic source: ${attribution}`,
       isWorkshop && 'Workshop application: yes',
       description && `\n${description}`,
     ].filter(Boolean);
@@ -154,6 +157,7 @@ export async function POST(request: NextRequest) {
     const note = [
       description,
       `Lead source: ${leadSource}`,
+      attribution && `Traffic source: ${attribution}`,
       auditWebsite && `Website to audit: ${auditWebsite}`,
       teaserContext && `\nAI visibility teaser shown:\n${teaserContext}`,
     ]

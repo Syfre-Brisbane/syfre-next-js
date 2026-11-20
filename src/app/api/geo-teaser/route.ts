@@ -103,19 +103,23 @@ export async function POST(request: NextRequest) {
   }
 
   let domain = '';
+  let attribution = '';
   try {
     const body = await request.json();
     domain = normaliseDomain(String(body?.domain || ''));
+    // Client-captured UTM/referrer summary — free text, so cap + strip newlines.
+    attribution = String(body?.attribution || '').replace(/[\r\n]+/g, ' ').trim().slice(0, 300);
   } catch {
     return NextResponse.json({ teaser: null }, { status: 400 });
   }
+  const attributionLine = attribution ? `\nTraffic source: ${attribution}` : '';
   if (!isPublicDomain(domain)) {
     log('info', 'teaser.bad_domain', { ip, domain });
     // Still a human hand-raiser — what they typed (often their email) may
     // identify them even though the check itself can't run.
     await leadSignal(
       `Tool used with invalid input: ${domain}`,
-      `Someone used the /geo AI visibility checker but typed something that isn't a domain (often their email address).\n\nThey typed: ${domain}\nIP: ${ip}\n\nNo email was captured via the form — if the input identifies them, it's worth chasing.`
+      `Someone used the /geo AI visibility checker but typed something that isn't a domain (often their email address).\n\nThey typed: ${domain}\nIP: ${ip}${attributionLine}\n\nNo email was captured via the form — if the input identifies them, it's worth chasing.`
     );
     return NextResponse.json({ teaser: null });
   }
@@ -164,6 +168,7 @@ export async function POST(request: NextRequest) {
       `Result shown: ${teaser.branch}`,
       ...(promptText ? [`Prompt used: ${promptText}`] : []),
       `IP: ${ip}`,
+      ...(attribution ? [`Traffic source: ${attribution}`] : []),
       '',
       'No email captured yet — if no Snapshot request follows, the domain itself is the lead.',
     ].join('\n')
