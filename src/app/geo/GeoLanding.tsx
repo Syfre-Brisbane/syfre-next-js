@@ -206,7 +206,7 @@ function captureAttribution(): string {
     if (existing) return existing;
     const params = new URLSearchParams(window.location.search);
     const parts: string[] = [];
-    for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']) {
+    for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_term', 'utm_content']) {
       const v = params.get(k);
       if (v) parts.push(`${k}=${v.slice(0, 60)}`);
     }
