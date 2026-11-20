@@ -104,6 +104,49 @@ function expandState(s: string): string {
   return STATE_NAMES[s.toLowerCase().replace(/[^a-z]/g, '')] || s;
 }
 
+// Title segments that are navigation labels or CMS defaults, not a business
+// category — "Home - The Yoga Nook" must not become "best home in Sydney".
+const JUNK_SEGMENTS = new Set([
+  'home', 'home page', 'homepage', 'welcome', 'index', 'main', 'main page', 'front page',
+  'about', 'about us', 'contact', 'contact us', 'official site', 'official website',
+  'official home page', 'website', 'site', 'my site', 'my website', 'my blog', 'blog',
+  'new page', 'landing page', 'coming soon', 'under construction', 'untitled',
+  'just another wordpress site',
+]);
+function isJunkSegment(s: string): boolean {
+  return JUNK_SEGMENTS.has(s.toLowerCase().replace(/\s+/g, ' ').trim());
+}
+
+// JSON-LD @type values too generic to be a buyer-query category; anything more
+// specific ("Dentist", "YogaStudio") de-camels into a usable one.
+const GENERIC_LD_TYPES = new Set([
+  'organization', 'localbusiness', 'corporation', 'professionalservice', 'onlinebusiness',
+  'onlinestore', 'store', 'business', 'brand', 'service', 'thing', 'website', 'webpage',
+]);
+
+// Meta descriptions open with marketing framing ("Begin Iyengar Yoga at The
+// Yoga Nook in Dulwich Hill"). Reduce the first clause to its category phrase:
+// cut the brand mention and its tail, then drop opener/connective verbs.
+const OPENERS =
+  /^(welcome to|begin|discover|experience|explore|enjoy|find|get|book|join|try|shop|browse|choose|visit|we offer|we provide|we are|we're|offering|providing|offers?|provides?|is|are|your|the)\s+/i;
+function categoryFromDescription(desc: string, brandName: string): string {
+  let clause = desc.split(/[.!|–—]/)[0].trim();
+  const bi = clause.toLowerCase().indexOf(brandName.toLowerCase());
+  if (bi === 0) {
+    clause = clause.slice(brandName.length).trim();
+  } else if (bi > 0) {
+    clause = clause.slice(0, bi).replace(/\b(at|from|with|by|of|to)\s*$/i, '').trim();
+  } else {
+    const ai = clause.toLowerCase().indexOf(' at ');
+    if (ai > 0) clause = clause.slice(0, ai).trim();
+  }
+  for (let prev = ''; prev !== clause; ) {
+    prev = clause;
+    clause = clause.replace(OPENERS, '').trim();
+  }
+  return clause;
+}
+
 // Append a location to the buyer query ONLY when the category doesn't already
 // localise it (titles often end in a city). Keeps "best lawyers brisbane" clean
 // and only adds " in Western Australia" when there's no place in the category.
@@ -136,14 +179,17 @@ export async function inferBusiness(domain: string): Promise<BusinessInfo> {
   );
 
   // JSON-LD: prefer an Organization/LocalBusiness name (not a WebPage title or
-  // author), plus its address.
+  // author), plus its address, plus a specific business @type as a category
+  // fallback ("YogaStudio" → "yoga studio").
   let gotOrgName = false;
+  let ldCategory = '';
   for (const m of html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
     try {
       const json = JSON.parse(m[1]);
       const nodes = Array.isArray(json) ? json : json['@graph'] ? json['@graph'] : [json];
       for (const n of nodes) {
-        const types = ([] as unknown[]).concat(n?.['@type'] ?? []).map((t) => String(t).toLowerCase());
+        const rawTypes = ([] as unknown[]).concat(n?.['@type'] ?? []).map((t) => String(t));
+        const types = rawTypes.map((t) => t.toLowerCase());
         const isOrg = types.some((t) =>
           /organization|localbusiness|corporation|professionalservice|legalservice|store|business/.test(t)
         );
@@ -152,6 +198,12 @@ export async function inferBusiness(domain: string): Promise<BusinessInfo> {
           gotOrgName = true;
         }
         const addr = n?.address;
+        if (!ldCategory && (isOrg || addr)) {
+          const specific = rawTypes.find(
+            (t) => /^[A-Za-z]{3,40}$/.test(t) && !GENERIC_LD_TYPES.has(t.toLowerCase())
+          );
+          if (specific) ldCategory = specific.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+        }
         if (addr && !location) {
           const locality = decode(addr.addressLocality || '');
           const region = expandState(decode(addr.addressRegion || ''));
@@ -169,6 +221,14 @@ export async function inferBusiness(domain: string): Promise<BusinessInfo> {
     }
   }
 
+  // og:site_name is the brand when JSON-LD lacks an Organization node.
+  if (!gotOrgName) {
+    const og = decode(
+      html.match(/<meta[^>]+property=["']og:site_name["'][^>]+content=["']([^"']+)["']/i)?.[1] || ''
+    );
+    if (og && og.length < 60) brandName = og;
+  }
+
   // Location fallback: scan title/description for a known AU city.
   if (!location) {
     const hay = `${title} ${metaDesc}`;
@@ -176,16 +236,23 @@ export async function inferBusiness(domain: string): Promise<BusinessInfo> {
   }
 
   // Category: take the title segment that is NOT the brand (titles are usually
-  // "Brand | Category Location" or "Category Location | Brand").
+  // "Brand | Category Location" or "Category Location | Brand") and not a
+  // navigation label like "Home".
   const brandToken = brandName.toLowerCase().replace(/[^a-z0-9]/g, '');
   const segs = title
     .split(/[|–—\-·•]/)
     .map((s) => s.trim())
     .filter(Boolean);
-  const nonBrand = segs.filter((s) => s.toLowerCase().replace(/[^a-z0-9]/g, '').indexOf(brandToken) === -1);
+  const nonBrand = segs.filter(
+    (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '').indexOf(brandToken) === -1 && !isJunkSegment(s)
+  );
   category = (nonBrand.sort((a, b) => b.length - a.length)[0] || '').trim();
-  // Fallback to the meta description's first clause.
-  if (category.length < 4) category = metaDesc.split(/[.|–—]/)[0].trim();
+  // Fallbacks: a specific JSON-LD business type, then the meta description.
+  if (category.length < 4 && ldCategory) category = ldCategory;
+  if (category.length < 4) category = categoryFromDescription(metaDesc, brandName);
+  // The query/prompt prepend "top"/"best" themselves — drop a superlative prefix.
+  category = category.replace(/^(best|top|leading|premier|trusted)\s+/i, '').trim();
+  if (isJunkSegment(category)) category = '';
   // Strip a trailing location so we don't double it in the query.
   if (category && location && location !== 'Australia') {
     category = category.replace(new RegExp(`\\s*(in|near)?\\s*${location}\\s*$`, 'i'), '').trim();
