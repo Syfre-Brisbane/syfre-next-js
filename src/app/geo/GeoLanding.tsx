@@ -325,6 +325,8 @@ function ScanTakeover({
     const dwell = Math.max(0, 3500 - (Date.now() - started));
     if (dwell) await new Promise((r) => window.setTimeout(r, dwell));
     window.clearInterval(stageTimer);
+    // Real scan duration, so the "~20 seconds" promise is checked against data.
+    track('geo_scan_time', { scan_ms: Date.now() - started });
     setStep('result');
   }
 
