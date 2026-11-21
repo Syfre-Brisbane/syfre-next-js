@@ -583,31 +583,6 @@ function Spark({ points, label }: { points: number[]; label: string }) {
   );
 }
 
-// Ranked horizontal bars — hero (us/our client) in brand green, the field in
-// neutral zinc. Direct-labelled values so identity isn't colour-alone.
-function HBars({ data, label }: { data: { value: number; hero?: boolean }[]; label: string }) {
-  const max = Math.max(...data.map((d) => d.value));
-  return (
-    <div className="space-y-2" role="img" aria-label={label}>
-      {data.map((d, i) => (
-        <div key={i} className="flex items-center gap-2.5">
-          <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
-            <div
-              className={`h-full rounded-full ${d.hero ? 'bg-green-400' : 'bg-zinc-600'}`}
-              style={{ width: `${Math.round((d.value / max) * 100)}%` }}
-            />
-          </div>
-          <span
-            className={`w-9 shrink-0 text-right text-xs tabular-nums ${d.hero ? 'text-green-300' : 'text-zinc-400'}`}
-          >
-            {d.value}%
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
   const [scanOpen, setScanOpen] = useState(false);
   const [scanVariant, setScanVariant] = useState<'default' | 'exit'>('default');
@@ -834,14 +809,13 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
                   When people ask AI who to buy from in this field, one manufacturing client of ours is
-                  named six times out of ten — more than anyone else. They put the sales that followed
-                  in the hundreds of thousands of dollars.
+                  named six times out of ten — more than anyone else.
                 </p>
-                <div className="mt-5">
-                  <HBars
-                    label="This client is named in about 60% of AI answers in its field, the clear number one"
-                    data={[{ value: 60, hero: true }, { value: 43 }, { value: 16 }, { value: 9 }]}
-                  />
+                <div className="mt-5 border-t border-white/10 pt-5">
+                  <div className="text-5xl leading-none tracking-tight text-green-400">$100,000s</div>
+                  <p className="mt-2 text-sm text-zinc-300">
+                    in sales this client attributes to being named in AI answers.
+                  </p>
                 </div>
               </div>
 
