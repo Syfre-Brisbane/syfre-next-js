@@ -586,28 +586,6 @@ function HBars({ data, label }: { data: { value: number; hero?: boolean }[]; lab
   );
 }
 
-// Area sparkline for a value climbing over time.
-function Spark({ points, label }: { points: number[]; label: string }) {
-  const w = 260, h = 70, pad = 5;
-  const max = Math.max(...points), min = Math.min(...points);
-  const x = (i: number) => pad + (i / (points.length - 1)) * (w - 2 * pad);
-  const y = (v: number) => h - pad - ((v - min) / (max - min || 1)) * (h - 2 * pad);
-  const line = points.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p).toFixed(1)}`).join(' ');
-  const area = `${line} L${x(points.length - 1).toFixed(1)},${h - pad} L${x(0).toFixed(1)},${h - pad} Z`;
-  return (
-    <svg viewBox={`0 0 ${w} ${h}`} className="w-full" role="img" aria-label={label} preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#05df72" stopOpacity="0.3" />
-          <stop offset="1" stopColor="#05df72" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path d={area} fill="url(#sparkGrad)" />
-      <path d={line} fill="none" stroke="#05df72" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
   const [scanOpen, setScanOpen] = useState(false);
   const [scanVariant, setScanVariant] = useState<'default' | 'exit'>('default');
@@ -818,73 +796,56 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
           </div>
         </section>
 
-        {/* Proof — real client outcomes + testimonial */}
+        {/* Proof — story first, numbers as evidence */}
         <section className="border-t border-white/10">
           <div className="mx-auto max-w-6xl px-6 py-20">
             <h2 className="max-w-2xl text-3xl font-normal leading-tight tracking-tight sm:text-4xl">
               Proof it works
             </h2>
-            <div className="mt-12 grid gap-6 sm:grid-cols-3">
-              <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6">
-                <div className="flex items-baseline justify-between gap-2">
-                  <span className="text-sm text-white">Checkmate</span>
-                  <span className="text-sm tabular-nums text-green-300">~34% share</span>
+            <div className="mt-12 grid gap-6 lg:grid-cols-2">
+              <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6 sm:p-8">
+                <div className="text-[11px] uppercase tracking-wider text-zinc-400">
+                  Advanced manufacturing, Australia
                 </div>
-                <div className="mt-4">
-                  <HBars
-                    label="Checkmate leads its background-check category in AI mentions"
-                    data={[{ value: 34, hero: true }, { value: 30 }, { value: 24 }, { value: 18 }]}
-                  />
-                </div>
-                <p className="mt-4 text-[13px] leading-relaxed text-zinc-400">
-                  Among the most-named background-check platforms in AI answers — consistently top of its category.
+                <h3 className="mt-3 text-2xl leading-snug tracking-tight text-white">
+                  Their buyers arrive already sold.
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
+                  When people ask AI who to buy from in this field, one manufacturing client of ours is
+                  named six times out of ten — more than anyone else.
+                  {/* Pending the client's OK, append: " They put the sales that followed in the
+                      hundreds of thousands of dollars." */}
                 </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6">
-                <div className="flex items-baseline justify-between gap-2">
-                  <span className="text-sm text-white">An Australian 3D-printing company</span>
-                  <span className="text-sm tabular-nums text-green-300">~60%</span>
-                </div>
-                <div className="mt-4">
+                <div className="mt-5">
                   <HBars
                     label="This client is named in about 60% of AI answers in its field, the clear number one"
                     data={[{ value: 60, hero: true }, { value: 43 }, { value: 16 }, { value: 9 }]}
                   />
                 </div>
-                <p className="mt-4 text-[13px] leading-relaxed text-zinc-400">
-                  Named in ~6 of 10 AI answers in its field — the single most-recommended name in its category.
-                </p>
               </div>
 
-              <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6">
-                <div className="flex items-baseline justify-between gap-2">
-                  <span className="text-sm text-white">Syfre — search impressions</span>
-                  <span className="text-sm tabular-nums text-green-300">5.6×</span>
+              <div className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6 sm:p-8">
+                <div className="text-[11px] uppercase tracking-wider text-zinc-400">
+                  Checkmate — employment background checks
                 </div>
-                <div className="mt-4">
-                  <Spark
-                    label="Syfre's weekly search impressions climbed 5.6 times over 90 days"
-                    points={[151, 192, 319, 299, 234, 119, 156, 280, 269, 378, 458, 547, 853]}
-                  />
-                </div>
-                <div className="mt-1 flex justify-between text-[11px] tabular-nums text-zinc-500">
-                  <span>~150/wk</span>
-                  <span>90 days</span>
-                  <span>~850/wk</span>
-                </div>
-                <p className="mt-3 text-[13px] leading-relaxed text-zinc-400">
-                  Our own AI-search impressions. We practise what we sell.
+                <h3 className="mt-3 text-2xl leading-snug tracking-tight text-white">
+                  A buyer in the US asked Claude who to trust. It said Checkmate.
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
+                  She became a client. Checkmate turns up in about a third of AI answers on background
+                  checking, usually first or second, ahead of names like Checkr.
                 </p>
+                <blockquote className="mt-5 border-l-2 border-green-400/60 pl-4 text-[15px] leading-relaxed text-zinc-200">
+                  “She said Claude was ‘a massive fan of Checkmate’ and one of its most-recommended
+                  options. Clearly, what you’re doing on AEO is working.”
+                </blockquote>
+                <div className="mt-2 pl-4 text-sm text-zinc-400">— Checkmate, Syfre client</div>
               </div>
             </div>
-            <figure className="mt-8 rounded-2xl border border-green-400/20 bg-green-400/5 p-6 sm:p-8">
-              <blockquote className="text-lg leading-relaxed text-zinc-100 sm:text-xl">
-                “A US client found us through Claude — she said Claude was ‘a massive fan of Checkmate’
-                and one of its most-recommended options. Clearly, what you’re doing on AEO is working.”
-              </blockquote>
-              <figcaption className="mt-4 text-sm text-zinc-400">— Checkmate, Syfre client</figcaption>
-            </figure>
+            <p className="mt-6 text-[13px] leading-relaxed text-zinc-400">
+              We do this for ourselves too — our own impressions are up 5.6× in 90 days. Mention rates
+              measured across hundreds of real buyer questions, every month, not one-off screenshots.
+            </p>
           </div>
         </section>
 
