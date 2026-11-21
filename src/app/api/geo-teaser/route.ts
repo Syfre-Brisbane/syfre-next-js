@@ -113,12 +113,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ teaser: null }, { status: 400 });
   }
   const attributionLine = attribution ? `\nTraffic source: ${attribution}` : '';
+  // Internal verification runs land with utm_source=test — make them
+  // unmistakable in the inbox so a test never reads as a lead.
+  const testTag = /utm_source=test\b/.test(attribution) ? '[TEST] ' : '';
   if (!isPublicDomain(domain)) {
     log('info', 'teaser.bad_domain', { ip, domain });
     // Still a human hand-raiser — what they typed (often their email) may
     // identify them even though the check itself can't run.
     await leadSignal(
-      `Tool used with invalid input: ${domain}`,
+      `${testTag}Tool used with invalid input: ${domain}`,
       `Someone used the /geo AI visibility checker but typed something that isn't a domain (often their email address).\n\nThey typed: ${domain}\nIP: ${ip}${attributionLine}\n\nNo email was captured via the form — if the input identifies them, it's worth chasing.`
     );
     return NextResponse.json({ teaser: null });
@@ -173,7 +176,7 @@ export async function POST(request: NextRequest) {
   const teaser = decideTeaser(access, answer, promptText);
   log('info', 'teaser.done', { domain, ms: Date.now() - t0, branch: teaser.branch });
   await leadSignal(
-    `Site checked: ${domain}`,
+    `${testTag}Site checked: ${domain}`,
     [
       'Someone just ran the /geo AI visibility check.',
       '',

@@ -133,9 +133,12 @@ export async function POST(request: NextRequest) {
       description && `\n${description}`,
     ].filter(Boolean);
 
-    const subject = isSnapshot
+    // Internal verification runs carry utm_source=test — make them
+    // unmistakable in the inbox so a test never reads as a lead.
+    const testTag = /utm_source=test\b/.test(attribution) ? '[TEST] ' : '';
+    const subject = testTag + (isSnapshot
       ? `[ACTION] AI Visibility Snapshot request: ${name} — deliver Snapshot`
-      : `New lead: ${name} — ${leadSource}`;
+      : `New lead: ${name} — ${leadSource}`);
 
     await sesClient.send(
       new SendEmailCommand({
