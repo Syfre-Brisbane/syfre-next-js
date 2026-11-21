@@ -561,6 +561,28 @@ function ScanTakeover({
   );
 }
 
+// Area sparkline for a value climbing over time.
+function Spark({ points, label }: { points: number[]; label: string }) {
+  const w = 260, h = 70, pad = 5;
+  const max = Math.max(...points), min = Math.min(...points);
+  const x = (i: number) => pad + (i / (points.length - 1)) * (w - 2 * pad);
+  const y = (v: number) => h - pad - ((v - min) / (max - min || 1)) * (h - 2 * pad);
+  const line = points.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p).toFixed(1)}`).join(' ');
+  const area = `${line} L${x(points.length - 1).toFixed(1)},${h - pad} L${x(0).toFixed(1)},${h - pad} Z`;
+  return (
+    <svg viewBox={`0 0 ${w} ${h}`} className="w-full" role="img" aria-label={label} preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#05df72" stopOpacity="0.3" />
+          <stop offset="1" stopColor="#05df72" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path d={area} fill="url(#sparkGrad)" />
+      <path d={line} fill="none" stroke="#05df72" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 // Ranked horizontal bars — hero (us/our client) in brand green, the field in
 // neutral zinc. Direct-labelled values so identity isn't colour-alone.
 function HBars({ data, label }: { data: { value: number; hero?: boolean }[]; label: string }) {
@@ -812,9 +834,8 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
                   When people ask AI who to buy from in this field, one manufacturing client of ours is
-                  named six times out of ten — more than anyone else.
-                  {/* Pending the client's OK, append: " They put the sales that followed in the
-                      hundreds of thousands of dollars." */}
+                  named six times out of ten — more than anyone else. They put the sales that followed
+                  in the hundreds of thousands of dollars.
                 </p>
                 <div className="mt-5">
                   <HBars
@@ -842,10 +863,34 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
                 <div className="mt-2 pl-4 text-sm text-zinc-400">— Checkmate, Syfre client</div>
               </div>
             </div>
-            <p className="mt-6 text-[13px] leading-relaxed text-zinc-400">
-              We do this for ourselves too — our own impressions are up 5.6× in 90 days. Mention rates
-              measured across hundreds of real buyer questions, every month, not one-off screenshots.
-            </p>
+            <div className="mt-6 rounded-2xl border border-white/12 bg-zinc-900/40 p-6 sm:p-8">
+              <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-center">
+                <div>
+                  <div className="text-[11px] uppercase tracking-wider text-zinc-400">
+                    Syfre — our own site
+                  </div>
+                  <h3 className="mt-3 text-2xl leading-snug tracking-tight text-white">
+                    We do this for ourselves.
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
+                    Our own search impressions are up 5.6× in 90 days, on the same playbook your
+                    Snapshot draws on. And every mention rate on this page is measured across hundreds
+                    of real buyer questions, every month — not one-off screenshots.
+                  </p>
+                </div>
+                <div>
+                  <Spark
+                    label="Syfre's weekly search impressions climbed 5.6 times over 90 days"
+                    points={[151, 192, 319, 299, 234, 119, 156, 280, 269, 378, 458, 547, 853]}
+                  />
+                  <div className="mt-1 flex justify-between text-[11px] tabular-nums text-zinc-500">
+                    <span>~150/wk</span>
+                    <span>90 days</span>
+                    <span>~850/wk</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
