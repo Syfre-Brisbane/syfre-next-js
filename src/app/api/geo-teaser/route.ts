@@ -126,25 +126,38 @@ export async function POST(request: NextRequest) {
 
   log('info', 'teaser.start', { ip, domain });
 
-  // Signal A — real, no key.
-  let access;
-  try {
-    access = await checkAiAccess(domain);
+  // Signal A and the homepage inference are independent — run them concurrently
+  // so the whole check fits inside the client's wait window (Perplexity retries
+  // alone can take ~10s; every sequential second here risks the visitor seeing
+  // the fallback while the real result lands only in the signal email).
+  const [accessSettled, infoSettled] = await Promise.allSettled([
+    checkAiAccess(domain),
+    inferBusiness(domain),
+  ]);
+
+  let access: Awaited<ReturnType<typeof checkAiAccess>>;
+  if (accessSettled.status === 'fulfilled') {
+    access = accessSettled.value;
     log('info', 'signal.access.ok', { domain, status: access.status, blocked: access.blocked });
-  } catch (e) {
+  } else {
     access = { status: 'unknown' as const, blocked: [] };
-    log('error', 'signal.access.fail', { domain, err: String(e) });
-    await alert('provider_access', 'Signal A (access) failing', `checkAiAccess errored for ${domain}: ${String(e)}`);
+    log('error', 'signal.access.fail', { domain, err: String(accessSettled.reason) });
+    await alert(
+      'provider_access',
+      'Signal A (access) failing',
+      `checkAiAccess errored for ${domain}: ${String(accessSettled.reason)}`
+    );
   }
 
   // Signal B — only if a crawler isn't already blocked (short-circuit) and a key exists.
-  // Infer the business's category + city from its homepage so the buyer question is
-  // sharp ("best personal injury lawyers in Brisbane"), not generic.
+  // The inferred category + city make the buyer question sharp
+  // ("best personal injury lawyers in Brisbane"), not generic.
   let answer: AnswerResult = null;
   let promptText = '';
   if (access.status !== 'blocked') {
     try {
-      const info = await inferBusiness(domain);
+      if (infoSettled.status === 'rejected') throw infoSettled.reason;
+      const info = infoSettled.value;
       const query = info.category.length >= 4 ? buildAnswerQuery(info) : '';
       promptText = query ? displayPrompt(info) : '';
       log('info', 'signal.infer.ok', { domain, brand: info.brandName, category: info.category, location: info.location, query });

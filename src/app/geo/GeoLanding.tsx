@@ -293,10 +293,12 @@ function ScanTakeover({ open, onClose }: { open: boolean; onClose: () => void })
     const started = Date.now();
     // Advance the stage list while the real check runs, and hold a ~3.5s floor
     // so the scan reads as real work rather than a flash.
-    const stageTimer = window.setInterval(() => setStage((s) => Math.min(s + 1, 3)), 1600);
+    const stageTimer = window.setInterval(() => setStage((s) => Math.min(s + 1, 3)), 2500);
     try {
       const ctrl = new AbortController();
-      const to = window.setTimeout(() => ctrl.abort(), 15000);
+      // 25s cap: Perplexity's retry path can run ~20s and the staged screen
+      // makes the wait legible — better a slow real result than the fallback.
+      const to = window.setTimeout(() => ctrl.abort(), 25000);
       const res = await fetch('/api/geo-teaser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
