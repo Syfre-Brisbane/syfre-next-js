@@ -76,6 +76,22 @@ export default function RootLayout({
           })(window.lintrk);
         `}
       </Script>
+      <Script id="openai-oaiq" strategy="afterInteractive">
+        {`
+          (function (w, d, s, u) {
+            if (w.oaiq) return;
+            var q = function () { q.q.push(arguments); };
+            q.q = [];
+            w.oaiq = q;
+            var js = d.createElement(s);
+            js.async = true;
+            js.src = u;
+            var f = d.getElementsByTagName(s)[0];
+            f.parentNode.insertBefore(js, f);
+          })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+          window.oaiq("init", { pixelId: "K5o9VjiQ5DbEyM2wT1Qb57" });
+        `}
+      </Script>
       <body
         className={`${sourceSans3.variable} antialiased font-sans`}
       >

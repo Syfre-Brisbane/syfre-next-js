@@ -324,6 +324,14 @@ function LeadForm() {
         } catch {
           /* analytics must never break the form */
         }
+        // OpenAI/ChatGPT Ads conversion "Snapshot request" (pixel: Syfre website pixel).
+        try {
+          (window as Window & { oaiq?: (...args: unknown[]) => void }).oaiq?.('measure', 'lead_created', {
+            type: 'customer_action',
+          });
+        } catch {
+          /* analytics must never break the form */
+        }
       } else {
         setStatus('error');
         setError(data.message || 'Something went wrong. Check your details and try again.');
