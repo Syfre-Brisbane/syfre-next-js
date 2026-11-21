@@ -121,7 +121,7 @@ function isJunkSegment(s: string): boolean {
 // specific ("Dentist", "YogaStudio") de-camels into a usable one.
 const GENERIC_LD_TYPES = new Set([
   'organization', 'localbusiness', 'corporation', 'professionalservice', 'onlinebusiness',
-  'onlinestore', 'store', 'business', 'brand', 'service', 'thing', 'website', 'webpage',
+  'onlinestore', 'store', 'business', 'brand', 'service', 'thing', 'website', 'webpage', 'place',
 ]);
 
 // Meta descriptions open with marketing framing ("Begin Iyengar Yoga at The
@@ -246,12 +246,22 @@ export async function inferBusiness(domain: string): Promise<BusinessInfo> {
   const nonBrand = segs.filter(
     (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '').indexOf(brandToken) === -1 && !isJunkSegment(s)
   );
-  category = (nonBrand.sort((a, b) => b.length - a.length)[0] || '').trim();
-  // Fallbacks: a specific JSON-LD business type, then the meta description.
+  // Pronoun-led segments are taglines ("Your Local One Call Trade Specialists"),
+  // not categories — they read garbled in the prompt we show the visitor, so
+  // they rank behind every other source and are only a last resort.
+  const isTagline = (s: string) => /^(your|you|we|our)\b/i.test(s.trim());
+  const categoryish = nonBrand.filter((s) => !isTagline(s));
+  category = (categoryish.sort((a, b) => b.length - a.length)[0] || '').trim();
+  // Fallbacks: a specific JSON-LD business type, the meta description, then a
+  // title tagline only if nothing better exists.
   if (category.length < 4 && ldCategory) category = ldCategory;
   if (category.length < 4) category = categoryFromDescription(metaDesc, brandName);
-  // The query/prompt prepend "top"/"best" themselves — drop a superlative prefix.
-  category = category.replace(/^(best|top|leading|premier|trusted)\s+/i, '').trim();
+  if (category.length < 4) {
+    category = (nonBrand.filter(isTagline).sort((a, b) => b.length - a.length)[0] || '').trim();
+  }
+  // The query/prompt prepend "top"/"best" themselves — drop superlative and
+  // possessive prefixes ("Best…", "Your Local…").
+  category = category.replace(/^(best|top|leading|premier|trusted|your|our)\s+/i, '').trim();
   if (isJunkSegment(category)) category = '';
   // Strip a trailing location so we don't double it in the query.
   if (category && location && location !== 'Australia') {
