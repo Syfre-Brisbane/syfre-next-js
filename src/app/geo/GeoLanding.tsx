@@ -316,6 +316,14 @@ function LeadForm() {
       if (res.ok && data.success) {
         setStatus('done');
         track('generate_lead', { method: 'geo_snapshot' });
+        // LinkedIn conversion "Snapshot request (GEO landing)" — id from Campaign Manager.
+        try {
+          (window as Window & { lintrk?: (a: string, b?: object) => void }).lintrk?.('track', {
+            conversion_id: 30677516,
+          });
+        } catch {
+          /* analytics must never break the form */
+        }
       } else {
         setStatus('error');
         setError(data.message || 'Something went wrong. Check your details and try again.');
