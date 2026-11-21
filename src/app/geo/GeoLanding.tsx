@@ -232,7 +232,15 @@ function track(event: string, params?: Record<string, unknown>) {
 
 // Full-screen step-by-step scan. Stays mounted while closed so a visitor who
 // reopens it lands back on their result instead of starting over.
-function ScanTakeover({ open, onClose }: { open: boolean; onClose: () => void }) {
+function ScanTakeover({
+  open,
+  variant,
+  onClose,
+}: {
+  open: boolean;
+  variant: 'default' | 'exit';
+  onClose: () => void;
+}) {
   const [step, setStep] = useState<'site' | 'checking' | 'result'>('site');
   const [site, setSite] = useState('');
   const [email, setEmail] = useState('');
@@ -419,12 +427,12 @@ function ScanTakeover({ open, onClose }: { open: boolean; onClose: () => void })
             <div>
               <p className="text-sm font-medium text-green-400">Step 1 of 3 — your website</p>
               <h2 className="mt-3 text-4xl leading-tight tracking-tight text-white sm:text-5xl">
-                Let’s scan your site.
+                {variant === 'exit' ? 'Before you go — one quick look?' : 'Let’s scan your site.'}
               </h2>
               <p className="mt-4 max-w-xl text-lg leading-relaxed text-zinc-300">
-                We’ll read your website the way AI does to work out what you do and where you do it,
-                then ask a live AI engine who it recommends for that work. Your result — and who’s
-                named — is on the next screen.
+                {variant === 'exit'
+                  ? 'Twenty seconds to find out whether AI recommends you — or your competitors. We’ll scan your site, ask a live AI engine, and show you the answer right here.'
+                  : 'We’ll read your website the way AI does to work out what you do and where you do it, then ask a live AI engine who it recommends for that work. Your result — and who’s named — is on the next screen.'}
               </p>
               <form onSubmit={onCheckSite} className="mt-8">
                 <label className="block">
@@ -602,10 +610,40 @@ function Spark({ points, label }: { points: number[]; label: string }) {
 
 export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
   const [scanOpen, setScanOpen] = useState(false);
+  const [scanVariant, setScanVariant] = useState<'default' | 'exit'>('default');
   const openScan = (placement: string) => {
     track('geo_scan_open', { placement });
+    setScanVariant('default');
     setScanOpen(true);
+    try {
+      sessionStorage.setItem('syfre_scan_opened', '1');
+    } catch {
+      /* private mode */
+    }
   };
+
+  // Exit intent (desktop): one last, polite shot at the scan — once per
+  // session, armed only after 10s on page, and never for a visitor who has
+  // already opened the takeover themselves. Mobile has no reliable signal.
+  useEffect(() => {
+    const armAt = Date.now() + 10_000;
+    const onMouseOut = (e: MouseEvent) => {
+      if (e.relatedTarget || e.clientY > 0) return; // only true exits via the top edge
+      if (Date.now() < armAt) return;
+      try {
+        if (sessionStorage.getItem('syfre_exit_prompted') || sessionStorage.getItem('syfre_scan_opened'))
+          return;
+        sessionStorage.setItem('syfre_exit_prompted', '1');
+      } catch {
+        return;
+      }
+      track('geo_scan_open', { placement: 'exit_intent' });
+      setScanVariant('exit');
+      setScanOpen(true);
+    };
+    document.addEventListener('mouseout', onMouseOut);
+    return () => document.removeEventListener('mouseout', onMouseOut);
+  }, []);
 
   return (
     <>
@@ -913,7 +951,7 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
         </div>
       </footer>
 
-      <ScanTakeover open={scanOpen} onClose={() => setScanOpen(false)} />
+      <ScanTakeover open={scanOpen} variant={scanVariant} onClose={() => setScanOpen(false)} />
     </>
   );
 }
