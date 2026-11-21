@@ -230,7 +230,9 @@ function track(event: string, params?: Record<string, unknown>) {
   }
 }
 
-function LeadForm() {
+// Full-screen step-by-step scan. Stays mounted while closed so a visitor who
+// reopens it lands back on their result instead of starting over.
+function ScanTakeover({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [step, setStep] = useState<'site' | 'checking' | 'result'>('site');
   const [site, setSite] = useState('');
   const [email, setEmail] = useState('');
@@ -239,11 +241,28 @@ function LeadForm() {
   const [error, setError] = useState('');
   const [siteHint, setSiteHint] = useState('');
   const [teaser, setTeaser] = useState<{ headline: string; body: string; prompt?: string }>(TEASER_FALLBACK);
+  const [stage, setStage] = useState(0); // which scanning line is active
+  const siteInputRef = useRef<HTMLInputElement>(null);
 
   // Capture UTMs on landing, before any in-site navigation can lose them.
   useEffect(() => {
     captureAttribution();
   }, []);
+
+  // Open/close mechanics: lock page scroll, close on Escape, focus the input.
+  useEffect(() => {
+    if (!open) return;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    if (step === 'site') siteInputRef.current?.focus();
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [open, step, onClose]);
 
   // Step 1 → run the live check, SHOW the result, then reveal email. The result
   // gates the email so the visitor always sees it. 15s client cap + fallback.
@@ -270,6 +289,11 @@ function LeadForm() {
     }
     setSiteHint('');
     setStep('checking');
+    setStage(0);
+    const started = Date.now();
+    // Advance the stage list while the real check runs, and hold a ~3.5s floor
+    // so the scan reads as real work rather than a flash.
+    const stageTimer = window.setInterval(() => setStage((s) => Math.min(s + 1, 3)), 1600);
     try {
       const ctrl = new AbortController();
       const to = window.setTimeout(() => ctrl.abort(), 15000);
@@ -288,6 +312,9 @@ function LeadForm() {
       setTeaser(TEASER_FALLBACK);
       track('geo_check', { check_result: 'client_error' });
     }
+    const dwell = Math.max(0, 3500 - (Date.now() - started));
+    if (dwell) await new Promise((r) => window.setTimeout(r, dwell));
+    window.clearInterval(stageTimer);
     setStep('result');
   }
 
@@ -342,131 +369,185 @@ function LeadForm() {
     }
   }
 
-  function handleSubmit(e: React.FormEvent) {
-    if (step === 'site') return onCheckSite(e);
-    if (step === 'result') return onSubmit(e);
-    e.preventDefault();
-  }
-
-  if (status === 'done') {
-    return (
-      <div className="rounded-2xl border border-green-400/30 bg-green-400/5 p-6 sm:p-8">
-        <h3 className="text-2xl tracking-tight text-white">You’re in.</h3>
-        <p className="mt-2 text-zinc-300">
-          Your AI Visibility Snapshot is on its way — keep an eye out for an email from syfre.ai.
-        </p>
-      </div>
-    );
-  }
-
   const inputCls =
-    'w-full rounded-md border border-white/15 bg-black px-4 py-3 text-base text-white placeholder:text-zinc-400 focus:border-green-400 focus:outline-none disabled:opacity-60';
+    'w-full rounded-md border border-white/15 bg-black px-4 py-3.5 text-lg text-white placeholder:text-zinc-500 focus:border-green-400 focus:outline-none disabled:opacity-60';
+
+  const domain = cleanDomain(site);
+  const scanStages = [
+    `Reading ${domain || 'your site'}…`,
+    'Working out your category and location…',
+    'Asking a live AI engine who it recommends…',
+    'Checking whether you’re named…',
+  ];
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-white/12 bg-zinc-900/40 p-6 sm:p-8">
-      <label className="block">
-        <span className="sr-only">Your website</span>
-        <input
-          type="text"
-          required
-          value={site}
-          onChange={(e) => setSite(e.target.value)}
-          placeholder="yourbusiness.com.au"
-          inputMode="url"
-          autoComplete="url"
-          disabled={step !== 'site'}
-          className={inputCls}
-        />
-      </label>
-
-      {siteHint && step === 'site' && (
-        <p role="alert" className="mt-2 text-sm text-amber-300">
-          {siteHint}
-        </p>
-      )}
-
-      {step === 'site' && (
-        <button type="submit" className={`${BTN} mt-4 w-full`}>
-          Check my site →
-        </button>
-      )}
-
-      {step === 'checking' && (
-        <div
-          className="mt-4 flex items-center gap-3 rounded-xl border border-white/12 bg-zinc-900/40 p-4"
-          aria-live="polite"
-        >
-          <span className="h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-white/20 border-t-green-400 motion-reduce:animate-none" />
-          <p className="text-sm text-zinc-300">
-            Checking how AI answers for <span className="text-white">{cleanDomain(site)}</span> across ChatGPT,
-            Gemini, Perplexity &amp; Google AI…
-          </p>
-        </div>
-      )}
-
-      {step === 'result' && (
-        <div className="mt-4">
-          <div className="rounded-xl border border-green-400/30 bg-green-400/[0.06] p-5" aria-live="polite">
-            <p className="text-lg font-semibold leading-snug tracking-tight text-white">{teaser.headline}</p>
-            <p className="mt-1.5 text-[15px] leading-relaxed text-zinc-300">{teaser.body}</p>
-            {teaser.prompt && (
-              <p className="mt-3 border-t border-white/10 pt-3 text-[13px] text-zinc-400">
-                We asked one AI this one question just now:{' '}
-                <span className="text-zinc-300">“{teaser.prompt}”</span>.
-              </p>
-            )}
-          </div>
-          <p className="mt-4 text-sm text-zinc-300">
-            Your buyers ask dozens of questions, across ChatGPT, Gemini, Perplexity and Google AI. Your free Snapshot
-            checks how you show up for all of them — enter your email to get it.
-          </p>
-          <label className="mt-3 block">
-            <span className="sr-only">Email</span>
-            <input
-              type="email"
-              required
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email address"
-              autoComplete="email"
-              className={inputCls}
-            />
-          </label>
-          {/* Honeypot: hidden from people, catches bots. Maps to the API's `Website` trap. */}
-          <input
-            type="text"
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-            value={hp}
-            onChange={(e) => setHp(e.target.value)}
-            className="hidden"
-          />
-          <button type="submit" disabled={status === 'submitting'} className={`${BTN} mt-4 w-full disabled:opacity-60`}>
-            {status === 'submitting' ? 'Sending…' : 'Get my free Snapshot'}
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Free AI visibility scan"
+      className={`fixed inset-0 z-50 overflow-y-auto bg-black ${open ? '' : 'hidden'}`}
+    >
+      <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-6 py-5">
+        <div className="flex items-center justify-between">
+          <span className="text-sm tracking-tight text-zinc-400">
+            Syfre <span className="text-green-400">/ GEO</span>
+          </span>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="rounded-md p-2 text-2xl leading-none text-zinc-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400"
+          >
+            ×
           </button>
-          {status === 'error' && (
-            <p role="alert" className="mt-3 text-sm text-amber-300">
-              {error}
-            </p>
+        </div>
+
+        <div className="flex flex-1 flex-col justify-center py-10">
+          {status === 'done' ? (
+            <div>
+              <h2 className="text-4xl leading-tight tracking-tight text-white sm:text-5xl">You’re in.</h2>
+              <p className="mt-4 max-w-md text-lg leading-relaxed text-zinc-300">
+                Your AI Visibility Snapshot is on its way — keep an eye out for an email from syfre.ai.
+              </p>
+              <button type="button" onClick={onClose} className={`${BTN} mt-8`}>
+                Back to the page
+              </button>
+            </div>
+          ) : step === 'site' ? (
+            <div>
+              <p className="text-sm font-medium text-green-400">Step 1 of 3 — your website</p>
+              <h2 className="mt-3 text-4xl leading-tight tracking-tight text-white sm:text-5xl">
+                Let’s scan your site.
+              </h2>
+              <p className="mt-4 max-w-xl text-lg leading-relaxed text-zinc-300">
+                We’ll read your website the way AI does to work out what you do and where you do it,
+                then ask a live AI engine who it recommends for that work. Your result — and who’s
+                named — is on the next screen.
+              </p>
+              <form onSubmit={onCheckSite} className="mt-8">
+                <label className="block">
+                  <span className="sr-only">Your website</span>
+                  <input
+                    ref={siteInputRef}
+                    type="text"
+                    required
+                    value={site}
+                    onChange={(e) => setSite(e.target.value)}
+                    placeholder="yourbusiness.com.au"
+                    inputMode="url"
+                    autoComplete="url"
+                    className={inputCls}
+                  />
+                </label>
+                {siteHint && (
+                  <p role="alert" className="mt-2 text-sm text-amber-300">
+                    {siteHint}
+                  </p>
+                )}
+                <button type="submit" className={`${BTN} mt-4 w-full text-lg`}>
+                  Scan my site →
+                </button>
+              </form>
+              <p className="mt-4 text-[13px] text-zinc-400">
+                Free · takes about 20 seconds · no email needed to see your result.
+              </p>
+            </div>
+          ) : step === 'checking' ? (
+            <div aria-live="polite">
+              <p className="text-sm font-medium text-green-400">Step 2 of 3 — scanning</p>
+              <h2 className="mt-3 text-4xl leading-tight tracking-tight text-white sm:text-5xl">
+                Scanning <span className="text-green-400">{domain}</span>
+              </h2>
+              <ul className="mt-10 space-y-5">
+                {scanStages.map((s, i) => (
+                  <li key={s} className="flex items-center gap-3 text-lg">
+                    {i < stage ? (
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-400/15 text-sm text-green-400">
+                        ✓
+                      </span>
+                    ) : i === stage ? (
+                      <span className="h-5 w-5 shrink-0 animate-spin rounded-full border-2 border-white/20 border-t-green-400 motion-reduce:animate-none" />
+                    ) : (
+                      <span className="h-5 w-5 shrink-0 rounded-full border border-white/15" />
+                    )}
+                    <span className={i <= stage ? 'text-zinc-100' : 'text-zinc-500'}>{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <div>
+              <p className="text-sm font-medium text-green-400">Step 3 of 3 — your result</p>
+              <h2 className="mt-3 text-4xl leading-tight tracking-tight text-white sm:text-5xl">
+                {teaser.headline}
+              </h2>
+              <p className="mt-4 max-w-xl text-lg leading-relaxed text-zinc-200">{teaser.body}</p>
+              {teaser.prompt && (
+                <p className="mt-4 text-sm text-zinc-400">
+                  We asked one AI engine, live, just now:{' '}
+                  <span className="text-zinc-300">“{teaser.prompt}”</span>.
+                </p>
+              )}
+              <div className="mt-9 rounded-2xl border border-green-400/25 bg-green-400/[0.05] p-6 sm:p-7">
+                <p className="text-[15px] leading-relaxed text-zinc-200">
+                  That’s one question, on one engine. Your buyers ask dozens — across ChatGPT, Gemini,
+                  Perplexity and Google AI. Your free Snapshot checks them all.
+                </p>
+                <form onSubmit={onSubmit} className="mt-4">
+                  <label className="block">
+                    <span className="sr-only">Email</span>
+                    <input
+                      type="email"
+                      required
+                      autoFocus
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Email address"
+                      autoComplete="email"
+                      className={inputCls}
+                    />
+                  </label>
+                  {/* Honeypot: hidden from people, catches bots. Maps to the API's `Website` trap. */}
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    value={hp}
+                    onChange={(e) => setHp(e.target.value)}
+                    className="hidden"
+                  />
+                  <button
+                    type="submit"
+                    disabled={status === 'submitting'}
+                    className={`${BTN} mt-4 w-full disabled:opacity-60`}
+                  >
+                    {status === 'submitting' ? 'Sending…' : 'Get my free Snapshot'}
+                  </button>
+                  {status === 'error' && (
+                    <p role="alert" className="mt-3 text-sm text-amber-300">
+                      {error}
+                    </p>
+                  )}
+                </form>
+                <p className="mt-4 text-[13px] text-zinc-400">
+                  Free. No obligation. Sent to your inbox. See our{' '}
+                  <a
+                    href="https://syfre.ai/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-zinc-300 underline underline-offset-2 hover:text-green-400"
+                  >
+                    privacy policy
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
           )}
         </div>
-      )}
-
-      <p className="mt-4 text-[13px] text-zinc-400">
-        Free. No obligation. Sent to your inbox. See our{' '}
-        <a
-          href="https://syfre.ai/privacy"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-zinc-300 underline underline-offset-2 hover:text-green-400"
-        >
-          privacy policy
-        </a>
-        .
-      </p>
-    </form>
+      </div>
+    </div>
   );
 }
 
@@ -518,12 +599,11 @@ function Spark({ points, label }: { points: number[]; label: string }) {
 }
 
 export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
-  const formRef = useRef<HTMLDivElement>(null);
-  const scrollToForm = () =>
-    formRef.current?.scrollIntoView({
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      block: 'start',
-    });
+  const [scanOpen, setScanOpen] = useState(false);
+  const openScan = (placement: string) => {
+    track('geo_scan_open', { placement });
+    setScanOpen(true);
+  };
 
   return (
     <>
@@ -534,8 +614,12 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
             <Image src="/logo.svg" alt="Syfre" width={99} height={36} className="h-7 w-auto" priority />
             <span className="text-sm tracking-tight text-green-400">/ GEO</span>
           </a>
-          <button type="button" onClick={scrollToForm} className="text-sm font-medium text-white hover:text-green-400">
-            Get my free Snapshot
+          <button
+            type="button"
+            onClick={() => openScan('header')}
+            className="text-sm font-medium text-white hover:text-green-400"
+          >
+            Scan my site
           </button>
         </div>
       </header>
@@ -558,8 +642,17 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
                 See exactly how ChatGPT, Gemini, Perplexity and Google AI answer for your business —
                 your free AI Visibility Snapshot.
               </p>
-              <div className="mt-8 max-w-md">
-                <LeadForm />
+              <div className="mt-9">
+                <button
+                  type="button"
+                  onClick={() => openScan('hero')}
+                  className={`${BTN} px-8 py-5 text-lg`}
+                >
+                  Scan my site — free →
+                </button>
+                <p className="mt-3 text-sm text-zinc-400">
+                  A real AI answer for your market in ~20 seconds. No email needed to see your result.
+                </p>
               </div>
             </div>
             <AnswerPreview />
@@ -613,8 +706,8 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
                   Your Snapshot shows, platform by platform, whether AI names your business when a buyer
                   asks — and the specific reasons it does or doesn’t. A clear starting point, not a guess.
                 </p>
-                <button type="button" onClick={scrollToForm} className={`${BTN} mt-8`}>
-                  Get my free Snapshot
+                <button type="button" onClick={() => openScan('mid')} className={`${BTN} mt-8`}>
+                  Scan my site — free
                 </button>
               </div>
               {/* Compact sample report, clearly fictional */}
@@ -778,19 +871,24 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
         </section>
 
         {/* Final CTA + form */}
-        <section ref={formRef} id="snapshot-form" className="scroll-mt-20 border-t border-white/10 bg-zinc-950/40">
+        <section id="snapshot-form" className="scroll-mt-20 border-t border-white/10 bg-zinc-950/40">
           <div className="mx-auto max-w-6xl px-6 py-20">
-            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-              <div>
-                <h2 className="text-3xl font-normal leading-tight tracking-tight sm:text-5xl">
-                  Find out what AI says about you.
-                </h2>
-                <p className="mt-5 max-w-md text-lg leading-relaxed text-zinc-300">
-                  Your competitors are already in the answer. See where you stand — free.
-                </p>
-              </div>
-              <LeadForm />
-            </div>
+            <h2 className="text-3xl font-normal leading-tight tracking-tight sm:text-5xl">
+              Find out what AI says about you.
+            </h2>
+            <p className="mt-5 max-w-md text-lg leading-relaxed text-zinc-300">
+              Your competitors are already in the answer. See where you stand — free.
+            </p>
+            <button
+              type="button"
+              onClick={() => openScan('footer')}
+              className={`${BTN} mt-8 px-8 py-5 text-lg`}
+            >
+              Scan my site — free →
+            </button>
+            <p className="mt-3 text-sm text-zinc-400">
+              ~20 seconds · no email needed to see your result.
+            </p>
           </div>
         </section>
       </main>
@@ -812,6 +910,8 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
           </div>
         </div>
       </footer>
+
+      <ScanTakeover open={scanOpen} onClose={() => setScanOpen(false)} />
     </>
   );
 }
