@@ -433,7 +433,7 @@ function ScanTakeover({
               </h2>
               <p className="mt-4 max-w-xl text-lg leading-relaxed text-zinc-300">
                 {variant === 'exit'
-                  ? 'Twenty seconds to find out whether AI recommends you — or your competitors. We’ll scan your site, ask a live AI engine, and show you the answer right here.'
+                  ? 'It takes seconds to find out whether AI recommends you — or your competitors. We’ll scan your site, ask a live AI engine, and show you the answer right here.'
                   : 'We’ll read your website the way AI does to work out what you do and where you do it, then ask a live AI engine who it recommends for that work. Your result — and who’s named — is on the next screen.'}
               </p>
               <form onSubmit={onCheckSite} className="mt-8">
@@ -461,7 +461,7 @@ function ScanTakeover({
                 </button>
               </form>
               <p className="mt-4 text-[13px] text-zinc-400">
-                Free · takes about 20 seconds · no email needed to see your result.
+                Free · results in seconds · no email needed to see your result.
               </p>
             </div>
           ) : step === 'checking' ? (
@@ -668,7 +668,7 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
                   Scan my site — free →
                 </button>
                 <p className="mt-3 text-sm text-zinc-400">
-                  A real AI answer for your market in ~20 seconds. No email needed to see your result.
+                  A real AI answer for your market in seconds. No email needed to see your result.
                 </p>
               </div>
             </div>
@@ -909,7 +909,7 @@ export default function GeoLanding({ faqs }: { faqs: Faq[] }) {
               Scan my site — free →
             </button>
             <p className="mt-3 text-sm text-zinc-400">
-              ~20 seconds · no email needed to see your result.
+              Results in seconds · no email needed to see your result.
             </p>
           </div>
         </section>
